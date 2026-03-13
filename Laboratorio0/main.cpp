@@ -3,11 +3,13 @@
 #include <map>
 
 class Turista{
+    
     private:
         string ci;
         string nombre;
         string email;
-    public:
+    
+        public:
         Turista(string, string, string);     //constructor
         ~Turista();                          //destructor
         string toString();
