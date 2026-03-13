@@ -2,28 +2,38 @@
 #include <list>
 #include <map>
 
+// Datatypes
+
+
+
+// Clases
+
 class Turista{
     private:
-        string ci;
-        string nombre;
-        string email;
+        std::string ci;
+        std::string nombre;
+        std::string email;
     public:
-        Turista(string, string, string);     //constructor
+        Turista(std::string, std::string, std::string);     //constructor
         ~Turista();                          //destructor
-        string toString();
-        string listarExperiencias(DTFecha, float, float);
-}
-Turista::Turista(string ci, string nombre, string email){
+        std::string toString();
+        std::string listarExperiencias(DTFecha, float, float);
+};
+
+Turista::Turista(std::string ci, std::string nombre, std::string email){
     this->ci = ci;
     this->nombre = nombre;
     this->email = email;
-}
+};
+
 Turista::~Turista(){        //totalemente falso
-}
-Turista::toString(){
-    return this->ci + '->' + this->nombre + '/' + this->email;
-}
-Turista::listarExperiencias(DTFecha desde, float min, float max){
-    return
-}
+};
+
+std::string Turista::toString(){
+    return this->ci + "->" + this->nombre + "/" + this->email;
+};
+
+std::string Turista::listarExperiencias(DTFecha desde, float min, float max){
+    return 0
+};
 
