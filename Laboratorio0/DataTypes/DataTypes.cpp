@@ -2,11 +2,11 @@
 #include <list>
 #include "DataTypes.h"
 
-// Metodos de los DataTypes
+// Metodos de los DataTypes A
 
 // DataType: Fecha
 int DTFecha::getdia(){
-    return this->Dia;
+    return this->Dia; 
 };
 int DTFecha::getmes(){
     return this->Mes;
