@@ -1,8 +1,7 @@
 #include <iostream>
 #include <list>
 #include <map>
-#include "Turista.h"
-#include "DataTypes.h"
+#include "Classes/Turista.h"
 
 
 int main()
