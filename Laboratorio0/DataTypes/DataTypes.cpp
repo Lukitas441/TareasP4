@@ -15,7 +15,7 @@ int DTFecha::getaño(){
     return this->Año;
 };
 
-//DataType: Exp (Experiencia)
+// DataType: Exp (Experiencia)
 std::string DTExp::getCodigoReserva(){
     return this->codigoReserva;
 };

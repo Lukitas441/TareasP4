@@ -1,8 +1,7 @@
 #include <list>
 #include <iostream>
 
-class DTFecha
-{    
+class DTFecha{    
     private:
         int Dia;
         int Mes;
@@ -14,8 +13,7 @@ class DTFecha
         int getaño();
 };
 
-class DTExp
-{
+class DTExp{
     private:
         std::string codigoReserva;   
         std::list<std::string> Turista;
