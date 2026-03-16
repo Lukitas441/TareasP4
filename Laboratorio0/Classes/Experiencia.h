@@ -42,7 +42,7 @@ class TourGuiado : public Experiencia{   // subclase de Experiencia
     int duracion;   // en horas
 
   public:
-    TourGuiado();     //constructor
+    TourGuiado();     //constructorrr
     ~TourGuiado();    //destructor
     std::string getLugar();
     int getDuracion();
