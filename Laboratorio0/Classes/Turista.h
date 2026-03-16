@@ -1,9 +1,8 @@
 #include <iostream>
 #include <list>
-#include <DataTypes.h>
+#include "DataTypes.h"
 
 class Turista{
-    
     private:
         std::string ci;
         std::string nombre;
