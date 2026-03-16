@@ -1,6 +1,6 @@
 #include <iostream>
 #include <list>
-#include <DataTypes.h>
+#include "../DataTypes/DataTypes.h"
 
 class Turista{
     
