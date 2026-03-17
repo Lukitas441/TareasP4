@@ -1,50 +1,73 @@
 #include <iostream>
 #include <list>
-#include "DataTypes.h"
-#include "Enumerados.h"
+#include "DataTypes/DataTypes.h"
+#include "DataTypes/Enumerados.h"
 
-class Experiencia{
-    private:
-        std::string codigoReserva;   
-        std::string descripcion; 
-        int precioBase;
-        DTFecha fecha;
-    
-    public:
-        Experiencia();     //constructor
-        ~Experiencia();    //destructor
-        std::string getCodigoReserva();
-        std::string getDescripcion();
-        int getPrecioBase();
-        DTFecha getFecha();
-        DTExp getDT();      // getDataType
-        float calcularCosto();
+class Experiencia
+{
+private:
+  std::string codigoReserva;
+  std::string descripcion;
+  int precioBase;
+  DTFecha fecha;
+  std::list<std::string> turistas; // lista de turistas que se alojan en el alojamiento
+
+public:
+  Experiencia(std::string, std::string, int, DTFecha); // constructor
+  ~Experiencia();                                      // destructor
+  std::string getCodigoReserva();
+  std::string getDescripcion();
+  int getPrecioBase();
+  DTFecha getFecha();
+
+  void agregarTurista(std::string ciTurista); // Agrega un turista a la experiencia
+
+  DTExp getDT();                 // getDataType link con turista
+  virtual float calcularCosto() = 0; // Virtual por polimorfismo
 };
 
-class Alojamiento : public Experiencia{   // subclase de Experiencia
-  private:
-    std::string hotel;
-    enum TipoRegimen regimen;
-    int cantNoches;
 
-  public:
-    Alojamiento();     //constructor
-    ~Alojamiento();    //destructor
-    std::string getHotel();
-    TipoRegimen getRegimen();
-    int getCantNoches();
-    float calcularCosto();
+
+class Alojamiento : public Experiencia
+{ // subclase de Experiencia
+private:
+  std::string hotel;
+  enum TipoRegimen regimen;
+  int cantNoches;
+
+public:
+  Alojamiento();  // constructor
+  ~Alojamiento(); // destructor
+  std::string getHotel();
+  TipoRegimen getRegimen();
+  int getCantNoches();
+  virtual float calcularCosto();
 };
 
-class TourGuiado : public Experiencia{   // subclase de Experiencia
-  private:
-    std::string agencia;
-    int duracion;   // en horas
+class TourGuiado : public Experiencia
+{ // subclase de Experiencia
+private:
+  std::string agencia;
+  std::list<std::string> lugaresVisitados;
 
-  public:
-    TourGuiado();     //constructorrr
-    ~TourGuiado();    //destructor
-    std::string getLugar();
-    int getDuracion();
-    float calcularCosto();
+public:
+  TourGuiado();  // constructor
+  ~TourGuiado(); // destructor
+  std::string getAgencia();
+  std::list<std::string> getLugaresVisitados();
+  virtual float calcularCosto();
+};
+
+class EventoCultural : public Experiencia
+{ // subclase de Experiencia
+private:
+  std::string ubicacion;
+  bool usoCupon;
+
+public:
+  EventoCultural();  // constructor
+  ~EventoCultural(); // destructor
+  std::string getUbicacion();
+  bool getUsoCupon();
+  virtual float calcularCosto();
 };

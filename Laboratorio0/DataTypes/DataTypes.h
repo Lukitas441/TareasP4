@@ -21,6 +21,8 @@ class DTExp{
         DTFecha fecha;
     
     public:
+        DTExp(std::string, std::list<std::string> , std::string, DTFecha); // constructor
+
         std::string getCodigoReserva();
         std::list<std::string> getTurista();
         std::string getDescripcion();
