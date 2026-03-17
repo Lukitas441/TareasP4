@@ -1,4 +1,4 @@
-#include "Classes/Turista.h"
+#include "Turista.h"
 
 
 Turista::Turista(std::string ci, std::string nombre, std::string email){

@@ -1,19 +1,9 @@
 #include <iostream>
 #include <list>
-#include "DataTypes.h"
+#include "DTExp.h"
 
-// Metodos de los DataTypes A
 
-// DataType: Fecha
-int DTFecha::getdia(){
-    return this->Dia; 
-};
-int DTFecha::getmes(){
-    return this->Mes;
-};
-int DTFecha::getaño(){
-    return this->Año;
-};
+
 
 // DataType: Exp (Experiencia)
 std::string DTExp::getCodigoReserva(){

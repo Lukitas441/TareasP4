@@ -14,7 +14,7 @@ CXX = g++
 #*********************TODO*****************************
 # Si el make no funca muy probablemente el problema es aca, faltara una carpeta o algo qsy 
 
-CXXFLAGS = -std=c++98 -Wall -I. -IClasses -IDataType
+CXXFLAGS = -std=c++98 -Wall -I. -Iimplementacion -Iheaders
 
 # Carpetas con código fuente
 SRCDIRS = . clases datatypes
