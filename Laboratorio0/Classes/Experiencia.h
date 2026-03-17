@@ -20,7 +20,7 @@ public:
   int getPrecioBase();
   DTFecha getFecha();
 
-  void agregarTurista(std::string ciTurista); // Agrega un turista a la experiencia
+  void agregarTurista(std::string); // Agrega un turista a la experiencia
 
   DTExp getDT();                 // getDataType link con turista
   virtual float calcularCosto() = 0; // Virtual por polimorfismo
@@ -36,7 +36,7 @@ private:
   int cantNoches;
 
 public:
-  Alojamiento();  // constructor
+  Alojamiento(std::string, std::string, int, DTFecha, std::string, enum TipoRegimen, int);  // constructor
   ~Alojamiento(); // destructor
   std::string getHotel();
   TipoRegimen getRegimen();
@@ -51,7 +51,7 @@ private:
   std::list<std::string> lugaresVisitados;
 
 public:
-  TourGuiado();  // constructor
+  TourGuiado(std::string, std::string, int, DTFecha, std::string, std::string, std::list<std::string>);  // constructor
   ~TourGuiado(); // destructor
   std::string getAgencia();
   std::list<std::string> getLugaresVisitados();
@@ -65,7 +65,7 @@ private:
   bool usoCupon;
 
 public:
-  EventoCultural();  // constructor
+  EventoCultural(std::string, std::string, int, DTFecha, std::string, std::string, bool);  // constructor
   ~EventoCultural(); // destructor
   std::string getUbicacion();
   bool getUsoCupon();
