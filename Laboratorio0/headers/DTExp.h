@@ -21,7 +21,7 @@ public:
     std::list<std::string> getTurista();
     std::string getDescripcion();
     DTFecha getFecha();
-    friend std::ostream& operator<<(std::ostream&, const DTExp);
+    friend std::ostream& operator<<(std::ostream&, DTExp);
 };
 
 
