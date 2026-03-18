@@ -1,26 +1,45 @@
 #include "Alojamiento.h"
-Alojamiento::Alojamiento(std::string codigoReserva, std::string descripcion, int precioBase, DTFecha fecha, std::string hotel, enum TipoRegimen tipoRegimen, int cantNoches) : Experiencia(codigoReserva, descripcion, precioBase, fecha) {
+#include <iostream>
+
+// Constructores y destructores
+Alojamiento::Alojamiento(){
+};
+
+Alojamiento::~Alojamiento(){
+};
+
+Alojamiento::Alojamiento(std::string codigoReserva, std::string descripcion, int precioBase, DTFecha fecha, std::string hotel, enum TipoRegimen tipoRegimen, int cantNoches) : Experiencia(codigoReserva, descripcion, precioBase, fecha){
     this->hotel = hotel;
     this->regimen = tipoRegimen;
     this->cantNoches = cantNoches;
 }
 
-Alojamiento::~Alojamiento() {
-};
-
-std::string Alojamiento::getHotel() {
+// Getters
+std::string Alojamiento::getHotel(){
     return this->hotel;
 }
 
-TipoRegimen Alojamiento::getRegimen() {
+TipoRegimen Alojamiento::getRegimen(){
     return this->regimen;
 }
 
-int Alojamiento::getCantNoches() {
+int Alojamiento::getCantNoches(){
     return this->cantNoches;
 }
 
-float Alojamiento::calcularCosto() {
-    //TODO: Implementar el cálculo del costo para Alojamiento
+// Setters
+std::string Alojamiento::setHotel(std::string hotel){
+    this->hotel = hotel;
+}
+
+TipoRegimen Alojamiento::setRegimen(TipoRegimen regimen){
+    this->regimen = regimen;
+}
+
+int Alojamiento::setCantNoches(int cantNoches){
+    this->cantNoches = cantNoches;
+}
+
+virtual float Alojamiento::calcularCosto(){ // Implementa Guille
     return 0.0;
 }
