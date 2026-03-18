@@ -1,4 +1,4 @@
-#include "Alojamiento.h"
+#include "headers/Alojamiento.h"
 #include <iostream>
 
 // Constructores y destructores

@@ -27,5 +27,4 @@ public:
     friend std::ostream& operator<<(std::ostream&, DTExp);
 };
 
-
 #endif // DT_EXP_H

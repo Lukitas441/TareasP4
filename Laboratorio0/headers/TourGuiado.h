@@ -27,4 +27,6 @@ public:
 
     // Funciones
     virtual float calcularCosto() = 0;
-};  
+};
+
+#endif // TOUR_GUIADO_H
