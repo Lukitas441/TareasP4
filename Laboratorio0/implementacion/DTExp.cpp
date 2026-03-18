@@ -31,7 +31,7 @@ DTFecha DTExp::getFecha(){
 };
 
 std::ostream& operator<<(std::ostream& os, DTExp dtExp) {
-    os << dtExp.codigoReserva << "->" << dtExp.descripcion << "(" << dtExp.fecha.getdia() << "/" << dtExp.fecha.getmes() << "/" << dtExp.fecha.getaño() << ")/"; 
+    os << dtExp.codigoReserva << "->" << dtExp.descripcion << "(" << dtExp.fecha.getDia() << "/" << dtExp.fecha.getMes() << "/" << dtExp.fecha.getAnio() << ")/"; 
     for (const auto& turista : dtExp.Turista) {
         os << turista << ",";
     }

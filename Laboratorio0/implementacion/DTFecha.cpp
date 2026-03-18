@@ -17,14 +17,14 @@ DTFecha::DTFecha(int dia, int mes, int anio){
 }
 
 // Getters
-int DTFecha::getdia(){
+int DTFecha::getDia(){
     return this->dia; 
 };
 
-int DTFecha::getmes(){
+int DTFecha::getMes(){
     return this->mes;
 };
 
-int DTFecha::getanio(){
+int DTFecha::getAnio(){
     return this->anio;
 };

@@ -1,5 +1,5 @@
-#include "Experiencia.h"
-#include "EventoCultural.h"
+#include "headers/Experiencia.h"
+#include "headers/EventoCultural.h"
 #include <iostream>
 
 // Constructores y destructores
@@ -19,20 +19,20 @@ std::string EventoCultural::getUbicacion(){
     return this->ubicacion;
 };
 
-std::string EventoCultural::getUsoCupon(){
+bool EventoCultural::getUsoCupon(){
     return this->usoCupon;
 };
 
 // Setters
-std::string EventoCultural::setUbicacion(std::string ubicacion){
+void EventoCultural::setUbicacion(std::string ubicacion){
     this->ubicacion = ubicacion;
 };
 
-bool EventoCultural::setUsoCupon(bool usoCupon){
+void EventoCultural::setUsoCupon(bool usoCupon){
     this->usoCupon = usoCupon;
 };
 
 // Funciones
-virtual float EventoCultural::calcularCosto(){ // Implementa Guille
+float EventoCultural::calcularCosto(){ // Implementa Guille
     return 0.0;
 };

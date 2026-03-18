@@ -37,26 +37,27 @@ DTExp Experiencia::getDT(){
 }
 
 // Setters
-std::string Experiencia::setCodigoReserva(std::string codigoReserva){
+void Experiencia::setCodigoReserva(std::string codigoReserva){
     this->codigoReserva = codigoReserva;
 };
 
-std::string Experiencia::setDescripcion(std::string descripcion){
+void Experiencia::setDescripcion(std::string descripcion){
     this->descripcion = descripcion;
 };
 
-int Experiencia::setPrecioBase(int precioBase){
+void Experiencia::setPrecioBase(int precioBase){
     this->precioBase = precioBase;
 };
 
-DTFecha Experiencia::setFecha(DTFecha fecha){
+void Experiencia::setFecha(DTFecha fecha){
     this->fecha = fecha;
 };
 
-DTExp Experiencia::setDT(DTExp dt){
+// dudoso el seter de DT, no se si es necesario, pero lo hago igual.
+void Experiencia::setDT(DTExp dt){ 
     this->codigoReserva = dt.getCodigoReserva();
+    this->turistas = dt.getTurista();
     this->descripcion = dt.getDescripcion();
-    this->precioBase = dt.getPrecioBase();
     this->fecha = dt.getFecha();
 }
 

@@ -1,5 +1,5 @@
-#include "Experiencia.h"
-#include "TourGuiado.h"
+#include "headers/Experiencia.h"
+#include "headers/TourGuiado.h"
 #include <iostream>
 
 // Constructores y destructores
@@ -24,15 +24,15 @@ std::list<std::string> TourGuiado::getLugaresVisitados(){
 };
 
 // Setters
-std::string TourGuiado::setAgencia(std::string agencia){
+void TourGuiado::setAgencia(std::string agencia){
     this->agencia = agencia;
 };
 
-std::list<std::string> TourGuiado::setLugaresVisitados(std::list<std::string> lugaresVisitados){
+void TourGuiado::setLugaresVisitados(std::list<std::string> lugaresVisitados){
     this->lugaresVisitados = lugaresVisitados;    
 }
 
 // Funciones
-virtual float TourGuiado::calcularCosto(){ // Implementa Guille
+float TourGuiado::calcularCosto(){ // Implementa Guille
     return 0.0;
 };

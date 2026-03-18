@@ -27,19 +27,16 @@ std::string Turista::getEmail(){
 };
 
 // Setters
-std::string Turista::setCI(std::string ci){
+void Turista::setCI(std::string ci){
     this->ci = ci;
-    return this->ci;
 };
 
-std::string Turista::setNombre(std::string nombre){
+void Turista::setNombre(std::string nombre){
     this->nombre = nombre;
-    return this->nombre;
 };
 
-std::string Turista::setEmail(std::string email){
+void Turista::setEmail(std::string email){
     this->email = email;
-    return this->email;
 };
 
 // Funciones

@@ -1,9 +1,11 @@
 
 #ifndef EVENTO_CULTURAL_H
 #define EVENTO_CULTURAL_H
-
+#include <iostream>
 #include "headers/Experiencia.h"
 #include <string>
+
+
 
 class EventoCultural : public Experiencia{ // subclase de Experiencia
 
@@ -15,7 +17,8 @@ public:
     // Constructores y destructores
     EventoCultural();
     ~EventoCultural();
-    EventoCultural(std::string, std::string, int, DTFecha, std::string, std::string, bool);
+    EventoCultural(std::string, std::string, int, DTFecha, std::string, bool);
+
 
     // Getters
     std::string getUbicacion();

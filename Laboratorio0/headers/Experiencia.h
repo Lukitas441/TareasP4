@@ -14,7 +14,7 @@ class Experiencia{
   std::string descripcion;
   int precioBase;
   DTFecha fecha;
-  //std::list<std::string> turistas; // lista de turistas que se alojan en el alojamiento
+  std::list<std::string> turistas; // lista de turistas que se alojan en el alojamiento
 
   public:
   // Constructores y destructores

@@ -16,7 +16,6 @@
 
 int main()
 {
-    Alojamiento alojamiento1("reserva1", "Alojamiento en Hotel XYZ", 100, DTFecha(), "Hotel XYZ", allInclusive, 3);
-    alojamiento1.getDT();
+    
     return 0;
 }

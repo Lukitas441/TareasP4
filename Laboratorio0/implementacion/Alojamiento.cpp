@@ -28,18 +28,18 @@ int Alojamiento::getCantNoches(){
 }
 
 // Setters
-std::string Alojamiento::setHotel(std::string hotel){
+void Alojamiento::setHotel(std::string hotel){
     this->hotel = hotel;
 }
 
-TipoRegimen Alojamiento::setRegimen(TipoRegimen regimen){
+void Alojamiento::setRegimen(TipoRegimen regimen){
     this->regimen = regimen;
 }
 
-int Alojamiento::setCantNoches(int cantNoches){
+void Alojamiento::setCantNoches(int cantNoches){
     this->cantNoches = cantNoches;
 }
 
-virtual float Alojamiento::calcularCosto(){ // Implementa Guille
+ float Alojamiento::calcularCosto(){ // Implementa Guille
     return 0.0;
 }
