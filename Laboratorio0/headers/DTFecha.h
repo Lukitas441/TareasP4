@@ -3,14 +3,20 @@
 
 class DTFecha{    
 private:
-    int Dia;
-    int Mes;
-    int Año;
+    int dia;
+    int mes;
+    int anio;
 
 public:
-    int getdia();
-    int getmes();
-    int getaño();
+    // Constructores y destructores
+    DTFecha();
+    ~DTFecha();
+    DTFecha(int, int, int);
+
+    // Getters
+    int getDia();
+    int getMes();
+    int getAnio();
 };
 
 #endif // DT_FECHA_H

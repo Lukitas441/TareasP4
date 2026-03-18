@@ -1,46 +1,66 @@
 #include "headers/Experiencia.h"
 
-Experiencia::Experiencia(std::string codigoReserva, std::string descripcion, int precioBase, DTFecha fecha)
-{
+// Constructores y destructores
+Experiencia::Experiencia(){
+};
+
+Experiencia::~Experiencia(){
+};
+
+Experiencia::Experiencia(std::string codigoReserva, std::string descripcion, int precioBase, DTFecha fecha){
     this->codigoReserva = codigoReserva;
     this->descripcion = descripcion;
     this->precioBase = precioBase;
     this->fecha = fecha;
+    // lo de lucas: this->turistas = std::list<std::string>();
 };
 
-Experiencia::~Experiencia() {
-};
-
-std::string Experiencia::getCodigoReserva()
-{
+// Getters
+std::string Experiencia::getCodigoReserva(){
     return this->codigoReserva;
 };
 
-std::string Experiencia::getDescripcion()
-{
+std::string Experiencia::getDescripcion(){
     return this->descripcion;
 };
 
-int Experiencia::getPrecioBase()
-{
+int Experiencia::getPrecioBase(){
     return this->precioBase;
 };
 
-DTFecha Experiencia::getFecha()
-{
+DTFecha Experiencia::getFecha(){
     return this->fecha;
 };
 
-DTExp Experiencia::getDT()
-{
-    DTExp dtExp(this->codigoReserva, this->turistas, this->descripcion, this->fecha);
-
-    return dtExp;
+DTExp Experiencia::getDT(){
+    return DTExp(this->codigoReserva, this->turistas, this->descripcion, this->fecha);
 }
 
-
-float Experiencia::calcularCosto()
-{
-    return 0.0;
+// Setters
+std::string Experiencia::setCodigoReserva(std::string codigoReserva){
+    this->codigoReserva = codigoReserva;
 };
 
+std::string Experiencia::setDescripcion(std::string descripcion){
+    this->descripcion = descripcion;
+};
+
+int Experiencia::setPrecioBase(int precioBase){
+    this->precioBase = precioBase;
+};
+
+DTFecha Experiencia::setFecha(DTFecha fecha){
+    this->fecha = fecha;
+};
+
+DTExp Experiencia::setDT(DTExp dt){
+    this->codigoReserva = dt.getCodigoReserva();
+    this->descripcion = dt.getDescripcion();
+    this->precioBase = dt.getPrecioBase();
+    this->fecha = dt.getFecha();
+}
+
+// Funciones
+float Experiencia::calcularCosto(){ // Implementa Guille
+    return 0.0;
+};

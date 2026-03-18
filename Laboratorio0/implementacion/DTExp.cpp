@@ -2,10 +2,21 @@
 #include <list>
 #include "headers/DTExp.h"
 
+// Constructores y destructores
+DTExp::DTExp(){
+};
 
+DTExp::~DTExp(){
+};
 
+DTExp::DTExp(std::string codigoReserva, std::list<std::string> Turista, std::string descripcion, DTFecha fecha){
+    this->codigoReserva = codigoReserva;
+    this->Turista = Turista;
+    this->descripcion = descripcion;
+    this->fecha = fecha;
+}
 
-// DataType: Exp (Experiencia)
+// Getters
 std::string DTExp::getCodigoReserva(){
     return this->codigoReserva;
 };
@@ -19,12 +30,6 @@ DTFecha DTExp::getFecha(){
     return this->fecha;
 };
 
-//Sobrecargar el operador de inserción de flujo (<<) en un objeto std::ostream.
-//Esta sobrecarga debe permitir imprimir todos los datos del datatype DTExpe siguiendo el
-//siguiente formato:
-//codigoReserva->descripcion(fecha)/turista1,turista2,.,turistaN,
-
-
 std::ostream& operator<<(std::ostream& os, DTExp dtExp) {
     os << dtExp.codigoReserva << "->" << dtExp.descripcion << "(" << dtExp.fecha.getdia() << "/" << dtExp.fecha.getmes() << "/" << dtExp.fecha.getaño() << ")/"; 
     for (const auto& turista : dtExp.Turista) {
@@ -32,6 +37,5 @@ std::ostream& operator<<(std::ostream& os, DTExp dtExp) {
     }
     os << std::endl;
     return os;
-
 }
     

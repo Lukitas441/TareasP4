@@ -11,12 +11,23 @@ private:
     int cantNoches;
 
 public:
-    Alojamiento(std::string, std::string, int, DTFecha, std::string, enum TipoRegimen, int);  // constructor
-    ~Alojamiento(); // destructor
+    // Constructores y destructores
+    Alojamiento();
+    ~Alojamiento(); // destructor    
+    Alojamiento(std::string, std::string, int, DTFecha, std::string, enum TipoRegimen, int);
+
+    // Getters
     std::string getHotel();
     TipoRegimen getRegimen();
     int getCantNoches();
-    virtual float calcularCosto();
+
+    // Setters
+    void setHotel(std::string hotel);
+    void setRegimen(TipoRegimen regimen);
+    void setCantNoches(int cantNoches);
+
+    // Funciones
+    virtual float calcularCosto() = 0;
 };
 
 #endif // ALOJAMIENTO_H

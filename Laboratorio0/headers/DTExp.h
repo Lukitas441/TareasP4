@@ -6,7 +6,6 @@
 #include <string>
 #include "headers/DTFecha.h"
 
-
 class DTExp{
 private:
     std::string codigoReserva;   
@@ -15,14 +14,17 @@ private:
     DTFecha fecha;
 
 public:
-    DTExp(std::string, std::list<std::string> , std::string, DTFecha); // constructor
-
+    // Constructores y destructores
+    DTExp();
+    ~DTExp();
+    DTExp(std::string, std::list<std::string> , std::string, DTFecha);
+    
+    // Getters
     std::string getCodigoReserva();
     std::list<std::string> getTurista();
     std::string getDescripcion();
     DTFecha getFecha();
     friend std::ostream& operator<<(std::ostream&, DTExp);
 };
-
 
 #endif // DT_EXP_H

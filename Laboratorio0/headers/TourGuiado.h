@@ -12,11 +12,21 @@ private:
     std::list<std::string> lugaresVisitados;
 
 public:
-    TourGuiado(std::string, std::string, int, DTFecha, std::string, std::string, std::list<std::string>);  // constructor
-    ~TourGuiado(); // destructor
+    // Constructores y destructores
+    TourGuiado();
+    ~TourGuiado();
+    TourGuiado(std::string codigoReserva, std::string descripcion, int precioBase, DTFecha fecha, std::string agencia, std::list<std::string> lugaresVisitados);
+    
+    // Getters
     std::string getAgencia();
     std::list<std::string> getLugaresVisitados();
-    virtual float calcularCosto();
+
+    // Setters
+    void setAgencia(std::string agencia);
+    void setLugaresVisitados(std::list<std::string> lugaresVisitados);
+
+    // Funciones
+    virtual float calcularCosto() = 0;
 };
 
 #endif // TOUR_GUIADO_H
