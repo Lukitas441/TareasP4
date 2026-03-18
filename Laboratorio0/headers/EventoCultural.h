@@ -1,5 +1,9 @@
-#include "Experiencia.h"
-#include <iostream>
+
+#ifndef EVENTO_CULTURAL_H
+#define EVENTO_CULTURAL_H
+
+#include "headers/Experiencia.h"
+#include <string>
 
 class EventoCultural : public Experiencia{ // subclase de Experiencia
 
@@ -24,3 +28,5 @@ public:
     // Funciones
     virtual float calcularCosto() = 0;  
 };
+
+#endif // EVENTO_CULTURAL_H

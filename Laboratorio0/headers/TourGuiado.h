@@ -1,8 +1,12 @@
-#include "Experiencia.h"
-#include <iostream>
+#ifndef TOUR_GUIADO_H
+#define TOUR_GUIADO_H
 
-class TourGuiado : public Experiencia{ // subclase de Experiencia
+#include "headers/Experiencia.h"
+#include <list>
+#include <string>
 
+class TourGuiado : public Experiencia
+{ // subclase de Experiencia
 private:
     std::string agencia;
     std::list<std::string> lugaresVisitados;

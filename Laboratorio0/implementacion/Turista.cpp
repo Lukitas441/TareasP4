@@ -1,4 +1,4 @@
-#include "Turista.h"
+#include "headers/Turista.h"
 
 // Constructores y destructores
 Turista::Turista(){

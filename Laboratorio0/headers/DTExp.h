@@ -1,6 +1,10 @@
+#ifndef DT_EXP_H
+#define DT_EXP_H
+
 #include <list>
 #include <iostream>
-#include "DTFecha.h"
+#include <string>
+#include "headers/DTFecha.h"
 
 class DTExp{
 private:
@@ -20,4 +24,8 @@ public:
     std::list<std::string> getTurista();
     std::string getDescripcion();
     DTFecha getFecha();
+    friend std::ostream& operator<<(std::ostream&, DTExp);
 };
+
+
+#endif // DT_EXP_H

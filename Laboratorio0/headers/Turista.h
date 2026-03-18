@@ -1,13 +1,17 @@
+#ifndef TURISTA_H
+#define TURISTA_H
+
 #include <iostream>
 #include <list>
-#include "DTFecha.h"
+#include <string>
+#include "headers/DTFecha.h"
 
-class Turista{
-
-private:
-    std::string ci;
-    std::string nombre;
-    std::string email;
+class Turista
+{
+    private:
+        std::string ci;
+        std::string nombre;
+        std::string email;
 
 public:
     // Constructores y destructores
@@ -29,3 +33,5 @@ public:
     std::string toString(); // string
     std::list<std::string> listarExperiencias(DTFecha, float, float); // Set(string)
 };
+
+#endif // TURISTA_H

@@ -1,8 +1,12 @@
+#ifndef EXPERIENCIA_H
+#define EXPERIENCIA_H
+
 #include <iostream>
 #include <list>
-#include "DTFecha.h"
-#include "Enumerados.h"
-#include "DTExp.h"
+#include <string>
+#include "headers/DTFecha.h"
+#include "headers/Enumerados.h"
+#include "headers/DTExp.h"
 
 class Experiencia{
   private:
@@ -37,6 +41,8 @@ class Experiencia{
 
   //void agregarTurista(std::string); // Agrega un turista a la experiencia
 };
+
+#endif // EXPERIENCIA_H
 
 
 

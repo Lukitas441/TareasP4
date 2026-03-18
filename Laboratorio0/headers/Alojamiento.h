@@ -1,5 +1,7 @@
-#include "Experiencia.h"
-#include <iostream>
+#ifndef ALOJAMIENTO_H
+#define ALOJAMIENTO_H
+
+#include "headers/Experiencia.h"
 
 class Alojamiento : public Experiencia{ // subclase de Experiencia
     
@@ -27,3 +29,5 @@ public:
     // Funciones
     virtual float calcularCosto() = 0;
 };
+
+#endif // ALOJAMIENTO_H
