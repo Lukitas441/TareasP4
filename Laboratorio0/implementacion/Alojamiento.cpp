@@ -1,4 +1,4 @@
-#include "Alojamiento.h"
+#include "headers/Alojamiento.h"
 Alojamiento::Alojamiento(std::string codigoReserva, std::string descripcion, int precioBase, DTFecha fecha, std::string hotel, enum TipoRegimen tipoRegimen, int cantNoches) : Experiencia(codigoReserva, descripcion, precioBase, fecha) {
     this->hotel = hotel;
     this->regimen = tipoRegimen;

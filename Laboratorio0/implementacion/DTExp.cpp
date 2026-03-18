@@ -1,6 +1,6 @@
 #include <iostream>
 #include <list>
-#include "DTExp.h"
+#include "headers/DTExp.h"
 
 
 
@@ -18,3 +18,4 @@ std::string DTExp::getDescripcion(){
 DTFecha DTExp::getFecha(){
     return this->fecha;
 };
+

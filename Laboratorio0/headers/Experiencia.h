@@ -1,8 +1,12 @@
+#ifndef EXPERIENCIA_H
+#define EXPERIENCIA_H
+
 #include <iostream>
 #include <list>
-#include "DTFecha.h"
-#include "Enumerados.h"
-#include "DTExp.h"
+#include <string>
+#include "headers/DTFecha.h"
+#include "headers/Enumerados.h"
+#include "headers/DTExp.h"
 
 class Experiencia{
   private:
@@ -25,6 +29,8 @@ public:
   DTExp getDT();                 // getDataType link con turista
   virtual float calcularCosto() = 0; // Virtual por polimorfismo
   };
+
+#endif // EXPERIENCIA_H
 
 
 

@@ -1,4 +1,4 @@
-#include "Experiencia.h"
+#include "headers/Experiencia.h"
 
 Experiencia::Experiencia(std::string codigoReserva, std::string descripcion, int precioBase, DTFecha fecha)
 {

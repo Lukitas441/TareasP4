@@ -1,4 +1,8 @@
-#include "Experiencia.h"
+
+#ifndef EVENTO_CULTURAL_H
+#define EVENTO_CULTURAL_H
+
+#include "headers/Experiencia.h"
 #include <string>
 
 class EventoCultural : public Experiencia{ // subclase de Experiencia
@@ -14,3 +18,5 @@ public:
     bool getUsoCupon();
     virtual float calcularCosto();  
 };
+
+#endif // EVENTO_CULTURAL_H

@@ -1,4 +1,10 @@
-#include "Experiencia.h"
+#ifndef TOUR_GUIADO_H
+#define TOUR_GUIADO_H
+
+#include "headers/Experiencia.h"
+#include <list>
+#include <string>
+
 class TourGuiado : public Experiencia
 { // subclase de Experiencia
 private:
@@ -11,4 +17,6 @@ public:
     std::string getAgencia();
     std::list<std::string> getLugaresVisitados();
     virtual float calcularCosto();
-    };  
+};
+
+#endif // TOUR_GUIADO_H

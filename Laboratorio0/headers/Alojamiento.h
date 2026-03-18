@@ -1,4 +1,8 @@
-#include "Experiencia.h"
+#ifndef ALOJAMIENTO_H
+#define ALOJAMIENTO_H
+
+#include "headers/Experiencia.h"
+
 class Alojamiento : public Experiencia{ // subclase de Experiencia
     
 private:
@@ -14,3 +18,5 @@ public:
     int getCantNoches();
     virtual float calcularCosto();
 };
+
+#endif // ALOJAMIENTO_H
