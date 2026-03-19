@@ -16,6 +16,7 @@
 
 int main()
 {
-    
+    Alojamiento alojamiento1 = Alojamiento("reserva111", "Alojamiento en Hotel XYZ", 100, DTFecha(23, 12, 2023), "Hotel XYZ", allInclusive, 3);
+    std::cout << alojamiento1.getDT() << std::endl;
     return 0;
 }

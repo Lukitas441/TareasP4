@@ -26,7 +26,7 @@ public:
     void setLugaresVisitados(std::list<std::string> lugaresVisitados);
 
     // Funciones
-    virtual float calcularCosto() = 0;
+    virtual float calcularCosto();
 };
 
 #endif // TOUR_GUIADO_H

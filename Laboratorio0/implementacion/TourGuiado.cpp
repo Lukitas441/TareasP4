@@ -30,7 +30,7 @@ void TourGuiado::setAgencia(std::string agencia){
 
 void TourGuiado::setLugaresVisitados(std::list<std::string> lugaresVisitados){
     this->lugaresVisitados = lugaresVisitados;    
-}
+};
 
 // Funciones
 float TourGuiado::calcularCosto(){ // Implementa Guille

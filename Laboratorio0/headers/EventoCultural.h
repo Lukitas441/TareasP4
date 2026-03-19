@@ -29,7 +29,7 @@ public:
     void setUsoCupon(bool usoCupon);
 
     // Funciones
-    virtual float calcularCosto() = 0;  
+    virtual float calcularCosto();  
 };
 
 #endif // EVENTO_CULTURAL_H

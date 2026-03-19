@@ -39,7 +39,7 @@ class Experiencia{
   // Funciones
   virtual float calcularCosto() = 0; // Virtual para que no se rompa la funcion
 
-  //void agregarTurista(std::string); // Agrega un turista a la experiencia
+  void agregarTurista(std::string); // Agrega un turista a la experiencia
 };
 
 #endif // EXPERIENCIA_H

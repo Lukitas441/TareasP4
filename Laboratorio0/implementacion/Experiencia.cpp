@@ -59,7 +59,7 @@ void Experiencia::setDT(DTExp dt){
     this->turistas = dt.getTurista();
     this->descripcion = dt.getDescripcion();
     this->fecha = dt.getFecha();
-}
+};
 
 // Funciones
 float Experiencia::calcularCosto(){ // Implementa Guille

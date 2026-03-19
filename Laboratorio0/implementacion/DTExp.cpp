@@ -14,7 +14,7 @@ DTExp::DTExp(std::string codigoReserva, std::list<std::string> Turista, std::str
     this->Turista = Turista;
     this->descripcion = descripcion;
     this->fecha = fecha;
-}
+};
 
 // Getters
 std::string DTExp::getCodigoReserva(){
@@ -31,11 +31,17 @@ DTFecha DTExp::getFecha(){
 };
 
 std::ostream& operator<<(std::ostream& os, DTExp dtExp) {
-    os << dtExp.codigoReserva << "->" << dtExp.descripcion << "(" << dtExp.fecha.getDia() << "/" << dtExp.fecha.getMes() << "/" << dtExp.fecha.getAnio() << ")/"; 
-    for (const auto& turista : dtExp.Turista) {
-        os << turista << ",";
+   
+    os << dtExp.codigoReserva << "->" << dtExp.descripcion << "(" << dtExp.fecha.getDia() << "/" << dtExp.fecha.getMes() << "/" << dtExp.fecha.getAnio() << ")/";
+    std::list<std::string>::const_iterator it = dtExp.Turista.begin();
+    
+    while (it != dtExp.Turista.end()) {
+        os << *it;
+        ++it;
+        if (it != dtExp.Turista.end()) {
+            os << ",";
+        }
     }
     os << std::endl;
     return os;
-}
-    
+};

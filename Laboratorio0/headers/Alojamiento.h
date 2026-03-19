@@ -27,7 +27,7 @@ public:
     void setCantNoches(int cantNoches);
 
     // Funciones
-    virtual float calcularCosto() = 0;
+    virtual float calcularCosto();
 };
 
 #endif // ALOJAMIENTO_H

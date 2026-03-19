@@ -1,40 +1,43 @@
-# Nombre del ejecutable final
-TARGET = principal
+# Makefile for Laboratorio0
 
-# El compilador a usar
 CXX = g++
+CXXFLAGS = -std=c++98 -Wall -I. -Iheaders
 
-# Banderas (flags) para el compilador (estándar C++98 y mostrar advertencias)
-#-std=c++98 significa que el programa compilara usando el 98 coso
-#-Wall significa que todos las advertencias saltaran
-# -I significa que va a buscar todos los archivos de la capeta actual
-# -IClasses significa que va a buscar todos los archivos de la carpeta Classes
-# -IDataType misma cosa pero en la carpeta DataType
+SRC_ROOT := .
+SRC_DIR := implementacion
 
-#*********************TODO*****************************
-# Si el make no funca muy probablemente el problema es aca, faltara una carpeta o algo qsy 
+MAIN_SRC := $(SRC_ROOT)/main.cpp
+MAIN_OBJ := $(SRC_ROOT)/main.o
 
-CXXFLAGS = -std=c++98 -Wall -I. -Iimplementacion -Iheaders
+APP_SRCS := \
+$(SRC_DIR)/DTFecha.cpp \
+$(SRC_DIR)/DTExp.cpp \
+$(SRC_DIR)/Experiencia.cpp \
+$(SRC_DIR)/Alojamiento.cpp \
+$(SRC_DIR)/EventoCultural.cpp \
+$(SRC_DIR)/TourGuiado.cpp \
+$(SRC_DIR)/Turista.cpp
 
-# Carpetas con código fuente
-SRCDIRS = . clases datatypes
+APP_OBJS := $(APP_SRCS:.cpp=.o)
 
-# Detecta todos los .cpp en las carpetas indicadas y genera objetos (.o)
-SRC = $(wildcard $(addsuffix /*.cpp, $(SRCDIRS)))
-OBJ = $(patsubst %.cpp, %.o, $(SRC))
+TARGET := main
 
-.PHONY: all clean
+.INTERMEDIATE: $(MAIN_OBJ) $(APP_OBJS)
 
-# Regla principal: compila todos los .o y genera el ejecutable
+.PHONY: all clean rebuild
+
 all: $(TARGET)
 
-$(TARGET): $(OBJ)
-	$(CXX) $(CXXFLAGS) $^ -o $@
+$(TARGET): $(MAIN_OBJ) $(APP_OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-# Regla para compilar cada .cpp a .o (sirve con rutas en subcarpetas)
-%.o: %.cpp
+$(MAIN_OBJ): $(MAIN_SRC)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Regla para limpiar los archivos generados
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 clean:
-	rm -f $(TARGET) $(OBJ)
+	 rm -f $(TARGET) $(MAIN_OBJ) $(APP_OBJS)
+
+rebuild: clean all
