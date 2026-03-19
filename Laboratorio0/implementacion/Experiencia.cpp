@@ -37,7 +37,7 @@ DTFecha Experiencia::getFecha(){
 
 DTExp Experiencia::getDT(){
     return DTExp(this->codigoReserva, this->turistas, this->descripcion, this->fecha);
-}
+};
 
 // Setters
 void Experiencia::setCodigoReserva(std::string codigoReserva){
