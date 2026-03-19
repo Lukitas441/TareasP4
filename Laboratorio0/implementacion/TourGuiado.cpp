@@ -34,5 +34,6 @@ void TourGuiado::setLugaresVisitados(std::list<std::string> lugaresVisitados){
 
 // Funciones
 float TourGuiado::calcularCosto(){ // Implementa Guille
-    return 0.0;
+        float costo = (this->getPrecioBase() + 2) * this->getLugaresVisitados() * this->getTuristas.length;
+    return costo;
 };
