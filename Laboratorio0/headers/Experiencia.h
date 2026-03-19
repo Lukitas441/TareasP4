@@ -38,7 +38,7 @@ class Experiencia{
   void setDT(DTExp);
 
   // Funciones
-  virtual float calcularCosto() = 0; // Virtual para que no se rompa la funcion
+  virtual float calcularCosto() = 0; // Virtual para que no se rompa la funcion SI VA EL =0;
 
   void agregarTurista(std::string); // Agrega un turista a la experiencia
 };

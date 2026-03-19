@@ -32,7 +32,7 @@ DTFecha DTExp::getFecha(){
 
 std::ostream& operator<<(std::ostream& os, DTExp dtExp) {
    
-    os << dtExp.codigoReserva << "->" << dtExp.descripcion << "(" << dtExp.fecha.getDia() << "/" << dtExp.fecha.getMes() << "/" << dtExp.fecha.getAnio() << ")";
+    os << dtExp.codigoReserva << "->" << dtExp.descripcion << "(" << dtExp.fecha.getDia() << "/" << dtExp.fecha.getMes() << "/" << dtExp.fecha.getAnio() << ")/"; // si va el /
     std::list<std::string>::const_iterator it = dtExp.Turista.begin();
     
     while (it != dtExp.Turista.end()) {
