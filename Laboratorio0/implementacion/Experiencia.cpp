@@ -16,6 +16,9 @@ Experiencia::Experiencia(std::string codigoReserva, std::string descripcion, int
 };
 
 // Getters
+std::list<std::string> Experiencia::getTurista(){
+    return this->turistas;
+};
 std::string Experiencia::getCodigoReserva(){
     return this->codigoReserva;
 };
@@ -63,5 +66,5 @@ void Experiencia::setDT(DTExp dt){
 
 // Funciones
 float Experiencia::calcularCosto(){ // Implementa Guille
-       virtual float calcularCosto() = 0;
+    return 0; // aca no va virtual poruqe no es una clase, ni se asigna valor porque:  no se inicializa? daba error antes
 };

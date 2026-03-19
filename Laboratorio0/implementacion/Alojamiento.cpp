@@ -44,7 +44,7 @@ void Alojamiento::setCantNoches(int cantNoches){
  float Alojamiento::calcularCosto(){ // Implementa Guille
         float costo = this->getPrecioBase() * this->cantNoches;
 
-    if (this->getRegimen() == AllInclusive)
+    if (this->getRegimen() == allInclusive)
     {
         costo += 10 * this->cantNoches;
     }

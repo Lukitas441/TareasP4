@@ -25,6 +25,7 @@ class Experiencia{
   // Getters
   std::string getCodigoReserva();
   std::string getDescripcion();
+  std::list<std::string> getTurista();
   int getPrecioBase();
   DTFecha getFecha();
   DTExp getDT();
@@ -37,7 +38,7 @@ class Experiencia{
   void setDT(DTExp);
 
   // Funciones
-  virtual float calcularCosto() = 0; // Virtual para que no se rompa la funcion
+  virtual float calcularCosto(); // Virtual para que no se rompa la funcion
 
   void agregarTurista(std::string); // Agrega un turista a la experiencia
 };
