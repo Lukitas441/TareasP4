@@ -63,5 +63,5 @@ void Experiencia::setDT(DTExp dt){
 
 // Funciones
 float Experiencia::calcularCosto(){ // Implementa Guille
-    return 0.0;
+       virtual float calcularCosto() = 0;
 };
