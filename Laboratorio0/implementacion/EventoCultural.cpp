@@ -34,5 +34,9 @@ void EventoCultural::setUsoCupon(bool usoCupon){
 
 // Funciones
 float EventoCultural::calcularCosto(){ // Implementa Guille
-    return 0.0;
+        float costo = this->getPrecioBase() * this->getTuristas.length;
+    if (this->getUsoCupon == true){
+        costo -= 5* this->getTuristas.length;
+    }
+    return costo;
 };
