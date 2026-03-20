@@ -72,7 +72,7 @@ int main(){
 std::cout << turista1.toString() << "\n";
 std::cout << turista2.toString() << "\n";
 
-
+ 
 //G-) Registrar las siguientes relaciones entre turistas y experiencias (creando links de la relación en ambas direcciones).
 
 //H-) Invocar la operación listarExperiencias(10/12/2023, 0, 1000) para la turista 4.951.278-9 (Vanesa Castro) e imprimir el resultado en consola (un string por línea).

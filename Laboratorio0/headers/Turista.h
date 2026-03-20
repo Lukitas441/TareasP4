@@ -5,6 +5,10 @@
 #include <list>
 #include <string>
 #include "DTFecha.h"
+
+//  para evitar inclusión circular
+class Experiencia;
+
 class Turista
 {
     private:
