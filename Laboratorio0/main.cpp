@@ -14,8 +14,6 @@
 
 int main(){
 
-
-
 //A-)​ Crear los siguientes objetos de la clase Alojamiento (con el constructor por parámetros):
 
     Alojamiento alojamiento1 = Alojamiento("ALX5489", "Hotel moderno", 30, DTFecha(18, 05, 2020), "Hotel Lindorf", allInclusive, 5);
