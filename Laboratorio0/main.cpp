@@ -18,9 +18,9 @@ int main(){
 
 //A-)​ Crear los siguientes objetos de la clase Alojamiento (con el constructor por parámetros):
 
-    Alojamiento alojamiento1 = Alojamiento("ALX5489", "Hotel moderno", 30, DTFecha(18, 05, 2020), "Hotel Lindorf", allInclusive, 5);
+    Alojamiento *alojamiento1 = new Alojamiento("ALX5489", "Hotel moderno", 30, DTFecha(18, 05, 2020), "Hotel Lindorf", allInclusive, 5);
 
-    Alojamiento alojamiento2 = Alojamiento("ALJ4789", "Todas las habitaciones con vista al mar", 100, DTFecha(10, 02, 2025), "Hotel SeaView", mediaPension, 15);
+    Alojamiento *alojamiento2 = new Alojamiento("ALJ4789", "Todas las habitaciones con vista al mar", 100, DTFecha(10, 02, 2025), "Hotel SeaView", mediaPension, 15);
         
 
 //B-)​ Crear los siguientes objetos de la clase TourGuiado (con el constructor por parámetros):
@@ -38,23 +38,23 @@ int main(){
     lugares2.push_back("Cabildo");
     lugares2.push_back("Palacio Salvo");
     // def de los tours
-    TourGuiado tourguiado1 = TourGuiado("TGO4657", "Plazas de Montevideo", 10, DTFecha(29, 8, 2024), "Paseos SA",lugares1);
+    TourGuiado* tourguiado1 = new TourGuiado("TGO4657", "Plazas de Montevideo", 10, DTFecha(29, 8, 2024), "Paseos SA",lugares1);
 
-    TourGuiado tourguiado2 = TourGuiado("TGR3257", "Puntos emblematicos", 5, DTFecha(29, 8, 2024), "Recorre",lugares1);
+    TourGuiado* tourguiado2 = new TourGuiado("TGR3257", "Puntos emblematicos", 5, DTFecha(29, 8, 2024), "Recorre",lugares1);
 
 //C-) Crear los siguientes objetos de la clase EventoCultural (con el constructor por parámetros):
 
-    EventoCultural eventoCultural1 = EventoCultural("ECP1346", "Danza en el Solis", 10, DTFecha(29, 10, 2025), "Teatro Solis", true);
+    EventoCultural* eventoCultural1 = new EventoCultural("ECP1346", "Danza en el Solis", 10, DTFecha(29, 10, 2025), "Teatro Solis", true);
 
 
 // D-) Imprimir en consola utilizando la inserción de flujo el resultado de ejecutar la operación getDT() para cada uno de los objetos Experiencia creados.
 
 
-    std::cout << alojamiento1.getDT() ;
-    std::cout << alojamiento2.getDT() ;
-    std::cout << tourguiado1.getDT() ;
-    std::cout << tourguiado2.getDT() ;
-    std::cout << eventoCultural1.getDT() ;
+    std::cout << alojamiento1->getDT() ;
+    std::cout << alojamiento2->getDT() ;
+    std::cout << tourguiado1->getDT() ;
+    std::cout << tourguiado2->getDT() ;
+    std::cout << eventoCultural1->getDT() ;
 
 
 
@@ -63,41 +63,41 @@ int main(){
 
 //E-> Crear los siguientes objetos de la clase Turista (con el constructor por parámetros):
 
-    Turista turista1 = Turista("49512789", "Vanesa Castro", "vcastro.uy@servidor.net");
+    Turista *turista1 = new Turista("49512789", "Vanesa Castro", "vcastro.uy@servidor.net");
 
-    Turista turista2 = Turista("15354420", "Karen Santos", "karen.s89@internet.uy");
+    Turista *turista2 = new Turista("15354420", "Karen Santos", "karen.s89@internet.uy");
 
 //F-) Imprimir en consola el resultado de ejecutar la operación toString para cada uno de los objetos Turista creados.
 
-std::cout << turista1.toString() << std::endl;
-std::cout << turista2.toString() << std::endl;
+std::cout << turista1->toString() << std::endl;
+std::cout << turista2->toString() << std::endl;
 
  
 //G-) Registrar las siguientes relaciones entre turistas y experiencias (creando links de la relación en ambas direcciones).
 
-    turista1.setExperiencias(&alojamiento1);
-    alojamiento1.agregarTurista(turista1);
+    turista1->setExperiencias(alojamiento1);
+    alojamiento1->agregarTurista(turista1);
 
-    turista1.setExperiencias(&alojamiento2);
-    alojamiento2.agregarTurista(turista1);
+    turista1->setExperiencias(alojamiento2);
+    alojamiento2->agregarTurista(turista1);
 
-    turista1.setExperiencias(&tourguiado2);
-    tourguiado2.agregarTurista(turista1);
+    turista1->setExperiencias(tourguiado2);
+    tourguiado2->agregarTurista(turista1);
 
-    turista1.setExperiencias(&eventoCultural1);
-    eventoCultural1.agregarTurista(turista1);
+    turista1->setExperiencias(eventoCultural1);
+    eventoCultural1->agregarTurista(turista1);
 
-    turista2.setExperiencias(&tourguiado1);
-    tourguiado1.agregarTurista(turista2);
-
-    turista2.setExperiencias(&tourguiado2);
-    tourguiado2.agregarTurista(turista2);
+    turista2->setExperiencias(tourguiado1);
+    tourguiado1->agregarTurista(turista2);
+    
+    turista2->setExperiencias(tourguiado2);
+    tourguiado2->agregarTurista(turista2);
     
 
 //H-) Invocar la operación listarExperiencias(10/12/2023, 0, 1000) para la turista 4.951.278-9 (Vanesa Castro) e imprimir el resultado en consola (un string por línea).
 
 std::cout << "\nCaso H \n\n";
-std::list<Experiencia*> experienciasFiltradas = turista1.listarExperiencias(DTFecha(10, 12, 2023), 0, 1000);
+std::list<Experiencia*> experienciasFiltradas = turista1->listarExperiencias(DTFecha(10, 12, 2023), 0, 1000);
 std::list<Experiencia*>::iterator it = experienciasFiltradas.begin();
 while (it != experienciasFiltradas.end()) {
     std::cout << (*it)->getCodigoReserva() << std::endl; 
@@ -107,20 +107,20 @@ while (it != experienciasFiltradas.end()) {
 
 //I-) Ejecutar la eliminación del objeto TGR3257(Puntos emblematicos) de la clase Experiencia.
 
-    delete tourguiado2;
+delete tourguiado2;
+tourguiado2 = NULL; // Evitar acceso a memoria liberada
 
 //J-) Invocar la operación listarExperiencias(10/10/2020, 0, 1000) para la turista 1.535.442-0 (Karen Santos) e imprimir el resultado en consola (un string por línea).
 std::cout << "Caso J \n\n";
-turista2.listarExperiencias(DTFecha(10, 10, 2020), 0, 1000);
+turista2->listarExperiencias(DTFecha(10, 10, 2020), 0, 1000);
 
 //K-) Imprimir en consola utilizando la inserción de flujo el resultado de ejecutar la operación getDT() para cada uno de los objetos Experiencias creados (mismo código que la parte d).
 std::cout << "Caso K \n\n";
 
-std::cout << alojamiento1.getDT() ;
-std::cout << alojamiento2.getDT() ;
-std::cout << tourguiado1.getDT() ;
-std::cout << tourguiado2.getDT() ;
-std::cout << eventoCultural1.getDT() ;
+std::cout << alojamiento1->getDT() ;
+std::cout << alojamiento2->getDT() ;
+std::cout << tourguiado1->getDT() ;
+std::cout << eventoCultural1->getDT() ;
 
-
+return 0;
 }

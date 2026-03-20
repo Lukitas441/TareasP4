@@ -11,8 +11,6 @@ Experiencia::~Experiencia(){
         (*it)->EliminarExperiencia(this); // Eliminar la experiencia de la lista de experiencias del turista
         it++;
     }
-    this->turistas.clear(); // Limpiar la lista de turistas
-    delete this; // Eliminar la experiencia
 
 };
 
@@ -57,7 +55,6 @@ DTExp Experiencia::getDT(){
 
 // Setters
 void Experiencia::setCodigoReserva(std::string codigoReserva){
-    this->codigoReserva = codigoReserva;
 };
 
 void Experiencia::setDescripcion(std::string descripcion){
@@ -88,6 +85,6 @@ float Experiencia::calcularCosto(){ // Implementa Guille
     return 0; // aca no va virtual poruqe no es una clase, ni se asigna valor porque:  no se inicializa? daba error antes
 };
 
-void Experiencia::agregarTurista(Turista turista){
-    this->turistas.push_back(&turista);
+void Experiencia::agregarTurista(Turista *turista){
+    this->turistas.push_back(turista);
 };

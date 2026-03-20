@@ -38,7 +38,7 @@ public:
     // Funciones
     std::string toString(); // string
     std::list<Experiencia*> listarExperiencias(DTFecha, float, float); // Set(string)
-    void EliminarExperiencia(Experiencia* experiencia); // Elimina una experiencia de la lista de experiencias del turista
+    void EliminarExperiencia(Experiencia*); // Elimina una experiencia de la lista de experiencias del turista
 };
 
 #endif // TURISTA_H

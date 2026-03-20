@@ -20,7 +20,7 @@ class Experiencia{
   public:
   // Constructores y destructores
   Experiencia();
-  ~Experiencia();
+  virtual ~Experiencia();
   Experiencia(std::string, std::string, int, DTFecha);
 
   // Getters
@@ -36,12 +36,12 @@ class Experiencia{
   void setDescripcion(std::string);
   void setPrecioBase(int);
   void setFecha(DTFecha);
-  void setDT(DTExp);
+  //void setDT(DTExp);
 
   // Funciones
   virtual float calcularCosto() = 0; // Virtual para que no se rompa la funcion SI VA EL =0;
 
-  void agregarTurista(Turista); // Agrega un turista a la experiencia
+  void agregarTurista(Turista*); // Agrega un turista a la experiencia
 };
 
 #endif // EXPERIENCIA_H

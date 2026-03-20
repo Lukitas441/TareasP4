@@ -6,6 +6,8 @@ Turista::Turista(){
 };
 
 Turista::~Turista(){
+    this->experiencias.clear(); // Limpiar la lista de experiencias del turista
+    delete this;
 };
 
 Turista::Turista(std::string ci, std::string nombre, std::string email){

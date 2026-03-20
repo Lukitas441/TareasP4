@@ -7,7 +7,7 @@ TourGuiado::TourGuiado(){
 };
 
 TourGuiado::~TourGuiado(){
-    
+    this->lugaresVisitados.clear(); // Limpiar la lista de lugares visitados
 };
 
 TourGuiado::TourGuiado(std::string codigoReserva, std::string descripcion, int precioBase, DTFecha fecha, std::string agencia, std::list<std::string> lugaresVisitados) : Experiencia(codigoReserva, descripcion, precioBase, fecha){

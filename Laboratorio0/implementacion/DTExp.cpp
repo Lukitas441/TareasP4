@@ -7,6 +7,7 @@ DTExp::DTExp(){
 };
 
 DTExp::~DTExp(){
+
 };
 
 DTExp::DTExp(std::string codigoReserva, std::list<std::string> Turista, std::string descripcion, DTFecha fecha){
