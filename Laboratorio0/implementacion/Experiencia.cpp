@@ -70,7 +70,6 @@ void Experiencia::setFecha(DTFecha fecha){
 };
 
 // dudoso el seter de DT, no se si es necesario, pero lo hago igual.
-
 /*
 void Experiencia::setDT(DTExp dt){ 
     this->codigoReserva = dt.getCodigoReserva();
@@ -82,7 +81,7 @@ void Experiencia::setDT(DTExp dt){
 
 // Funciones
 float Experiencia::calcularCosto(){ // Implementa Guille
-    return 0; // aca no va virtual poruqe no es una clase, ni se asigna valor porque:  no se inicializa? daba error antes
+    return 0; // aca no va virtual porque no es una clase, ni se asigna valor porque:  no se inicializa? daba error antes
 };
 
 void Experiencia::agregarTurista(Turista *turista){

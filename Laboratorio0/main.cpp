@@ -14,8 +14,6 @@
 
 int main(){
 
-
-
 //A-)​ Crear los siguientes objetos de la clase Alojamiento (con el constructor por parámetros):
 
     Alojamiento *alojamiento1 = new Alojamiento("ALX5489", "Hotel moderno", 30, DTFecha(18, 05, 2020), "Hotel Lindorf", allInclusive, 5);
@@ -122,5 +120,5 @@ std::cout << alojamiento2->getDT() ;
 std::cout << tourguiado1->getDT() ;
 std::cout << eventoCultural1->getDT() ;
 
-return 0;
+
 }
