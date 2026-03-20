@@ -11,6 +11,7 @@ Experiencia::~Experiencia(){
         (*it)->EliminarExperiencia(this); // Eliminar la experiencia de la lista de experiencias del turista
         it++;
     }
+    this->turistas.clear(); // Limpiar la lista de turistas de la experiencia
 
 };
 
