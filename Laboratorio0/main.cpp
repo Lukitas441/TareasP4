@@ -72,7 +72,7 @@ int main(){
 std::cout << turista1.toString() << std::endl;
 std::cout << turista2.toString() << std::endl;
 
-
+ 
 //G-) Registrar las siguientes relaciones entre turistas y experiencias (creando links de la relación en ambas direcciones).
 
     turista1.setExperiencias(&alojamiento1);
