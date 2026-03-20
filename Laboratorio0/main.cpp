@@ -141,7 +141,7 @@ if (tourguiado1) {
     std::cout << tourguiado1->getDT() ;
 };
 if (tourguiado2) {
-    std::cout << tourguiado2->getDT() ;
+    std::cout << tourguiado2->getDT() ; // aca no se va a imprimir nada porque tourguiado2 fue eliminado en el paso I,  por eso el if.
 };
 if (eventoCultural1) {
     std::cout << eventoCultural1->getDT() ;
