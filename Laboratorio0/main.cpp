@@ -47,15 +47,24 @@ int main(){
 
 // D-) Imprimir en consola utilizando la inserción de flujo el resultado de ejecutar la operación getDT() para cada uno de los objetos Experiencia creados.
 
+std::cout << "\nCaso D \n";
 
+
+if (alojamiento1) {
     std::cout << alojamiento1->getDT() ;
+};
+if (alojamiento2) {
     std::cout << alojamiento2->getDT() ;
+};
+if (tourguiado1) {
     std::cout << tourguiado1->getDT() ;
+};
+if (tourguiado2) {
     std::cout << tourguiado2->getDT() ;
+};
+if (eventoCultural1) {
     std::cout << eventoCultural1->getDT() ;
-
-
-
+};
 
 
 
@@ -66,6 +75,7 @@ int main(){
     Turista *turista2 = new Turista("15354420", "Karen Santos", "karen.s89@internet.uy");
 
 //F-) Imprimir en consola el resultado de ejecutar la operación toString para cada uno de los objetos Turista creados.
+std::cout << "\nCaso F \n";
 
 std::cout << turista1->toString() << std::endl;
 std::cout << turista2->toString() << std::endl;
@@ -94,7 +104,7 @@ std::cout << turista2->toString() << std::endl;
 
 //H-) Invocar la operación listarExperiencias(10/12/2023, 0, 1000) para la turista 4.951.278-9 (Vanesa Castro) e imprimir el resultado en consola (un string por línea).
 
-std::cout << "\nCaso H \n\n";
+std::cout << "\nCaso H \n";
 std::list<Experiencia*> experienciasFiltradas = turista1->listarExperiencias(DTFecha(10, 12, 2023), 0, 1000);
 std::list<Experiencia*>::iterator it = experienciasFiltradas.begin();
 while (it != experienciasFiltradas.end()) {
@@ -109,16 +119,32 @@ delete tourguiado2;
 tourguiado2 = NULL; // Evitar acceso a memoria liberada
 
 //J-) Invocar la operación listarExperiencias(10/10/2020, 0, 1000) para la turista 1.535.442-0 (Karen Santos) e imprimir el resultado en consola (un string por línea).
-std::cout << "Caso J \n\n";
-turista2->listarExperiencias(DTFecha(10, 10, 2020), 0, 1000);
+std::cout << "\nCaso J \n";
+std::list<Experiencia*> aux = turista2->listarExperiencias(DTFecha(10, 10, 2020), 0, 1000);
+std::list<Experiencia*>::iterator it2 = aux.begin();
+while (it2 != aux.end()) {
+    std::cout << (*it2)->getCodigoReserva() << std::endl; 
+    it2++;
+}
+
 
 //K-) Imprimir en consola utilizando la inserción de flujo el resultado de ejecutar la operación getDT() para cada uno de los objetos Experiencias creados (mismo código que la parte d).
-std::cout << "Caso K \n\n";
+std::cout << "\nCaso K \n";
 
-std::cout << alojamiento1->getDT() ;
-std::cout << alojamiento2->getDT() ;
-std::cout << tourguiado1->getDT() ;
-std::cout << eventoCultural1->getDT() ;
-
-
-}
+if (alojamiento1) {
+    std::cout << alojamiento1->getDT() ;
+};
+if (alojamiento2) {
+    std::cout << alojamiento2->getDT() ;
+};
+if (tourguiado1) {
+    std::cout << tourguiado1->getDT() ;
+};
+if (tourguiado2) {
+    std::cout << tourguiado2->getDT() ;
+};
+if (eventoCultural1) {
+    std::cout << eventoCultural1->getDT() ;
+};
+return 0;
+};
