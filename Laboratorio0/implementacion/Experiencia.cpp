@@ -70,19 +70,11 @@ void Experiencia::setFecha(DTFecha fecha){
     this->fecha = fecha;
 };
 
-// dudoso el seter de DT, no se si es necesario, pero lo hago igual.
-/*
-void Experiencia::setDT(DTExp dt){ 
-    this->codigoReserva = dt.getCodigoReserva();
-    this->turistas = dt.getTurista();
-    this->descripcion = dt.getDescripcion();
-    this->fecha = dt.getFecha();
-};
-*/
+
 
 // Funciones
-float Experiencia::calcularCosto(){ // Implementa Guille
-    return 0; // aca no va virtual porque no es una clase, ni se asigna valor porque:  no se inicializa? daba error antes
+float Experiencia::calcularCosto(){ 
+    return 0; // aca no va virtual 
 };
 
 void Experiencia::agregarTurista(Turista *turista){

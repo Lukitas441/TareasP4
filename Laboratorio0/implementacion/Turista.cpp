@@ -66,7 +66,6 @@ std::list<Experiencia*> Turista::listarExperiencias(DTFecha desde, float min, fl
     }
     return experienciasFiltradas;
 };
-// Lo iba a hacer Santiago
 
 void Turista::EliminarExperiencia(Experiencia* experiencia){
     this->experiencias.remove(experiencia);
