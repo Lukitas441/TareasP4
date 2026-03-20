@@ -6,6 +6,14 @@ Experiencia::Experiencia(){
 };
 
 Experiencia::~Experiencia(){
+    std::list<Turista*>::iterator it = this->turistas.begin();
+    while (it != this->turistas.end()) {
+        (*it)->EliminarExperiencia(this); // Eliminar la experiencia de la lista de experiencias del turista
+        it++;
+    }
+    this->turistas.clear(); // Limpiar la lista de turistas
+    delete this; // Eliminar la experiencia
+
 };
 
 Experiencia::Experiencia(std::string codigoReserva, std::string descripcion, int precioBase, DTFecha fecha){
@@ -78,4 +86,8 @@ void Experiencia::setDT(DTExp dt){
 // Funciones
 float Experiencia::calcularCosto(){ // Implementa Guille
     return 0; // aca no va virtual poruqe no es una clase, ni se asigna valor porque:  no se inicializa? daba error antes
+};
+
+void Experiencia::agregarTurista(Turista turista){
+    this->turistas.push_back(&turista);
 };

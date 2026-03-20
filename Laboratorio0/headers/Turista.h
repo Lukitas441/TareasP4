@@ -5,6 +5,9 @@
 #include <list>
 #include <string>
 #include "DTFecha.h"
+
+class Experiencia;
+
 class Turista
 {
     private:
@@ -33,7 +36,8 @@ public:
 
     // Funciones
     std::string toString(); // string
-    std::list<std::string> listarExperiencias(DTFecha, float, float); // Set(string)
+    std::list<Experiencia*> listarExperiencias(DTFecha, float, float); // Set(string)
+    void EliminarExperiencia(Experiencia* experiencia); // Elimina una experiencia de la lista de experiencias del turista
 };
 
 #endif // TURISTA_H

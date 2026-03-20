@@ -69,19 +69,50 @@ int main(){
 
 //F-) Imprimir en consola el resultado de ejecutar la operación toString para cada uno de los objetos Turista creados.
 
-std::cout << turista1.toString() << "\n";
-std::cout << turista2.toString() << "\n";
+std::cout << turista1.toString() << std::endl;
+std::cout << turista2.toString() << std::endl;
 
 
 //G-) Registrar las siguientes relaciones entre turistas y experiencias (creando links de la relación en ambas direcciones).
 
+    turista1.setExperiencias(&alojamiento1);
+    alojamiento1.agregarTurista(turista1);
+
+    turista1.setExperiencias(&alojamiento2);
+    alojamiento2.agregarTurista(turista1);
+
+    turista1.setExperiencias(&tourguiado2);
+    tourguiado2.agregarTurista(turista1);
+
+    turista1.setExperiencias(&eventoCultural1);
+    eventoCultural1.agregarTurista(turista1);
+
+    turista2.setExperiencias(&tourguiado1);
+    tourguiado1.agregarTurista(turista2);
+
+    turista2.setExperiencias(&tourguiado2);
+    tourguiado2.agregarTurista(turista2);
+    
+
 //H-) Invocar la operación listarExperiencias(10/12/2023, 0, 1000) para la turista 4.951.278-9 (Vanesa Castro) e imprimir el resultado en consola (un string por línea).
 
+std::cout << "\nCaso H \n\n";
+std::list<Experiencia*> experienciasFiltradas = turista1.listarExperiencias(DTFecha(10, 12, 2023), 0, 1000);
+std::list<Experiencia*>::iterator it = experienciasFiltradas.begin();
+while (it != experienciasFiltradas.end()) {
+    std::cout << (*it)->getCodigoReserva() << std::endl; 
+    it++;
+}
+
+
 //I-) Ejecutar la eliminación del objeto TGR3257(Puntos emblematicos) de la clase Experiencia.
+
+    delete tourguiado2;
 
 //J-) Invocar la operación listarExperiencias(10/10/2020, 0, 1000) para la turista 1.535.442-0 (Karen Santos) e imprimir el resultado en consola (un string por línea).
 std::cout << "Caso J \n\n";
 turista2.listarExperiencias(DTFecha(10, 10, 2020), 0, 1000);
+
 //K-) Imprimir en consola utilizando la inserción de flujo el resultado de ejecutar la operación getDT() para cada uno de los objetos Experiencias creados (mismo código que la parte d).
 std::cout << "Caso K \n\n";
 

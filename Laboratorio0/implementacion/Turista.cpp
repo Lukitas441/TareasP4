@@ -52,15 +52,20 @@ std::string Turista::toString(){
     return this->ci + "->" + this->nombre + "/" + this->email;
 };
 
-std::list<std::string> Turista::listarExperiencias(DTFecha desde, float min, float max){
+std::list<Experiencia*> Turista::listarExperiencias(DTFecha desde, float min, float max){
     std::list<Experiencia*>::iterator it = this->experiencias.begin();
-    std::list<std::string> experienciasFiltradas;
+    std::list<Experiencia*> experienciasFiltradas;
     
     while (it != this->experiencias.end()) {
         if((*it)->getFecha() > desde && (*it)->calcularCosto() >= min && (*it)->calcularCosto() <= max){
-            experienciasFiltradas.push_back((*it)->getCodigoReserva());
+            experienciasFiltradas.push_back((*it));
         }
+        it++;
     }
     return experienciasFiltradas;
 };
 // Lo iba a hacer Santiago
+
+void Turista::EliminarExperiencia(Experiencia* experiencia){
+    this->experiencias.remove(experiencia);
+};
