@@ -4,14 +4,14 @@
 #include <iostream>
 #include <list>
 #include <string>
-#include "headers/DTFecha.h"
-
+#include "DTFecha.h"
 class Turista
 {
     private:
         std::string ci;
         std::string nombre;
         std::string email;
+        std::list<Experiencia*> experiencias; // lista de experiencias en las que participa el turista
 
 public:
     // Constructores y destructores
@@ -23,11 +23,13 @@ public:
     std::string getCI();
     std::string getNombre();
     std::string getEmail();
+    std::list<Experiencia*> getExperiencias();
 
     // Setters
     void setCI(std::string);
     void setNombre(std::string);
     void setEmail(std::string);
+    void setExperiencias(Experiencia*);
 
     // Funciones
     std::string toString(); // string

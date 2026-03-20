@@ -28,3 +28,16 @@ int DTFecha::getMes(){
 int DTFecha::getAnio(){
     return this->anio;
 };
+
+bool DTFecha::operator>(DTFecha otraFecha){
+    if (this->anio > otraFecha.anio) {
+        return true;
+    } else if (this->anio == otraFecha.anio) {
+        if (this->mes > otraFecha.mes) {
+            return true;
+        } else if (this->mes == otraFecha.mes) {
+            return this->dia > otraFecha.dia;
+        }
+    }
+    return false;
+};

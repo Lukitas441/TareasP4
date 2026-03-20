@@ -35,6 +35,6 @@ void TourGuiado::setLugaresVisitados(std::list<std::string> lugaresVisitados){
 // Funciones
 float TourGuiado::calcularCosto(){ // Implementa Guille
     //aca el error era el mismo del otro costo, lost getters de LugaresVisitados y Turistas son listas de strings entonces de usa .size()
-    float costo = (this->getPrecioBase() + 2) * this->getLugaresVisitados().size() * this->getTurista().size();
+    float costo = (this->getPrecioBase() + 2) * this->getLugaresVisitados().size() * this->getTuristas().size();
     return costo;
 };

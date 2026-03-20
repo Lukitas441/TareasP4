@@ -4,9 +4,10 @@
 #include <iostream>
 #include <list>
 #include <string>
-#include "headers/DTFecha.h"
-#include "headers/Enumerados.h"
-#include "headers/DTExp.h"
+#include "DTFecha.h"
+#include "DTExp.h"
+#include "Turista.h"
+
 
 class Experiencia{
   private:
@@ -14,7 +15,7 @@ class Experiencia{
   std::string descripcion;
   int precioBase;
   DTFecha fecha;
-  std::list<std::string> turistas; // lista de turistas que se alojan en el alojamiento
+  std::list<Turista*> turistas; // lista de turistas que se alojan en el alojamiento
 
   public:
   // Constructores y destructores
@@ -25,7 +26,7 @@ class Experiencia{
   // Getters
   std::string getCodigoReserva();
   std::string getDescripcion();
-  std::list<std::string> getTurista();
+  std::list<Turista*> getTuristas();
   int getPrecioBase();
   DTFecha getFecha();
   DTExp getDT();
@@ -40,7 +41,7 @@ class Experiencia{
   // Funciones
   virtual float calcularCosto() = 0; // Virtual para que no se rompa la funcion SI VA EL =0;
 
-  void agregarTurista(std::string); // Agrega un turista a la experiencia
+  void agregarTurista(Turista); // Agrega un turista a la experiencia
 };
 
 #endif // EXPERIENCIA_H

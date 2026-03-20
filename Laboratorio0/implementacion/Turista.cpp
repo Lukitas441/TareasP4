@@ -1,4 +1,5 @@
 #include "headers/Turista.h"
+#include "headers/Experiencia.h"
 
 // Constructores y destructores
 Turista::Turista(){
@@ -25,6 +26,9 @@ std::string Turista::getNombre(){
 std::string Turista::getEmail(){
     return this->email;
 };
+std::list<Experiencia*> Turista::getExperiencias(){
+    return this->experiencias;
+};
 
 // Setters
 void Turista::setCI(std::string ci){
@@ -39,12 +43,24 @@ void Turista::setEmail(std::string email){
     this->email = email;
 };
 
+void Turista::setExperiencias(Experiencia* experiencia){
+    this->experiencias.push_back(experiencia);
+};
+
 // Funciones
 std::string Turista::toString(){
     return this->ci + "->" + this->nombre + "/" + this->email;
 };
 
 std::list<std::string> Turista::listarExperiencias(DTFecha desde, float min, float max){
-    return std::list<std::string>();
+    std::list<Experiencia*>::iterator it = this->experiencias.begin();
+    std::list<std::string> experienciasFiltradas;
+    
+    while (it != this->experiencias.end()) {
+        if((*it)->getFecha() > desde && (*it)->calcularCosto() >= min && (*it)->calcularCosto() <= max){
+            experienciasFiltradas.push_back((*it)->getCodigoReserva());
+        }
+    }
+    return experienciasFiltradas;
 };
-// Lo hace Santiago
+// Lo iba a hacer Santiago

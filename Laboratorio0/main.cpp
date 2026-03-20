@@ -1,7 +1,10 @@
 #include <iostream>
 #include <list>
 #include <map>
+
 #include "headers/Turista.h"
+#include "headers/Experiencia.h"
+
 #include "headers/Alojamiento.h"
 #include "headers/EventoCultural.h"
 #include "headers/TourGuiado.h"

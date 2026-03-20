@@ -1,4 +1,5 @@
 #include "headers/Experiencia.h"
+#include "headers/Turista.h"
 
 // Constructores y destructores
 Experiencia::Experiencia(){
@@ -12,11 +13,11 @@ Experiencia::Experiencia(std::string codigoReserva, std::string descripcion, int
     this->descripcion = descripcion;
     this->precioBase = precioBase;
     this->fecha = fecha;
-    // lo de lucas: this->turistas = std::list<std::string>();
+    this->turistas = std::list<Turista*>(); // Inicializo la lista de turistas como vacía
 };
 
 // Getters
-std::list<std::string> Experiencia::getTurista(){
+std::list<Turista*> Experiencia::getTuristas(){
     return this->turistas;
 };
 std::string Experiencia::getCodigoReserva(){
@@ -36,7 +37,14 @@ DTFecha Experiencia::getFecha(){
 };
 
 DTExp Experiencia::getDT(){
-    return DTExp(this->codigoReserva, this->turistas, this->descripcion, this->fecha);
+    std::list<std::string> turistasCI;
+    std::list<Turista*>::iterator it = this->turistas.begin();
+    while (it != this->turistas.end()) {
+        turistasCI.push_back((*it)->getCI());
+        it++;
+    }
+
+    return DTExp(this->codigoReserva, turistasCI, this->descripcion, this->fecha);
 };
 
 // Setters
@@ -57,12 +65,15 @@ void Experiencia::setFecha(DTFecha fecha){
 };
 
 // dudoso el seter de DT, no se si es necesario, pero lo hago igual.
+
+/*
 void Experiencia::setDT(DTExp dt){ 
     this->codigoReserva = dt.getCodigoReserva();
     this->turistas = dt.getTurista();
     this->descripcion = dt.getDescripcion();
     this->fecha = dt.getFecha();
 };
+*/
 
 // Funciones
 float Experiencia::calcularCosto(){ // Implementa Guille

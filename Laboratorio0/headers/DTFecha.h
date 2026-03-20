@@ -17,6 +17,8 @@ public:
     int getDia();
     int getMes();
     int getAnio();
+
+    bool operator>(DTFecha);
 };
 
 #endif // DT_FECHA_H

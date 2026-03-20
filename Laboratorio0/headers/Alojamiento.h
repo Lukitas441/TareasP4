@@ -1,7 +1,9 @@
 #ifndef ALOJAMIENTO_H
 #define ALOJAMIENTO_H
 
-#include "headers/Experiencia.h"
+#include "Experiencia.h"
+#include "Enumerados.h"
+#include "DTFecha.h"
 
 class Alojamiento : public Experiencia{ // subclase de Experiencia
     
