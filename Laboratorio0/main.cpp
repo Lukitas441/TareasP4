@@ -47,15 +47,24 @@ int main(){
 
 // D-) Imprimir en consola utilizando la inserción de flujo el resultado de ejecutar la operación getDT() para cada uno de los objetos Experiencia creados.
 
+std::cout << "\nCaso D \n";
 
+
+if (alojamiento1) {
     std::cout << alojamiento1->getDT() ;
+};
+if (alojamiento2) {
     std::cout << alojamiento2->getDT() ;
+};
+if (tourguiado1) {
     std::cout << tourguiado1->getDT() ;
+};
+if (tourguiado2) {
     std::cout << tourguiado2->getDT() ;
+};
+if (eventoCultural1) {
     std::cout << eventoCultural1->getDT() ;
-
-
-
+};
 
 
 
@@ -66,6 +75,7 @@ int main(){
     Turista *turista2 = new Turista("15354420", "Karen Santos", "karen.s89@internet.uy");
 
 //F-) Imprimir en consola el resultado de ejecutar la operación toString para cada uno de los objetos Turista creados.
+std::cout << "\nCaso F \n";
 
 std::cout << turista1->toString() << std::endl;
 std::cout << turista2->toString() << std::endl;

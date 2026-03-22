@@ -1,4 +1,3 @@
-# Makefile for Laboratorio0
 
 CXX = g++
 CXXFLAGS = -std=c++98 -Wall -I. -Iheaders
