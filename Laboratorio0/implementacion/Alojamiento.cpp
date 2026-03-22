@@ -1,18 +1,17 @@
-#include "headers/Alojamiento.h"
-#include <iostream>
 #include "Alojamiento.h"
 
 // Constructores y destructores
-Alojamiento::Alojamiento(){
-};
-
-Alojamiento::~Alojamiento(){
-};
-
+           //Alojamiento(std::string,               std::string,             int,            DTFecha,       std::string,       enum TipoRegimen,             int);
 Alojamiento::Alojamiento(std::string codigoReserva, std::string descripcion, int precioBase, DTFecha fecha, std::string hotel, enum TipoRegimen tipoRegimen, int cantNoches) : Experiencia(codigoReserva, descripcion, precioBase, fecha){
     this->hotel = hotel;
     this->regimen = tipoRegimen;
     this->cantNoches = cantNoches;
+};
+
+Alojamiento::Alojamiento() {
+};
+
+Alojamiento::~Alojamiento() {
 };
 
 // Getters

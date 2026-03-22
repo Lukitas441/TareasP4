@@ -94,9 +94,10 @@ std::cout << turista2->toString() << std::endl;
 
 //H-) Invocar la operación listarExperiencias(10/12/2023, 0, 1000) para la turista 4.951.278-9 (Vanesa Castro) e imprimir el resultado en consola (un string por línea).
 
-std::cout << "\nCaso H \n\n";
-std::list<Experiencia*> experienciasFiltradas = turista1->listarExperiencias(DTFecha(10, 12, 2023), 0, 1000);
-std::list<Experiencia*>::iterator it = experienciasFiltradas.begin();
+std::cout << "\nCaso H\n";
+
+std::set<Experiencia*> experienciasFiltradas = turista1->listarExperiencias(DTFecha(10, 12, 2023), 0, 1000);
+std::set<Experiencia*>::iterator it = experienciasFiltradas.begin();
 while (it != experienciasFiltradas.end()) {
     std::cout << (*it)->getCodigoReserva() << std::endl; 
     it++;
@@ -109,16 +110,47 @@ delete tourguiado2;
 tourguiado2 = NULL; // Evitar acceso a memoria liberada
 
 //J-) Invocar la operación listarExperiencias(10/10/2020, 0, 1000) para la turista 1.535.442-0 (Karen Santos) e imprimir el resultado en consola (un string por línea).
-std::cout << "Caso J \n\n";
-turista2->listarExperiencias(DTFecha(10, 10, 2020), 0, 1000);
+std::cout << "\nCaso J \n";
+std::set<Experiencia*> experienciasFiltradas2 = turista2->listarExperiencias(DTFecha(10, 10, 2020), 0, 1000);
+std::set<Experiencia*>::iterator it2 = experienciasFiltradas2.begin();
+while (it2 != experienciasFiltradas2.end()) {
+    std::cout << (*it2)->getCodigoReserva() << std::endl;
+    it2++;
+}
 
 //K-) Imprimir en consola utilizando la inserción de flujo el resultado de ejecutar la operación getDT() para cada uno de los objetos Experiencias creados (mismo código que la parte d).
-std::cout << "Caso K \n\n";
 
-std::cout << alojamiento1->getDT() ;
-std::cout << alojamiento2->getDT() ;
-std::cout << tourguiado1->getDT() ;
-std::cout << eventoCultural1->getDT() ;
+//delete turista1; si se intenta eliminar el unico turista de una experiencia, se lanza una excepcion
 
+std::cout << "\nCaso K \n";
+if (alojamiento1) {
+    std::cout << alojamiento1->getDT() ;
+} else {
+    std::cout << "Alojamiento 1 ha sido eliminado." << std::endl;
+}
+
+if (alojamiento2) {
+    std::cout << alojamiento2->getDT() ;
+} else {
+    std::cout << "Alojamiento 2 ha sido eliminado." << std::endl;
+}
+
+if (tourguiado1) {
+    std::cout << tourguiado1->getDT() ;
+} else {
+    std::cout << "Tour guiado 1 ha sido eliminado." << std::endl;
+}
+
+if (tourguiado2) {
+    std::cout << tourguiado2->getDT() ;
+} else {
+    std::cout << "Tour guiado 2 ha sido eliminado." << std::endl;
+}
+
+if (eventoCultural1) {
+    std::cout << eventoCultural1->getDT() ;
+} else {
+    std::cout << "Evento cultural 1 ha sido eliminado." << std::endl;
+}
 
 }

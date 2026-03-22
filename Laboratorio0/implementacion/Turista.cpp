@@ -6,6 +6,14 @@ Turista::Turista(){
 };
 
 Turista::~Turista(){
+    std::set<Experiencia*>::iterator it = this->experiencias.begin();
+    while (it != this->experiencias.end()) {
+        (*it)->eliminarTurista(this); // Eliminar el turista de la lista de turistas de la experiencia
+        if ((*it)->getTuristas().empty()) { // Si la experiencia no tiene más turistas, eliminarla
+            throw std::invalid_argument("La experiencia " + (*it)->getCodigoReserva() + " no tiene más turistas.");
+        }
+        it++;
+    }
     this->experiencias.clear(); // Limpiar la lista de experiencias del turista
     delete this;
 };
@@ -28,7 +36,7 @@ std::string Turista::getNombre(){
 std::string Turista::getEmail(){
     return this->email;
 };
-std::list<Experiencia*> Turista::getExperiencias(){
+std::set<Experiencia*> Turista::getExperiencias(){
     return this->experiencias;
 };
 
@@ -46,7 +54,7 @@ void Turista::setEmail(std::string email){
 };
 
 void Turista::setExperiencias(Experiencia* experiencia){
-    this->experiencias.push_back(experiencia);
+    this->experiencias.insert(experiencia);
 };
 
 // Funciones
@@ -54,13 +62,13 @@ std::string Turista::toString(){
     return this->ci + "->" + this->nombre + "/" + this->email;
 };
 
-std::list<Experiencia*> Turista::listarExperiencias(DTFecha desde, float min, float max){
-    std::list<Experiencia*>::iterator it = this->experiencias.begin();
-    std::list<Experiencia*> experienciasFiltradas;
+std::set<Experiencia*> Turista::listarExperiencias(DTFecha desde, float min, float max){
+    std::set<Experiencia*>::iterator it = this->experiencias.begin();
+    std::set<Experiencia*> experienciasFiltradas;
     
     while (it != this->experiencias.end()) {
         if((*it)->getFecha() > desde && (*it)->calcularCosto() >= min && (*it)->calcularCosto() <= max){
-            experienciasFiltradas.push_back((*it));
+            experienciasFiltradas.insert((*it));
         }
         it++;
     }
@@ -69,5 +77,5 @@ std::list<Experiencia*> Turista::listarExperiencias(DTFecha desde, float min, fl
 // Lo iba a hacer Santiago
 
 void Turista::EliminarExperiencia(Experiencia* experiencia){
-    this->experiencias.remove(experiencia);
+    this->experiencias.erase(experiencia);
 };

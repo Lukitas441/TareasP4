@@ -2,7 +2,7 @@
 #define TURISTA_H
 
 #include <iostream>
-#include <list>
+#include <set>
 #include <string>
 #include "DTFecha.h"
 
@@ -15,7 +15,7 @@ class Turista
         std::string ci;
         std::string nombre;
         std::string email;
-        std::list<Experiencia*> experiencias; // lista de experiencias en las que participa el turista
+        std::set<Experiencia*> experiencias; // lista de experiencias en las que participa el turista
 
 public:
     // Constructores y destructores
@@ -27,7 +27,7 @@ public:
     std::string getCI();
     std::string getNombre();
     std::string getEmail();
-    std::list<Experiencia*> getExperiencias();
+    std::set<Experiencia*> getExperiencias();
 
     // Setters
     void setCI(std::string);
@@ -37,7 +37,7 @@ public:
 
     // Funciones
     std::string toString(); // string
-    std::list<Experiencia*> listarExperiencias(DTFecha, float, float); // Set(string)
+    std::set<Experiencia*> listarExperiencias(DTFecha, float, float); // Set(string)
     void EliminarExperiencia(Experiencia*); // Elimina una experiencia de la lista de experiencias del turista
 };
 

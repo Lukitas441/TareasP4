@@ -6,7 +6,7 @@ Experiencia::Experiencia(){
 };
 
 Experiencia::~Experiencia(){
-    std::list<Turista*>::iterator it = this->turistas.begin();
+    std::set<Turista*>::iterator it = this->turistas.begin();
     while (it != this->turistas.end()) {
         (*it)->EliminarExperiencia(this); // Eliminar la experiencia de la lista de experiencias del turista
         it++;
@@ -19,11 +19,11 @@ Experiencia::Experiencia(std::string codigoReserva, std::string descripcion, int
     this->descripcion = descripcion;
     this->precioBase = precioBase;
     this->fecha = fecha;
-    this->turistas = std::list<Turista*>(); // Inicializo la lista de turistas como vacía
+    this->turistas = std::set<Turista*>(); // Inicializo la lista de turistas como vacía
 };
 
 // Getters
-std::list<Turista*> Experiencia::getTuristas(){
+std::set<Turista*> Experiencia::getTuristas(){
     return this->turistas;
 };
 std::string Experiencia::getCodigoReserva(){
@@ -43,10 +43,10 @@ DTFecha Experiencia::getFecha(){
 };
 
 DTExp Experiencia::getDT(){
-    std::list<std::string> turistasCI;
-    std::list<Turista*>::iterator it = this->turistas.begin();
+    std::set<std::string> turistasCI;
+    std::set<Turista*>::iterator it = this->turistas.begin();
     while (it != this->turistas.end()) {
-        turistasCI.push_back((*it)->getCI());
+        turistasCI.insert((*it)->getCI());
         it++;
     }
 
@@ -85,5 +85,9 @@ float Experiencia::calcularCosto(){ // Implementa Guille
 };
 
 void Experiencia::agregarTurista(Turista *turista){
-    this->turistas.push_back(turista);
+    this->turistas.insert(turista);
+};
+
+void Experiencia::eliminarTurista(Turista *turista){
+    this->turistas.erase(turista); // Elimina el turista de la lista de turistas de la experiencia
 };
