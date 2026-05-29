@@ -3,7 +3,8 @@
 
 #include <string>
 
-class Usuario {
+class Usuario
+{
 protected:
     std::string nickname;
     std::string nombre;
