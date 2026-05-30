@@ -16,12 +16,12 @@ DTFecha Reserva::getFecha() {
 Viaje* Reserva::getViaje() {
     return viaje;
 }
-std::set<Pasajero*> Reserva::getPasajeros() {
+std::set<class Pasajero*> Reserva::getPasajeros() {
     return pasajeros;
 }
 std::set<DTUsuarioViaje*> Reserva::getPasajerosReserva() {
     std::set<DTUsuarioViaje*> pasajerosReserva;
-    std::set<Pasajero*>::iterator it;
+    std::set<class Pasajero*>::iterator it;
     for (it = pasajeros.begin(); it != pasajeros.end(); ++it) {
         DTUsuarioViaje* dtUsuarioViaje = new DTUsuarioViaje((*it)->getNickname(), Pasajero);
         pasajerosReserva.insert(dtUsuarioViaje);
