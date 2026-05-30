@@ -5,14 +5,17 @@
 
 class Fabrica {
 private:
-    static Fabrica* instancia;
+    static Fabrica * instancia;
 
     Fabrica();
 
 public:
-    static Fabrica* getInstance();
+    static Fabrica * getInstance();
 
     IControladorFechaActual* getIControladorFechaActual();
+    IVehiculo * getIVehiculo();
+    IUsuario * getIUsuario();
+    IViaje * getIViaje();
 };
 
 #endif
