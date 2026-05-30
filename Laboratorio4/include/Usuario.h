@@ -5,6 +5,9 @@
 #include <map>
 #include <DTUsuario.h>
 #include <Calificacion.h>
+#include <DTListarViaje.h>
+#include <set>
+
 
 class Usuario
 {
@@ -13,7 +16,9 @@ protected:
     std::string nombre;
     std::string contrasena;
     std::string email;
-    std::map<std::string, Calificacion*> calificacionesRecibidas; 
+    std::map<std::string, Calificacion*> calificacionesRecibidas;
+    float calificacionPromedio;
+    
 
 public:
     Usuario(std::string nickname, std::string nombre, std::string contrasena, std::string email);
@@ -24,12 +29,13 @@ public:
     std::string getContrasena();
     std::string getEmail();
     std::map<std::string, Calificacion*> getCalificacionesRecibidas();
+    float getCalificacionPromedio();
 
 
     DTUsuario getInfoUsuarios();
     float calificacionPromedio();
     bool existeCalificado(std::string nicknameCalificador, int codigoViaje);
-    virtual int getViajesTotales() = 0;
+    virtual std::set<DTListarViaje> getViajesTotales();
 };
 
 #endif

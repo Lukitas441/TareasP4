@@ -16,17 +16,11 @@ std::set<Vehiculo*> Conductor::getVehiculos() {
 }
 
 bool Conductor::libretaValida(TipoVehiculo tipo) {
-    if (tipo == TipoVehiculo::Auto) {
-        for (std::set<TipoLibreta>::iterator it = this->libretas.begin(); it != this->libretas.end(); ++it) {
-            if (*it == TipoLibreta::AutoProfesional || *it == TipoLibreta::AutoAmateur) {
-                return true;
-            }
-        }
-    } else if (tipo == TipoVehiculo::Moto) {
-        for (std::set<TipoLibreta>::iterator it = this->libretas.begin(); it != this->libretas.end(); ++it) {
-            if (*it == TipoLibreta::MotoProfesional || *it == TipoLibreta::MotoAmateur) {
-                return true;
-            }
+
+    for (const auto& libreta : libretas) {
+        if ((tipo == TipoVehiculo::Auto && (libreta == TipoLibreta::AutoProfesional || libreta == TipoLibreta::AutoAmateur)) ||
+            (tipo == TipoVehiculo::Moto && (libreta == TipoLibreta::MotoProfesional || libreta == TipoLibreta::MotoAmateur))) {
+            return true;
         }
     }
     return false;
@@ -35,14 +29,15 @@ bool Conductor::libretaValida(TipoVehiculo tipo) {
 std::set<DTListarViaje> Conductor::getViajesTotales() {
     std::set<DTListarViaje> viajes;
     for (const auto& vehiculo : this->vehiculos) {
-        auto vehiculoViajes = vehiculo->getViajes();
-        viajes.insert(vehiculoViajes.begin(), vehiculoViajes.end());
+        auto viajesVehiculo = vehiculo->getDTViajes();
+        viajes.insert(viajesVehiculo.begin(), viajesVehiculo.end());
     }
     return viajes;
 }
 
 DTUsuarioViaje Conductor::getDatosConductor() {
-    return DTUsuarioViaje(this->getNickname(), this->getNombre(), this->getEmail());
+    DTUsuarioViaje dtuv(this->nickname, TipoUsuario::conductor);
+    return dtuv;
 }
 
 bool Conductor::hayViajesFechaConductor(DTFecha fecha) {
@@ -52,4 +47,5 @@ bool Conductor::hayViajesFechaConductor(DTFecha fecha) {
         }
     }
     return false;
-}
+};
+
