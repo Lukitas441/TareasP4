@@ -16,7 +16,7 @@ protected:
     std::map<std::string, Calificacion*> calificacionesRecibidas; 
 
 public:
-    Usuario(std::string nickname, std::string nombre, std::string contrasena, std::string email);
+    Usuario(std::string nickname, std::string nombre, std::string contrasena);
     virtual ~Usuario();
 
     std::string getNickname();

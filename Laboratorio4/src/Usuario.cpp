@@ -5,6 +5,8 @@ Usuario::Usuario(std::string nickname, std::string nombre, std::string contrasen
     this->nombre = nombre;
     this->contrasena = contrasena;
     this->email = email;
+
+    calificacionesRecibidas = std::map<std::string, Calificacion*>();
 }
 
 Usuario::~Usuario() {}
@@ -39,14 +41,12 @@ float Usuario::calificacionPromedio(){
 // chequear pq distinto del Diagrama d Comunicacion
 // esta va pal santi .l.
 bool Usuario::existeCalificado(std::string nicknameCalificador, int codigoViaje) {
-    if (calificacionesRecibidas.empty()) {
-        return false;
-    }
+    if (calificacionesRecibidas.empty()){return false;}
 
     std::map<std::string, Calificacion*>::iterator it;
     for (it = calificacionesRecibidas.begin(); it != calificacionesRecibidas.end(); ++it) {
        Usuario* usuarioCalificador = it->second->getUsuarioCalificador();
-       Viaje* viajeCalificado = it->second->getReservaViaje();
+       Viaje* viajeCalificado = it->second->getCaliViaje();
        if (usuarioCalificador->getNickname() == nicknameCalificador && viajeCalificado->getCodigo() == codigoViaje) {
            return true;
            
