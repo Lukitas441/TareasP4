@@ -8,3 +8,49 @@ Usuario::Usuario(std::string nickname, std::string nombre, std::string contrasen
 }
 
 Usuario::~Usuario() {}
+
+std::string Usuario::getNickname(){
+    return nickname;
+}
+
+DTUsuario Usuario::getInfoUsuarios() {
+    return DTUsuario(nickname, nombre);
+}
+
+std::map<std::string, Calificacion*> Usuario::getCalificacionesRecibidas() {
+    return calificacionesRecibidas;
+}
+
+float Usuario::calificacionPromedio(){
+    if (calificacionesRecibidas.empty()) {
+        return 0.0; // Si no hay calificaciones, el promedio es 0
+    }
+
+    std::map<std::string, Calificacion*>::iterator it;
+    int sumaPuntajes = 0;
+    for (it = calificacionesRecibidas.begin(); it != calificacionesRecibidas.end(); ++it) {
+        sumaPuntajes += it->second->getPuntaje();
+    }
+
+    return sumaPuntajes / calificacionesRecibidas.size();
+}
+
+
+// chequear pq distinto del Diagrama d Comunicacion
+// esta va pal santi .l.
+bool Usuario::existeCalificado(std::string nicknameCalificador, int codigoViaje) {
+    if (calificacionesRecibidas.empty()) {
+        return false;
+    }
+
+    std::map<std::string, Calificacion*>::iterator it;
+    for (it = calificacionesRecibidas.begin(); it != calificacionesRecibidas.end(); ++it) {
+       Usuario* usuarioCalificador = it->second->getUsuarioCalificador();
+       Viaje* viajeCalificado = it->second->getReservaViaje();
+       if (usuarioCalificador->getNickname() == nicknameCalificador && viajeCalificado->getCodigo() == codigoViaje) {
+           return true;
+           
+       }
+    }
+    return false;
+}
