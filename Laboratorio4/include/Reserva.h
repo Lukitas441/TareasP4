@@ -1,7 +1,6 @@
 #ifndef RESERVA_H
 #define RESERVA_H
 
-#include <map>
 #include <set>
 #include "DTFecha.h"
 #include "Viaje.h"
@@ -14,7 +13,7 @@ private:
     int asientosReservados;
     DTFecha fecha;
     Viaje *viaje;
-    std::map<std::string, Pasajero*> pasajeros;
+    std::set<class Pasajero*> pasajeros;
 
 public:
     Reserva(int asientosReservados, DTFecha fecha);
@@ -23,7 +22,7 @@ public:
     int getAsientos();
     DTFecha getFecha();
     Viaje *getViaje();
-    std::map<std::string, Pasajero*> getPasajeros();
+    std::set<class Pasajero*> getPasajeros();
 
     std::set<DTUsuarioViaje *> getPasajerosReserva();
 };
