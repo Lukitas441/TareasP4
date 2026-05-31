@@ -24,6 +24,6 @@ public:
     std::set<Viaje*> getViajes();
     
     Viaje crearViaje(Vehiculo* v, Fecha fecha, std::String origen, std::String destino, int asientos, float precio);
-}
+};
 
 #endif

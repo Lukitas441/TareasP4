@@ -1,13 +1,13 @@
 #include "../include/manejador/ManejadorVehiculos.h"
 
 ManejadorVehiculos* ManejadorVehiculos::instance = nullptr;
-ManejadorVehiculos* ManejadorVechiulos() {}
+ManejadorVehiculos* ManejadorVechiulos() {};
 ManejadorVehiculos* ManejadorVehiculos::getInstance() {
     if (instance == nullptr) {
         instance = new ManejadorVehiculos();
     }
     return instance;
-}
+};
 
 Vehiculo* ManejadorVehiculo::getVehiculo(std::string matricula) {
     auto it = vehiculos.find(matricula);
@@ -15,7 +15,7 @@ Vehiculo* ManejadorVehiculo::getVehiculo(std::string matricula) {
         return it->second;
     }
     return nullptr;
-}
+};
 
 std::set<Vehiculo*> ManejadorVehiculo::getVehiculos() {
     std::set<Vehiculo*> resultado;
@@ -23,4 +23,4 @@ std::set<Vehiculo*> ManejadorVehiculo::getVehiculos() {
         resultado.insert(pair.second);
     }
     return resultado;
-}
+};

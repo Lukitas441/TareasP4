@@ -18,11 +18,13 @@ private:
 public:
     static ManejadorUsuarios* getInstance();
 
+    void agregarUsuario(Usuario* usuario);
+
     Usuario* getUsuario(std::string nickname);
 
     std::set<Usuario*> getUsuarios();
     std::set<Pasajero*> getPasajeros();
     std::set<Conductor*> getConductores();
-}
+};
 
 #endif
