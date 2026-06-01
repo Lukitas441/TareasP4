@@ -3,6 +3,8 @@
 
 #include "IControladorFechaActual.h"
 
+class IControladorViajes;
+
 class Fabrica {
 private:
     static Fabrica * instancia;
@@ -13,6 +15,7 @@ public:
     static Fabrica * getInstance();
 
     IControladorFechaActual* getIControladorFechaActual();
+    IControladorViajes* getIControladorViajes();
 /*
     IVehiculo * getIVehiculo();
     IUsuario * getIUsuario();

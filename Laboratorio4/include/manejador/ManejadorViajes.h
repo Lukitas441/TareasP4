@@ -1,32 +1,33 @@
 #ifndef MANEJADOR_VIAJES_H
 #define MANEJADOR_VIAJES_H
 
-#include "Viaje.h"
+
 #include "DTUsuario.h"
-#include "Usuario.h"
-#include "Conductor.h"
-#include "Pasajero.h"
+#include "DTFecha.h"
 #include <iostream>
 #include <map>
 #include <set>
 #include <string>
 // pueden sobrar includes de Usuario
 
+class Viaje;
+class Usuario;
+class Vehiculo;
+
 class ManejadorViajes {
 
 private:
     static ManejadorViajes * instance;
-    std::map<std::int, Viaje*> viajes;
-    ManejadorViajes();
-
+    std::map<int, Viaje*> viajes;
 public:
-    static ManejadorViajes * getInstance();
+    ManejadorViajes();
+    static ManejadorViajes* getInstance();
 
-    Usuario* getUsuario(std::string nickname);
+    void agregarViaje(Viaje* viaje);
+    Viaje* getViaje(int codigo);
+    std::map<int, Viaje*> getViajes();
+    void eliminarViaje(int codigo);
 
-    std::set<Viaje*> getViajes();
-    
-    Viaje crearViaje(Vehiculo* v, DTFecha fecha, std::string origen, std::string destino, int asientos, float precio);
 };
 
 #endif
