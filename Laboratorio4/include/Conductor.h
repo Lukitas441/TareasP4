@@ -3,7 +3,6 @@
 
 #include "Usuario.h"
 #include "TipoLibreta.h"
-#include "Vehiculo.h"
 #include "DTListarViaje.h"
 #include "DTUsuarioViaje.h"
 #include <list>

@@ -18,6 +18,7 @@ public:
     void addReserva(Reserva* reserva);
     std::string getCI ();
     std::set<Reserva*> getReservas();
+    std::list<DTListarViaje>  getViajesTotales();
 };
 
 #endif
