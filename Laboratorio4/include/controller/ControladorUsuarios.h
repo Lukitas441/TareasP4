@@ -43,11 +43,11 @@ public:
     TipoVehiculo tipo
     ) override;
 
-    std::set<DTUsuario*> listarUsuarios() override;
+    std::set<DTUsuario> listarUsuarios() override;
 
-    std::set<DTUsuario*> listarPasajeros() override;
+    std::set<DTUsuario> listarPasajeros() override;
 
-    std::set<DTListarViaje*> listarViajes(std::string nickname) override;
+    std::set<DTListarViaje> listarViajes(std::string nickname) override;
 
     bool calificarUsuario(
         std::string nicknameCalificado,

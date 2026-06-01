@@ -31,10 +31,10 @@ bool ControladorUsuarios::altaConductor(std::string nickname, std::string nombre
     return true;
 };
 
-std::set<DTUsuario*> ControladorUsuarios::listarUsuarios() {
+std::set<DTUsuario> ControladorUsuarios::listarUsuarios() {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
     std::set<Usuario*> usuarios = mu->getUsuarios();
-    std::set<DTUsuario*> resultado;
+    std::set<DTUsuario> resultado;
 
     for (const auto& u : usuarios) {
         resultado.insert(u->getInfoUsuario());
@@ -55,12 +55,12 @@ std::set<DTUsuario> ControladorUsuarios::listarPasajeros() {
     return resultado;
 };
 
-int ControladorUsuarios::registrarVehiculo() {
+int ControladorUsuarios::registrarVehiculo(std::string nickname, std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo) {
     return 0; //FALTA IMPLEMENTACION
 };
 
 std::set<DTListarViaje> ControladorUsuarios::listarViajes(std::string nickname) {
-    return nullptr; //FALTA IMPLEMENTACION
+    return std::set<DTListarViaje>(); //FALTA IMPLEMENTACION
 };
 
 bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int calificacion) {
