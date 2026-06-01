@@ -19,6 +19,6 @@ public:
     Vehiculo* getVehiculo(std::string matricula);
 
     std::set<Vehiculo*> getVehiculos();
-}
+};
 
 #endif
