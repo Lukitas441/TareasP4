@@ -7,6 +7,8 @@ class Usuario;
 class Viaje;
 class Reserva;
 
+class Usuario;
+
 class Calificacion {
 private:
     Usuario* usuarioCalificador;

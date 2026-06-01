@@ -11,8 +11,20 @@ Fabrica* Fabrica::getInstance() {
         instancia = new Fabrica();
     }
     return instancia;
-}
+};
 
 IControladorFechaActual* Fabrica::getIControladorFechaActual() {
     return ControladorFechaActual::getInstance();
-}
+};
+
+IControladorUsuarios* Fabrica::getIControladorUsuarios() {
+    return ControladorUsuarios::getInstance();
+};
+
+IControladorViajes* Fabrica::getIControladorViajes() {
+    return ControladorViajes::getInstance();
+};
+
+IControladorVehiculos* Fabrica::getIControladorVehiculos() {
+    return ControladorVehiculos::getInstance();
+};

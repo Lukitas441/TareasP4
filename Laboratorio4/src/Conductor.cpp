@@ -1,4 +1,5 @@
 #include "../include/Conductor.h"
+#include "Vehiculo.h"
 
 Conductor::Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::list <TipoLibreta> libs)
     : Usuario(nickname, nombre, contrasena, email) {
@@ -29,8 +30,8 @@ bool Conductor::libretaValida(TipoVehiculo tipo) {
 std::list<DTListarViaje> Conductor::getViajesTotales() {
     std::list<DTListarViaje> viajes;
     for (const auto& vehiculo : this->vehiculos) {
-        std::list<DTListarViaje> viajesVehiculo = vehiculo->getDTViajes();
-        viajes.insert(viajes.end(), viajesVehiculo.begin(), viajesVehiculo.end());
+        std::list<DTListarViaje> dtViajes = vehiculo->getDTViajes();
+        viajes.insert(viajes.end(), dtViajes.begin(), dtViajes.end());
     }
     return viajes;
 }
@@ -49,3 +50,11 @@ bool Conductor::hayViajesFechaConductor(DTFecha fecha) {
     return false;
 };
 
+std::set<DTVehiculosConductor> Conductor::listarVehiculos() {
+    std::set<DTVehiculosConductor> listaVehiculos;
+    for (const auto& vehiculo : this->vehiculos) {
+        DTVehiculosConductor dtvc = vehiculo->getDTVehiculoConductor();
+        listaVehiculos.insert(dtvc);
+    }
+    return listaVehiculos;
+}

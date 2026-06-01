@@ -3,7 +3,6 @@
 
 #include "Usuario.h"
 #include "TipoLibreta.h"
-#include "Vehiculo.h"
 #include "DTListarViaje.h"
 #include "DTUsuarioViaje.h"
 #include <list>
@@ -27,6 +26,7 @@ public:
     std::list<DTListarViaje> getViajesTotales();
     DTUsuarioViaje getDatosConductor();
     bool hayViajesFechaConductor (DTFecha fecha);
+    std::set<DTVehiculosConductor> listarVehiculos();
     
 };
 

@@ -46,7 +46,8 @@ public:
     DTUsuarioViaje getConductorVehiculo();
     bool hayViajesConductor(DTFecha fecha);
     bool hayViajesFecha(DTFecha fecha);
-    DTVehiculosConductor getDTVehiculosConductor();
+    DTVehiculosConductor getDTVehiculoConductor();
+    void asociarViaje(Viaje viaje);
 };
 
 #endif

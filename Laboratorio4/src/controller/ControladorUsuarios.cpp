@@ -1,5 +1,6 @@
 #include "../include/controller/ControladorUsuarios.h"
 #include "../include/manejador/ManejadorUsuarios.h"
+#include "Pasajero.h"
 
 ControladorUsuarios::ControladorUsuarios() {};
 ControladorUsuarios::~ControladorUsuarios() {};
@@ -17,7 +18,7 @@ bool ControladorUsuarios::altaPasajero(std::string nickname, std::string nombre,
     return true;
 };
 
-bool ControladorUsuarios::altaConductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::set<TipoLibreta> libretas) {
+bool ControladorUsuarios::altaConductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::list<TipoLibreta> libretas) {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
     
     if (mu->getUsuario(nickname) != nullptr) {
@@ -54,12 +55,12 @@ std::set<DTUsuario> ControladorUsuarios::listarPasajeros() {
     return resultado;
 };
 
-int ControladorUsuarios::registrarVehiculo() {
+int ControladorUsuarios::registrarVehiculo(std::string nickname, std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo) {
     return 0; //FALTA IMPLEMENTACION
 };
 
 std::set<DTListarViaje> ControladorUsuarios::listarViajes(std::string nickname) {
-    return nullptr; //FALTA IMPLEMENTACION
+    return std::set<DTListarViaje>(); //FALTA IMPLEMENTACION
 };
 
 bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int calificacion) {
