@@ -1,4 +1,5 @@
-#include "../include/Pasajero.h"
+#include "Pasajero.h"
+#include "Reserva.h"
 
 Pasajero::Pasajero(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::string documento)
     : Usuario(nickname, nombre, contrasena, email) {
@@ -19,3 +20,4 @@ std::string Pasajero::getCI() {
 std::set<Reserva*> Pasajero::getReservas() {
     return this->reservas;
 };
+

@@ -3,9 +3,10 @@
 
 #include <set>
 #include "DTFecha.h"
-#include "Viaje.h"
-#include "Pasajero.h"
 #include "DTUsuarioViaje.h"
+
+class Pasajero;
+class Viaje;
 
 class Reserva
 {
@@ -13,7 +14,7 @@ private:
     int asientosReservados;
     DTFecha fecha;
     Viaje *viaje;
-    std::set<class Pasajero*> pasajeros;
+    std::set<class Pasajero*> pasajeros; // a chequer
 
 public:
     Reserva(int asientosReservados, DTFecha fecha);

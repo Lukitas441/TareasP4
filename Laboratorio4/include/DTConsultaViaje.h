@@ -9,17 +9,17 @@ private:
   int codigo;
   std::string marca;
   std::string modelo;
-  std::string conductor;
+  std::string nombreConductor;
   float calificacionProm;
   float precioTotal;
 
 public:
-  DTConsultaViaje(int codigo, std::string marca, std::string modelo, std::string conductor, float calificacionProm, float precioTotal);
+  DTConsultaViaje(int codigo, std::string marca, std::string modelo, std::string nombreConductor, float calificacionProm, float precioTotal);
 
   int getCodigo();
   std::string getMarca();
   std::string getModelo();
-  std::string getConductor();
+  std::string getNombreConductor();
   float getCalificacionProm();
   float getPrecioTotal();
 };

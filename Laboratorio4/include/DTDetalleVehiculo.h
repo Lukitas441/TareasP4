@@ -14,7 +14,8 @@ private:
 
 public:
     DTDetalleVehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo);
-    
+    DTDetalleVehiculo() = default;
+
     std::string getMatricula();
     int getCapacidad();
     std::string getMarca();

@@ -1,4 +1,5 @@
 #include "../include/Usuario.h"
+#include "Viaje.h"
 
 Usuario::Usuario(std::string nickname, std::string nombre, std::string contrasena, std::string email)
 {
@@ -16,6 +17,18 @@ std::string Usuario::getNickname()
 {
     return nickname;
 }
+std::string Usuario::getNombre()
+{
+    return nombre;
+}
+std::string Usuario::getContrasena()
+{
+    return contrasena;
+}
+std::string Usuario::getEmail()
+{
+    return email;
+}
 
 DTUsuario Usuario::getInfoUsuario()
 {
@@ -31,7 +44,7 @@ float Usuario::calificacionPromedio()
 {
     if (calificacionesRecibidas.empty())
     {
-        return 0.0; // Si no hay calificaciones, el promedio es 0
+        return 0.0;
     }
 
     std::map<std::string, Calificacion *>::iterator it;
@@ -46,6 +59,7 @@ float Usuario::calificacionPromedio()
 
 // chequear pq distinto del Diagrama d Comunicacion
 // esta va pal santi .l.
+// chequear la asociacion
 bool Usuario::existeCalificado(std::string nicknameCalificador, int codigoViaje)
 {
     if (calificacionesRecibidas.empty())

@@ -1,4 +1,7 @@
-#include "../include/Calificacion.h"
+#include "Calificacion.h"
+#include "Usuario.h"
+#include "Reserva.h"
+#include "Viaje.h"
 
 Calificacion::Calificacion(DTFecha fecha, int puntaje) {
     this->fecha = fecha;

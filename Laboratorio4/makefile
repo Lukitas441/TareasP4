@@ -15,6 +15,7 @@ all: $(BIN)
 
 $(BIN): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
+	rm -rf $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
@@ -23,4 +24,4 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 clean:
-	rm -rf $(OBJ_DIR) $(BIN)
+	rm -rf $(BIN)
