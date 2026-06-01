@@ -31,7 +31,7 @@ float Usuario::calificacionPromedio()
 {
     if (calificacionesRecibidas.empty())
     {
-        return 0.0; // Si no hay calificaciones, el promedio es 0
+        return 0.0;
     }
 
     std::map<std::string, Calificacion *>::iterator it;
