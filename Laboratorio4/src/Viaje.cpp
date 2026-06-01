@@ -101,6 +101,7 @@ DTUsuarioViaje Viaje::getUsuarioRes(std::string nickname) {
             }
         }
     }
+    return DTUsuarioViaje("", TipoUsuario::pasajero); //areglar todo
 }
 
 void Viaje::addRese(Reserva* reserva) {
