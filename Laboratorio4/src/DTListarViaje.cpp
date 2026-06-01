@@ -1,6 +1,6 @@
 #include "../include/DTListarViaje.h"
 
-DTListarViaje::DTListarViaje(int codigo, DTFecha fecha, std::string origen, std::string destino, std::string nickname) {
+DTListarViaje::DTListarViaje(int codigo, DTFecha fecha, std::string origen, std::string destino, std::string nicknameConductor) {
     this->codigo = codigo;
     this->fecha = fecha;
     this->origen = origen;
