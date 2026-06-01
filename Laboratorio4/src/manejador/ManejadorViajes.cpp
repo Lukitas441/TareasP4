@@ -10,7 +10,7 @@ ManejadorViajes* ManejadorViajes::getInstance() {
 };
 
 Usuario* ManejadorViajes::getUsuario(std::string nickname) {
-    auto it = usuarios.find(nickname);
+    auto it = viajes.find(nickname);
     if (it != usuarios.end()) {
         return it->second;
     }

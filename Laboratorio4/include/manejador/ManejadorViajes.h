@@ -15,12 +15,12 @@
 class ManejadorViajes {
 
 private:
-    static ManejadorViajes * instance;
+    static ManejadorViajes* instance;
     std::map<int, Viaje*> viajes;
     ManejadorViajes();
 
 public:
-    static ManejadorViajes * getInstance();
+    static ManejadorViajes* getInstance();
 
     Usuario* getUsuario(std::string nickname);
 

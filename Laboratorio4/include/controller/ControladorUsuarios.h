@@ -1,15 +1,16 @@
 #ifndef CONTROLADOR_USUARIOS_H
 #define CONTROLADOR_USUARIOS_H
 
-#include "DTUsuario.h"
-#include "DTListarViaje.h"
 #include "TipoLibreta.h"
 #include "TipoVehiculo.h"
 
-#include "interface/IControladorUsuarios.h"
+#include "../include/interface/IControladorUsuarios.h"
 
 #include <set>
 #include <string>
+
+class DTListarViaje;
+class DTUsuario;
 
 class ControladorUsuarios : public IControladorUsuarios {
 public:
@@ -30,7 +31,7 @@ public:
         std::string nombre,
         std::string contrasena,
         std::string email,
-        std::set<TipoLibreta> libretas
+        std::list<TipoLibreta> libretas
     ) override;
 
     int registrarVehiculo(
@@ -42,11 +43,11 @@ public:
     TipoVehiculo tipo
     ) override;
 
-    std::set<DTUsuario> listarUsuarios() override;
+    std::set<DTUsuario*> listarUsuarios() override;
 
-    std::set<DTUsuario> listarPasajeros() override;
+    std::set<DTUsuario*> listarPasajeros() override;
 
-    std::set<DTListarViaje> listarViajes(std::string nickname) override;
+    std::set<DTListarViaje*> listarViajes(std::string nickname) override;
 
     bool calificarUsuario(
         std::string nicknameCalificado,
