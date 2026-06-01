@@ -1,7 +1,7 @@
 #ifndef CONTROLADOR_USUARIOS_H
 #define CONTROLADOR_USUARIOS_H
 
-#include "DTUsuarios.h"
+#include "DTUsuario.h"
 #include "DTListarViaje.h"
 #include "TipoLibreta.h"
 #include "TipoVehiculo.h"
@@ -44,7 +44,7 @@ public:
 
     std::set<DTUsuario> listarUsuarios() override;
 
-    std::set<DTPasajero> listarPasajeros() override;
+    std::set<DTUsuario> listarPasajeros() override;
 
     std::set<DTListarViaje> listarViajes(std::string nickname) override;
 
@@ -53,3 +53,5 @@ public:
         int calificacion
     ) override;
 };
+
+#endif

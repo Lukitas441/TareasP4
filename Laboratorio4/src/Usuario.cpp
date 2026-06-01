@@ -17,7 +17,7 @@ std::string Usuario::getNickname()
     return nickname;
 }
 
-DTUsuario Usuario::getInfoUsuarios()
+DTUsuario Usuario::getInfoUsuario()
 {
     return DTUsuario(nickname, nombre);
 }

@@ -12,6 +12,7 @@
 #include "TipoUsuario.h"
 #include "DTConductor.h"
 #include "DTVehiculo.h"
+#include "DTVehiculosConductor.h"
 
 class Conductor;
 class DTConductor;
@@ -27,7 +28,7 @@ private:
     Conductor* conductor;    
 
 public:
-    Vehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo);
+    Vehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo, Conductor* conductor);
     ~Vehiculo();
     std::string getMatricula();
     int getCapacidad();
@@ -42,6 +43,7 @@ public:
     DTUsuarioViaje getConductorVehiculo();
     bool hayViajesConductor(DTFecha fecha);
     bool hayViajesFecha(DTFecha fecha);
+    DTVehiculosConductor getDTVehiculosConductor();
 };
 
 #endif

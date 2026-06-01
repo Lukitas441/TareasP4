@@ -3,12 +3,13 @@
 #include "../include/DTListarViaje.h"
 #include "../include/DTVehiculo.h"
 
-Vehiculo::Vehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo) {
+Vehiculo::Vehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo, Conductor* conductor) {
     this->matricula = matricula;
     this->capacidad = capacidad;
     this->marca = marca;
     this->modelo = modelo;
     this->tipo = tipo;
+    this->conductor = conductor;
 }
 
 Vehiculo::~Vehiculo() {}
@@ -75,4 +76,9 @@ bool Vehiculo::hayViajesFecha(DTFecha fecha) {
         }
     }
     return false;
+};
+
+DTVehiculosConductor Vehiculo::getDTVehiculosConductor() {
+    DTVehiculosConductor dtvc(this->matricula, this->modelo, this->capacidad);
+    return dtvc;
 };
