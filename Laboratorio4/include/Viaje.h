@@ -7,8 +7,9 @@
 #include "DTConsultaViaje.h"
 #include <string>
 #include <set>
-#include "Reserva.h"
-#include "Vehiculo.h"
+
+class Reserva;
+class Vehiculo;
 
 class Viaje {
 private:

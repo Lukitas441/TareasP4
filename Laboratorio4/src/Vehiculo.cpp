@@ -1,7 +1,7 @@
-#include "../include/Vehiculo.h"
-#include "../include/DTConductor.h"
-#include "../include/DTListarViaje.h"
-#include "../include/DTVehiculo.h"
+#include "Vehiculo.h"
+#include "Viaje.h"
+#include "Conductor.h"
+#include "DTDetalleVehiculo.h"
 
 Vehiculo::Vehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo, Conductor* conductor) {
     this->matricula = matricula;
@@ -10,6 +10,8 @@ Vehiculo::Vehiculo(std::string matricula, int capacidad, std::string marca, std:
     this->modelo = modelo;
     this->tipo = tipo;
     this->conductor = conductor;
+
+    conductor->getVehiculos().push_back(this);
 }
 
 Vehiculo::~Vehiculo() {}
@@ -42,11 +44,20 @@ Conductor * Vehiculo::getConductor(){
     return conductor; 
 };
 
-std::set<DTListarViaje> Vehiculo::getDTViajes(){
-    std::set<DTListarViaje> dtViajes;
+void Vehiculo::addViaje(Viaje* viaje) {
+    this->viajes.insert(viaje);
+};
+
+void Vehiculo::insertarConductor(Conductor* conductor) {
+    this->conductor = conductor;
+    conductor->getVehiculos().push_back(this);
+};
+
+std::list<DTListarViaje> Vehiculo::getDTViajes(){
+    std::list<DTListarViaje> dtViajes;
     for (const auto& viaje : viajes) {
             DTListarViaje dtViaje(viaje->getCodigo(), viaje->getFecha(), viaje->getOrigen(), viaje->getDestino(), conductor->getNickname());
-        dtViajes.insert(dtViaje);
+        dtViajes.push_back(dtViaje);
     }
     return dtViajes;
 };
@@ -57,7 +68,7 @@ DTVehiculo Vehiculo::getInfoVehiculo(){
 };
 
 DTConductor Vehiculo::getInfoConductor(){
-    DTConductor dtc(this->conductor->getNombre(), this->conductor->getCalificacionPromedio());
+    DTConductor dtc(this->conductor->getNombre(), this->conductor->calificacionPromedio());
     return dtc;
 };
 

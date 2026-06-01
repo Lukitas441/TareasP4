@@ -1,7 +1,8 @@
-#include "../include/Viaje.h"
-#include <string>
-#include <set>
-
+#include "Viaje.h"
+#include "Reserva.h"
+#include "Vehiculo.h"
+#include "Calificacion.h"
+#include "Conductor.h"
 
 Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo* vechiculo ) {
     this->codigo = codigo;

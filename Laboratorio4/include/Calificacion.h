@@ -2,9 +2,10 @@
 #define CALIFICACION_H
 
 #include "DTFecha.h"
-#include "Usuario.h"
-#include "Reserva.h"
-#include "Viaje.h"
+
+class Usuario;
+class Viaje;
+class Reserva;
 
 class Calificacion {
 private:

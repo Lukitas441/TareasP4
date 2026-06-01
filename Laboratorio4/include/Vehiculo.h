@@ -3,9 +3,9 @@
 
 #include "TipoVehiculo.h"
 #include <string>
+#include <list>
 #include <set>
-#include "Viaje.h"
-#include "Conductor.h"
+
 #include "DTListarViaje.h"
 #include "DTUsuarioViaje.h"
 #include "DTFecha.h"
@@ -14,8 +14,8 @@
 #include "DTVehiculo.h"
 #include "DTVehiculosConductor.h"
 
+class Viaje;
 class Conductor;
-class DTConductor;
 
 class Vehiculo {
 private:
@@ -29,6 +29,7 @@ private:
 
 public:
     Vehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo, Conductor* conductor);
+    
     ~Vehiculo();
     std::string getMatricula();
     int getCapacidad();
@@ -37,7 +38,9 @@ public:
     TipoVehiculo getTipo();
     std::set<Viaje*> getViajes();
     Conductor* getConductor();
-    std::set<DTListarViaje> getDTViajes();
+    void addViaje(Viaje *viaje);
+    void insertarConductor(Conductor *conductor);
+    std::list<DTListarViaje> getDTViajes();
     DTVehiculo getInfoVehiculo();
     DTConductor getInfoConductor();
     DTUsuarioViaje getConductorVehiculo();

@@ -6,23 +6,25 @@
 #include "Vehiculo.h"
 #include "DTListarViaje.h"
 #include "DTUsuarioViaje.h"
-#include <set>
+#include <list>
 #include <iostream>
 #include <string>
 #include "DTFecha.h"
 #include "TipoVehiculo.h"
 
+class Vehiculo;
+
 class Conductor : public Usuario {
 private:
-    std::set<TipoLibreta> libretas;
-    std::set<Vehiculo*> vehiculos;
+    std::list<TipoLibreta> libretas;
+    std::list<Vehiculo*> vehiculos;
 public:
-    Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::set<TipoLibreta> libs);
+    Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::list <TipoLibreta> libs);
     ~Conductor();
-    std::set<TipoLibreta> getLibretas();
-    std::set<Vehiculo*> getVehiculos();
+    std::list<TipoLibreta> getLibretas();
+    std::list<Vehiculo*> getVehiculos();
     bool libretaValida(TipoVehiculo tipo);
-    std::set<DTListarViaje> getViajesTotales();
+    std::list<DTListarViaje> getViajesTotales();
     DTUsuarioViaje getDatosConductor();
     bool hayViajesFechaConductor (DTFecha fecha);
     
