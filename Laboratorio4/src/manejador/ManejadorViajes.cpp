@@ -25,7 +25,7 @@ std::set<Viaje*> ManejadorViajes::getViajes() {
     return resultado;
 };
 
-Viaje ManejadorViajes::crearViaje(Vehiculo* v, Fecha fecha, std::String origen, std::String destino, int asientos, float precio) {
+Viaje ManejadorViajes::crearViaje(Vehiculo* v, DTFecha fecha, std::string origen, std::string destino, int asientos, float precio) {
     Viaje* nuevoViaje = new Viaje(v, fecha, origen, destino, asientos, precio);
     cod++; // se asume que cod es una variable global que se incrementa cada vez que se crea un viaje
     viajes[nuevoViaje->cod] = nuevoViaje; // en teoria el cod es una variable global, pero no se como se usa.

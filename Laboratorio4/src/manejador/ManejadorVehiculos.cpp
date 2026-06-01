@@ -9,7 +9,7 @@ ManejadorVehiculos* ManejadorVehiculos::getInstance() {
     return instance;
 };
 
-Vehiculo* ManejadorVehiculo::getVehiculo(std::string matricula) {
+Vehiculo* ManejadorVehiculos::getVehiculo(std::string matricula) {
     auto it = vehiculos.find(matricula);
     if (it != vehiculos.end()) {
         return it->second;
@@ -17,7 +17,7 @@ Vehiculo* ManejadorVehiculo::getVehiculo(std::string matricula) {
     return nullptr;
 };
 
-std::set<Vehiculo*> ManejadorVehiculo::getVehiculos() {
+std::set<Vehiculo*> ManejadorVehiculos::getVehiculos() {
     std::set<Vehiculo*> resultado;
     for (const auto& pair : vehiculos) {
         resultado.insert(pair.second);

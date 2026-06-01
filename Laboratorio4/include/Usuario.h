@@ -8,6 +8,7 @@
 #include <DTListarViaje.h>
 #include <set>
 
+class Calificacion;
 
 class Usuario
 {

@@ -7,6 +7,7 @@
 #include "Conductor.h"
 #include <map>
 #include <set>
+#include <string>
 
 class ManejadorUsuarios {
 

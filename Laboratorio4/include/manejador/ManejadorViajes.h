@@ -16,7 +16,7 @@ class ManejadorViajes {
 
 private:
     static ManejadorViajes * instance;
-    std::map<std::int, Viaje*> viajes;
+    std::map<int, Viaje*> viajes;
     ManejadorViajes();
 
 public:

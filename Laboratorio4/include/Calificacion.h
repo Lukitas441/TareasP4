@@ -6,6 +6,8 @@
 #include "Reserva.h"
 #include "Viaje.h"
 
+class Usuario;
+
 class Calificacion {
 private:
     Usuario* usuarioCalificador;
