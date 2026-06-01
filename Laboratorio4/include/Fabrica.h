@@ -2,6 +2,9 @@
 #define FABRICA_H
 
 #include "IControladorFechaActual.h"
+#include "interface/IControladorUsuarios.h"
+#include "interface/IControladorViajes.h"
+#include "interface/IControladorVehiculos.h"
 
 class Fabrica {
 private:
@@ -13,11 +16,10 @@ public:
     static Fabrica * getInstance();
 
     IControladorFechaActual* getIControladorFechaActual();
-/*
-    IVehiculo * getIVehiculo();
-    IUsuario * getIUsuario();
-    IViaje * getIViaje();
-*/
-    };
+    IControladorUsuarios* getIControladorUsuarios();
+    IControladorViajes* getIControladorViajes();
+    IControladorVehiculos* getIControladorVehiculos();
+
+};
 
 #endif
