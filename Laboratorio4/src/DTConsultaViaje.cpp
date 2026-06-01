@@ -1,6 +1,6 @@
 #include "../include/DTConsultaViaje.h"
 
-DTConsultaViaje::DTConsultaViaje(int codigo, std::string marca, std::string modelo, std::string conductor, float calificacionProm, float precioTotal) {
+DTConsultaViaje::DTConsultaViaje(int codigo, std::string marca, std::string modelo, std::string nombreConductor, float calificacionProm, float precioTotal) {
     this->codigo = codigo;
     this->marca = marca;
     this->modelo = modelo;

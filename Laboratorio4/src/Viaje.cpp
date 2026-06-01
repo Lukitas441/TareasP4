@@ -3,8 +3,9 @@
 #include "Vehiculo.h"
 #include "Calificacion.h"
 #include "Conductor.h"
+#include "Pasajero.h"
 
-Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo* vechiculo ) {
+Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo* vehiculo ) {
     this->codigo = codigo;
     this->fecha = fecha;
     this->origen = origen;
@@ -78,7 +79,7 @@ bool Viaje::asientosCheck(int asientos) {
 
 DTConsultaViaje Viaje::constructorDTConsultaViaje(int asientos) {
     DTVehiculo dtv =  this->vehiculo->getInfoVehiculo();
-    DTConsultaViaje dtcv(this->codigo, dtv.getMarca(), dtv.getModelo(), this->vehiculo->getConductor()->getNombre(), this->vehiculo->getConductor()->getCalificacionPromedio(), this->precio * asientos); 
+    DTConsultaViaje dtcv(this->codigo, dtv.getMarca(), dtv.getModelo(), this->vehiculo->getConductor()->getNombre(), this->vehiculo->getConductor()->calificacionPromedio(), this->precio * asientos); 
     return dtcv;
 }
 
