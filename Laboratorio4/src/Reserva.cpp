@@ -23,7 +23,7 @@ std::set<DTUsuarioViaje*> Reserva::getPasajerosReserva() {
     std::set<DTUsuarioViaje*> pasajerosReserva;
     std::set<class Pasajero*>::iterator it;
     for (it = pasajeros.begin(); it != pasajeros.end(); ++it) {
-        DTUsuarioViaje* dtUsuarioViaje = new DTUsuarioViaje((*it)->getNickname(), Pasajero);
+        DTUsuarioViaje* dtUsuarioViaje = new DTUsuarioViaje((*it)->getNickname(), pasajero);
         pasajerosReserva.insert(dtUsuarioViaje);
     }
     return pasajerosReserva;

@@ -19,6 +19,7 @@ public:
 
     bool operator==(DTFecha other);
 
+
 };
 
 std::ostream& operator<<(std::ostream& os, DTFecha f);

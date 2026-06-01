@@ -1,7 +1,6 @@
 #include "../include/DTDetalleVehiculo.h"
 
-DTDetalleVehiculo::DTDetalleVehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo)
-    {
+DTDetalleVehiculo::DTDetalleVehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo) {
     this->matricula = matricula;
     this->capacidad = capacidad;
     this->marca = marca;
