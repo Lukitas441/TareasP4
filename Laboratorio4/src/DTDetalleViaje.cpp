@@ -20,3 +20,4 @@ int DTDetalleViaje::getAsientosPublicados() { return asientosPublicados; }
 float DTDetalleViaje::getPrecio() { return precio; }
 DTDetalleVehiculo DTDetalleViaje::getVehiculo() { return vehiculo; }
 std::vector<DTDetalleReserva> DTDetalleViaje::getReservas() { return reservas; }
+    

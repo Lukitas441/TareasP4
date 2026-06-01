@@ -20,3 +20,4 @@ std::string Pasajero::getCI() {
 std::set<Reserva*> Pasajero::getReservas() {
     return this->reservas;
 };
+

@@ -21,12 +21,12 @@ private:
     int asientosPublicados;
     float precio;
     std::set<Reserva*> reservas;
-    Vehiculo* vechiculo;
+    Vehiculo* vehiculo;
     
 
 public:
 
-    Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo* vechiculo);
+    Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo* vehiculo);
     ~Viaje();
     int getCodigo(); 
     DTFecha getFecha(); 
@@ -41,9 +41,9 @@ public:
     DTUsuarioViaje getConductorViaje();
     bool viajeCoincide(DTFecha fecha, std::string origen, std::string destino);
     bool asientosCheck(int asientos);
-    DTConsultaViaje constructorDTConsultaViaje(int codigo);
+    DTConsultaViaje constructorDTConsultaViaje(int asientos);
     bool findPasajero(std::string nickname);
-    DTUsuarioViaje getUsuarioRes();
+    DTUsuarioViaje getUsuarioRes(std::string nickname);
     void addRese(Reserva* reserva);    
 
 };

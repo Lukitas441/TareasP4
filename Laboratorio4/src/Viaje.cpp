@@ -12,7 +12,7 @@ Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino,
     this->asientosPublicados = asientosPublicados;
     this->precio = precio;
     this->reservas = std::set<Reserva*>();
-    this->vechiculo = vechiculo;
+    this->vehiculo = vehiculo;
 };
 
 Viaje::~Viaje() {};
@@ -46,13 +46,68 @@ std::set<Reserva*> Viaje::getReservas() {
 }
 
 Vehiculo* Viaje::getVehiculo() {
-    return this->vechiculo;
+    return this->vehiculo;
 }
 
 
 DTListarViaje Viaje::getDatosViaje() {
     
-    DTListarViaje dtlv(codigo, fecha, origen, destino, this->vechiculo->getConductor()->getNickname());
+    DTListarViaje dtlv(codigo, fecha, origen, destino, this->vehiculo->getConductor()->getNickname());
     return dtlv;
 }
+
+DTUsuarioViaje Viaje::getConductorViaje() {
+    DTUsuarioViaje dtuv = this->vehiculo->getConductorVehiculo();
+    return dtuv;
+}
+
+bool Viaje::viajeCoincide(DTFecha fecha, std::string origen, std::string destino) {
+    if (this->fecha == fecha && this->origen == origen && this->destino == destino) {
+        return true;
+    }
+    return false;
+}
+
+bool Viaje::asientosCheck(int asientos) {
+    int asientosReservados = 0;
+    for (const auto& reserva : reservas) {
+        asientosReservados += reserva->getAsientos();
+    }
+    return (asientosReservados + asientos) <= asientosPublicados;
+}
+
+DTConsultaViaje Viaje::constructorDTConsultaViaje(int asientos) {
+    DTVehiculo dtv =  this->vehiculo->getInfoVehiculo();
+    DTConsultaViaje dtcv(this->codigo, dtv.getMarca(), dtv.getModelo(), this->vehiculo->getConductor()->getNombre(), this->vehiculo->getConductor()->getCalificacionPromedio(), this->precio * asientos); 
+    return dtcv;
+}
+
+bool Viaje::findPasajero(std::string nickname) {
+    for (const auto& reserva : reservas) {
+        for(const auto& pasajero : reserva->getPasajeros()) {
+            if (nickname == pasajero->getNickname()) return true;
+        }
+    }
+    return false;
+}
+
+DTUsuarioViaje Viaje::getUsuarioRes(std::string nickname) {
+    for (const auto& reserva : reservas) {
+        for(const auto& pasajero : reserva->getPasajeros()) {
+            if (pasajero->getNickname() == nickname) {
+                DTUsuarioViaje dtuv(pasajero->getNickname(), TipoUsuario::pasajero);
+                return dtuv;
+            }
+        }
+    }
+}
+
+void Viaje::addRese(Reserva* reserva) {
+    this->reservas.insert(reserva);
+}
+
+
+
+
+
 

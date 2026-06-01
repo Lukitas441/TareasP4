@@ -10,16 +10,16 @@ private:
     DTFecha fecha;
     std::string origen;
     std::string destino;
-    std::string nickname;
+    std::string nicknameConductor;
 
 public:
-    DTListarViaje(int codigo, DTFecha fecha, std::string origen, std::string destino, std::string nickname);
+    DTListarViaje(int codigo, DTFecha fecha, std::string origen, std::string destino, std::string nicknameConductor);
 
     int getCodigo();
     DTFecha getFecha();
     std::string getOrigen();
     std::string getDestino();
-    std::string getNickname();
+    std::string getNicknameConductor();
 
 };
 
