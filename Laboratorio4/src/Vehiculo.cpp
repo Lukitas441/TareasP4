@@ -89,7 +89,11 @@ bool Vehiculo::hayViajesFecha(DTFecha fecha) {
     return false;
 };
 
-DTVehiculosConductor Vehiculo::getDTVehiculosConductor() {
+DTVehiculosConductor Vehiculo::getDTVehiculoConductor() {
     DTVehiculosConductor dtvc(this->matricula, this->modelo, this->capacidad);
     return dtvc;
+};
+
+void Vehiculo::asociarViaje(Viaje viaje) {
+    this->viajes.insert(&viaje);
 };
