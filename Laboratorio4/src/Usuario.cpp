@@ -1,5 +1,8 @@
 #include "../include/Usuario.h"
 #include "Viaje.h"
+#include "Calificacion.h"
+#include "Conductor.h"
+#include "Pasajero.h"
 
 Usuario::Usuario(std::string nickname, std::string nombre, std::string contrasena, std::string email)
 {
