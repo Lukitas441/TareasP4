@@ -24,7 +24,6 @@ private:
 public:
     ManejadorViajes();
     static ManejadorViajes* getInstance();
-
     void agregarViaje(Viaje* viaje);
     Viaje* getViaje(int codigo);
     std::map<int, Viaje*> getViajes();

@@ -10,7 +10,7 @@ class IControladorVehiculos {
 public:
     virtual ~IControladorVehiculos() = default;
 
-    virtual std::set<DTVehiculosConductor> ListarVehiculosConductor(
+    virtual std::list<DTVehiculosConductor> ListarVehiculosConductor(
         std::string nickname
     ) = 0;
 

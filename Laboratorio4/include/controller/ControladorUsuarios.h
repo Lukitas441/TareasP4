@@ -14,11 +14,8 @@ class Pasajero;
 class Conductor;
 
 class ControladorUsuarios : public IControladorUsuarios {
-private:
-    static ControladorUsuarios* instancia;
 
 public:
-    static ControladorUsuarios* getInstance();
 
     ControladorUsuarios(); // constructor
     ~ControladorUsuarios(); // destructor

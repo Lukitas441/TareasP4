@@ -4,10 +4,8 @@
 #include "../interface/IControladorViajes.h"
 
 class ControladorViajes : public IControladorViajes {
-private:
-    static ControladorViajes* instancia;
+
 public:
-    static ControladorViajes* getInstance();   
 
     ControladorViajes();
     ~ControladorViajes();

@@ -4,24 +4,18 @@
 #include "../include/manejador/ManejadorViajes.h"
 
 
-ControladorVehiculos* ControladorVehiculos::instancia = nullptr;
-ControladorVehiculos* ControladorVehiculos::getInstance() {
-    if (instancia == nullptr) {
-        instancia = new ControladorVehiculos();
-    }
-    return instancia;
-}
+
 
 ControladorVehiculos::ControladorVehiculos() {};
 ControladorVehiculos::~ControladorVehiculos() {};
 
-std::set<DTVehiculosConductor> ControladorVehiculos::ListarVehiculosConductor(std::string nickname) {
+std::list<DTVehiculosConductor> ControladorVehiculos::ListarVehiculosConductor(std::string nickname) {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
     Conductor* c = dynamic_cast<Conductor*>(mu->getUsuario(nickname));
     if (c == nullptr) {
-        return std::set<DTVehiculosConductor>();
+        return std::list<DTVehiculosConductor>();
     }
-    std::set<DTVehiculosConductor> listaVehiculos;
+    std::list<DTVehiculosConductor> listaVehiculos;
     listaVehiculos = c->listarVehiculos();
     return listaVehiculos;
 };

@@ -5,20 +5,19 @@
 #include "DTVehiculosConductor.h"
 #include "DTFecha.h"
 #include <list>
+#include <set>
 #include <string>
 
 
 
 class ControladorVehiculos : public IControladorVehiculos {
-private:
-    static ControladorVehiculos* instancia;
+
 public:
-    static ControladorVehiculos* getInstance();
 
     ControladorVehiculos();
     ~ControladorVehiculos();
 
-    std::set<DTVehiculosConductor> ListarVehiculosConductor(
+    std::list<DTVehiculosConductor> ListarVehiculosConductor(
         std::string nickname
     ) override;
 
