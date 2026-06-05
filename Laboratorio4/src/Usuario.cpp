@@ -63,7 +63,7 @@ float Usuario::calificacionPromedio()
 // chequear pq distinto del Diagrama d Comunicacion
 // esta va pal santi .l.
 // chequear la asociacion
-bool Usuario::existeCalificado(std::string nicknameCalificador, int codigoViaje)
+bool Usuario::existeCalificador(std::string nicknameCalificador, int codigoViaje)
 {
     if (calificacionesRecibidas.empty())
     {

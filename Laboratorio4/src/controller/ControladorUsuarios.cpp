@@ -55,14 +55,20 @@ std::set<DTUsuario> ControladorUsuarios::listarPasajeros() {
     return resultado;
 };
 
+std::list<DTListarViaje> ControladorUsuarios::listarViajes(std::string nickname) {
+    ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
+    Usuario* u = mu->getUsuario(nickname);
+
+    return u->getViajesTotales();
+};
+
 int ControladorUsuarios::registrarVehiculo(std::string nickname, std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo) {
     return 0; //FALTA IMPLEMENTACION
 };
 
-std::set<DTListarViaje> ControladorUsuarios::listarViajes(std::string nickname) {
-    return std::set<DTListarViaje>(); //FALTA IMPLEMENTACION
-};
-
 bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int calificacion) {
-    return false; //FALTA IMPLEMENTACION
+    ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
+    Usuario* u = mu->getUsuario(nicknameCalificado);
+
+    
 };

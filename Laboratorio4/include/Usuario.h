@@ -32,7 +32,7 @@ public:
 
     DTUsuario getInfoUsuario();
     float calificacionPromedio();
-    bool existeCalificado(std::string nicknameCalificador, int codigoViaje);
+    bool existeCalificador(std::string nicknameCalificador, int codigoViaje);
     virtual std::list<DTListarViaje> getViajesTotales() = 0;
 };
 
