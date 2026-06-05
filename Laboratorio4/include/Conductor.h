@@ -20,6 +20,7 @@ private:
 public:
     Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::list <TipoLibreta> libs);
     ~Conductor();
+    void agregarVehiculo(Vehiculo* vehiculo);
     std::list<TipoLibreta> getLibretas();
     std::list<Vehiculo*> getVehiculos();
     bool libretaValida(TipoVehiculo tipo);

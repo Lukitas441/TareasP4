@@ -1,6 +1,8 @@
 #include "../include/controller/ControladorUsuarios.h"
 #include "../include/manejador/ManejadorUsuarios.h"
 #include "Pasajero.h"
+#include "Vehiculo.h"
+#include "Conductor.h"
 
 ControladorUsuarios::ControladorUsuarios() {};
 ControladorUsuarios::~ControladorUsuarios() {};
@@ -63,12 +65,27 @@ std::list<DTListarViaje> ControladorUsuarios::listarViajes(std::string nickname)
 };
 
 int ControladorUsuarios::registrarVehiculo(std::string nickname, std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo) {
-    return 0; //FALTA IMPLEMENTACION
+    ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
+    Conductor* c = dynamic_cast<Conductor*>(mu->getUsuario(nickname));
+    std::list<Vehiculo*> vehiculos = c->getVehiculos();
+    bool matValida = true;
+    for (const auto& v : vehiculos) {
+        if (v->getMatricula() == matricula) {
+            return -1;
+        };
+    };
+    if ((matValida) && (c->libretaValida(tipo))) {
+        Vehiculo* vehiculo = new Vehiculo(matricula, capacidad, marca, modelo, tipo, c);
+        c->agregarVehiculo(vehiculo);
+        return 0;
+    } else {
+        return -2;
+    };
 };
 
 bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int calificacion) {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
     Usuario* u = mu->getUsuario(nicknameCalificado);
-
+    
     
 };

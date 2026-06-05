@@ -11,6 +11,9 @@
 
 class DTListarViaje;
 class DTUsuario;
+class Vehiculo;
+class Pasajero;
+class Conductor;
 
 class ControladorUsuarios : public IControladorUsuarios {
 public:
