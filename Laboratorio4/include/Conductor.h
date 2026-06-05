@@ -26,6 +26,7 @@ public:
     std::list<DTListarViaje> getViajesTotales();
     DTUsuarioViaje getDatosConductor();
     bool hayViajesFechaConductor (DTFecha fecha);
+    std::set<DTVehiculosConductor> listarVehiculos();
     
 };
 
