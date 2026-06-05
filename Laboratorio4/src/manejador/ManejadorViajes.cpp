@@ -33,7 +33,7 @@ void ManejadorViajes::eliminarViaje(int codigo) {
     viajes.erase(codigo);
 }
 
-Viaje ManejadorViajes::crearViaje(Vehiculo* vehiculo, DTFecha fecha, std::string origen, std::string destino, int asientos, float precio) {
-    Viaje viaje = Viaje(vehiculo, fecha, origen, destino, asientos, precio);
+Viaje ManejadorViajes::crearViaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo* vehiculo) {
+    Viaje viaje = Viaje(codigo, fecha, origen, destino, asientosPublicados, precio, vehiculo);
     return viaje;
 };

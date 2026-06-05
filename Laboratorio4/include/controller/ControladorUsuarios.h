@@ -3,9 +3,7 @@
 
 #include "TipoLibreta.h"
 #include "TipoVehiculo.h"
-
 #include "../include/interface/IControladorUsuarios.h"
-
 #include <set>
 #include <string>
 
@@ -13,7 +11,12 @@ class DTListarViaje;
 class DTUsuario;
 
 class ControladorUsuarios : public IControladorUsuarios {
+private:
+    static ControladorUsuarios* instancia;
+
 public:
+    static ControladorUsuarios* getInstance();
+
     ControladorUsuarios(); // constructor
     ~ControladorUsuarios(); // destructor
 

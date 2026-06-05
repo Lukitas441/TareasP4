@@ -8,6 +8,8 @@
 #include <map>
 #include <set>
 #include <string>
+#include "Viaje.h"
+
 // pueden sobrar includes de Usuario
 
 class Viaje;

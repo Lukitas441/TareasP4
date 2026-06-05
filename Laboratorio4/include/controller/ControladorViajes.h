@@ -1,10 +1,14 @@
-#ifndef CONTROLADOR_USUARIOS_H
-#define CONTROLADOR_USUARIOS_H
+#ifndef CONTROLADOR_VIAJES_H
+#define CONTROLADOR_VIAJES_H
 
 #include "../interface/IControladorViajes.h"
 
 class ControladorViajes : public IControladorViajes {
+private:
+    static ControladorViajes* instancia;
 public:
+    static ControladorViajes* getInstance();   
+
     ControladorViajes();
     ~ControladorViajes();
 

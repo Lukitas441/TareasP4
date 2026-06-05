@@ -2,6 +2,18 @@
 #include "../include/manejador/ManejadorViajes.h"
 #include "Viaje.h"
 
+ControladorViajes* ControladorViajes::instancia = nullptr;
+ControladorViajes* ControladorViajes::getInstance() {
+    if (instancia == nullptr) {
+        instancia = new ControladorViajes();
+    }
+    return instancia;
+}
+  
+
+
+
+
 ControladorViajes::ControladorViajes() {};
 ControladorViajes::~ControladorViajes() {};
 

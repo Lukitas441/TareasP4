@@ -10,7 +10,11 @@
 
 
 class ControladorVehiculos : public IControladorVehiculos {
+private:
+    static ControladorVehiculos* instancia;
 public:
+    static ControladorVehiculos* getInstance();
+
     ControladorVehiculos();
     ~ControladorVehiculos();
 

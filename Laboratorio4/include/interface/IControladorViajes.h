@@ -3,6 +3,7 @@
 
 #include <list>
 #include <string>
+#include <set>
 
 #include "DTConsultaViaje.h"
 #include "DTDetalleViaje.h"

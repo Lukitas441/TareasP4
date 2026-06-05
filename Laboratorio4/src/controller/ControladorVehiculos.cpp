@@ -4,6 +4,13 @@
 #include "../include/manejador/ManejadorViajes.h"
 
 
+ControladorVehiculos* ControladorVehiculos::instancia = nullptr;
+ControladorVehiculos* ControladorVehiculos::getInstance() {
+    if (instancia == nullptr) {
+        instancia = new ControladorVehiculos();
+    }
+    return instancia;
+}
 
 ControladorVehiculos::ControladorVehiculos() {};
 ControladorVehiculos::~ControladorVehiculos() {};
@@ -31,9 +38,9 @@ bool ControladorVehiculos::AltaViaje(std::string matricula, DTFecha fecha, std::
     
     ManejadorViajes* mvi = ManejadorViajes::getInstance();
     if (capacidad >= asientos && !hayViajesFecha) {
-        Viaje cvi = mvi->crearViaje(v, fecha, origen, destino, asientos, precio);
-        mvi->agregarViaje(cvi);
-        v->asociarViaje(cvi);
+        Viaje cvi =  mvi->crearViaje(0, fecha, origen, destino, asientos, precio, v);
+        mvi->agregarViaje(&cvi);
+        v->addViaje(&cvi);
         return true;
     }
     

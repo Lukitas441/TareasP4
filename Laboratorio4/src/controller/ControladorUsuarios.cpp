@@ -2,6 +2,16 @@
 #include "../include/manejador/ManejadorUsuarios.h"
 #include "Pasajero.h"
 
+ControladorUsuarios* ControladorUsuarios::instancia = nullptr;
+
+ControladorUsuarios* ControladorUsuarios::getInstance() {
+    if (instancia == nullptr) {
+        instancia = new ControladorUsuarios();
+    }
+    return instancia;
+}
+
+
 ControladorUsuarios::ControladorUsuarios() {};
 ControladorUsuarios::~ControladorUsuarios() {};
 
