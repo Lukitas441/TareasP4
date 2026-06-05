@@ -10,9 +10,9 @@
 #include <string>
 #include "DTFecha.h"
 #include "TipoVehiculo.h"
+#include "DTVehiculosConductor.h"
 
 class Vehiculo;
-
 class Conductor : public Usuario {
 private:
     std::list<TipoLibreta> libretas;
@@ -27,7 +27,7 @@ public:
     std::list<DTListarViaje> getViajesTotales();
     DTUsuarioViaje getDatosConductor();
     bool hayViajesFechaConductor (DTFecha fecha);
-    std::set<DTVehiculosConductor> listarVehiculos();
+    std::list<DTVehiculosConductor> listarVehiculos();
     
 };
 
