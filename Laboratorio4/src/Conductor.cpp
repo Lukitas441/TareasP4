@@ -16,6 +16,10 @@ std::list<Vehiculo*> Conductor::getVehiculos() {
     return this->vehiculos;
 }
 
+void Conductor::agregarVehiculo(Vehiculo* vehiculo) {
+    this->vehiculos.push_back(vehiculo);
+};
+
 bool Conductor::libretaValida(TipoVehiculo tipo) {
 
     for (const auto& libreta : libretas) {

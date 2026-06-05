@@ -1,7 +1,6 @@
 #ifndef MANEJADOR_USUARIOS_H
 #define MANEJADOR_USUARIOS_H
 
-#include "DTUsuario.h"
 #include "Usuario.h"
 #include "Pasajero.h"
 #include "Conductor.h"
