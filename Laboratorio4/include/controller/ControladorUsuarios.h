@@ -46,9 +46,9 @@ public:
     TipoVehiculo tipo
     ) override;
 
-    std::set<DTUsuario> listarUsuarios() override;
+    std::list<DTUsuario> listarUsuarios() override;
 
-    std::set<DTUsuario> listarPasajeros() override;
+    std::list<DTUsuario> listarPasajeros() override;
 
     std::list<DTListarViaje> listarViajes(std::string nickname) override;
 

@@ -1,4 +1,4 @@
-#include "ControladorViajes.h"
+#include "../include/controller/ControladorViajes.h"
 #include "../include/manejador/ManejadorViajes.h"
 #include "Viaje.h"
 
@@ -20,7 +20,7 @@ std::set<DTConsultaViaje*> ControladorViajes::consultarViajes(DTFecha fecha, std
   }
   return resultado;
 };
-
+/* LUCAS LO DEJO ASI
 bool ControladorViajes::generarReserva(std::string nicknamePasajero, int codigoViaje, int cantAsientos) {
   ManejadorViajes* mv = ManejadorViajes::getInstance();
   Viaje* viaje = mv->getViaje(codigoViaje);
@@ -29,3 +29,4 @@ bool ControladorViajes::generarReserva(std::string nicknamePasajero, int codigoV
   }
   return false;
 };
+*/

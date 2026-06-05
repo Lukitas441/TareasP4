@@ -6,7 +6,8 @@ SRC_DIR  := src
 OBJ_DIR  := obj
 BIN      := app
 
-SRCS     := $(wildcard $(SRC_DIR)/*.cpp)
+# Compila .cpp en src/ y en subdirectorios (src/controller/, src/manejador/)
+SRCS     := $(wildcard $(SRC_DIR)/*.cpp) $(wildcard $(SRC_DIR)/*/*.cpp)
 OBJS     := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRCS))
 
 .PHONY: all clean rebuild
@@ -17,6 +18,8 @@ $(BIN): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
+# Crea subdirectorios en obj/ si no existen (ej: obj/controller/, obj/manejador/)
+	mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(OBJ_DIR):

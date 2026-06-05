@@ -37,10 +37,6 @@ bool ControladorVehiculos::AltaViaje(std::string matricula, DTFecha fecha, std::
         v->addViaje(&cvi);
         return true;
     }
-    
-
-
-
-
+    return false;
 };
 

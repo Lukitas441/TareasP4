@@ -1,7 +1,9 @@
 #include "../include/manejador/ManejadorVehiculos.h"
 
 ManejadorVehiculos* ManejadorVehiculos::instance = nullptr;
-ManejadorVehiculos* ManejadorVechiulos() {};
+
+ManejadorVehiculos::ManejadorVehiculos() {};
+
 ManejadorVehiculos* ManejadorVehiculos::getInstance() {
     if (instance == nullptr) {
         instance = new ManejadorVehiculos();

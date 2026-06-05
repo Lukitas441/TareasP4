@@ -11,9 +11,10 @@ class ManejadorVehiculos {
 private:
     static ManejadorVehiculos* instance;
     std::map<std::string, Vehiculo*> vehiculos;
-    ManejadorVehiculos();
 
 public:
+    ManejadorVehiculos();
+
     static ManejadorVehiculos* getInstance();
 
     Vehiculo* getVehiculo(std::string matricula);

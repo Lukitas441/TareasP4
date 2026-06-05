@@ -33,25 +33,25 @@ bool ControladorUsuarios::altaConductor(std::string nickname, std::string nombre
     return true;
 };
 
-std::set<DTUsuario> ControladorUsuarios::listarUsuarios() {
+std::list<DTUsuario> ControladorUsuarios::listarUsuarios() {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
     std::set<Usuario*> usuarios = mu->getUsuarios();
-    std::set<DTUsuario> resultado;
+    std::list<DTUsuario> resultado;
 
     for (const auto& u : usuarios) {
-        resultado.insert(u->getInfoUsuario());
+        resultado.push_back(u->getInfoUsuario());
     };
 
     return resultado;
 };
 
-std::set<DTUsuario> ControladorUsuarios::listarPasajeros() {
+std::list<DTUsuario> ControladorUsuarios::listarPasajeros() {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
     std::set<Pasajero*> pasajeros = mu->getPasajeros();
-    std::set<DTUsuario> resultado;
+    std::list<DTUsuario> resultado;
 
     for (const auto& p : pasajeros) {
-        resultado.insert(p->getInfoUsuario());
+        resultado.push_back(p->getInfoUsuario());
     };
 
     return resultado;
@@ -82,10 +82,14 @@ int ControladorUsuarios::registrarVehiculo(std::string nickname, std::string mat
         return -2;
     };
 };
-
+/*. SANTI LO DEJO ASI
 bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int calificacion) {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
     Usuario* u = mu->getUsuario(nicknameCalificado);
-    
-    
+    if (u != nullptr) {
+        u->agregarCalificacion(calificacion);
+        return true;
+    }
+    return false;
 };
+*/
