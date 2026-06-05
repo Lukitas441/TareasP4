@@ -40,7 +40,7 @@ public:
 
     virtual std::set<DTUsuario> listarUsuarios() = 0;
 
-    virtual std::set<DTListarViaje> listarViajes(std::string nickname) = 0;
+    virtual std::list<DTListarViaje> listarViajes(std::string nickname) = 0;
 
     virtual bool calificarUsuario(std::string nicknameCalificado, int calificacion) = 0;
 

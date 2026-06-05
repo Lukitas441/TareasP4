@@ -47,7 +47,7 @@ public:
 
     std::set<DTUsuario> listarPasajeros() override;
 
-    std::set<DTListarViaje> listarViajes(std::string nickname) override;
+    std::list<DTListarViaje> listarViajes(std::string nickname) override;
 
     bool calificarUsuario(
         std::string nicknameCalificado,
