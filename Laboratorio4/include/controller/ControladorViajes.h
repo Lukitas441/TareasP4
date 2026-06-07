@@ -14,7 +14,7 @@ public:
     //DTDetalleViaje detalleViaje(int codigo) override;
     //std::list<DTUsuario> listarUsuariosViaje(int codigo) override; //LUCAS??
     bool generarReserva(std::string nicknamePasajero, int codigoViaje, int cantAsientos) override;
-    void eliminarViaje() override;
+    void eliminarViaje(int codigo);
     bool altaViaje(std::string matricula, DTFecha fecha, std::string origen, std::string destino, int asientos, float precio) override;
 };
 #endif

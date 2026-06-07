@@ -32,7 +32,7 @@ bool ControladorVehiculos::AltaViaje(std::string matricula, DTFecha fecha, std::
     
     ManejadorViajes* mvi = ManejadorViajes::getInstance();
     if (capacidad >= asientos && !hayViajesFecha) {
-        Viaje cvi =  mvi->crearViaje(0, fecha, origen, destino, asientos, precio, v);
+        Viaje cvi =  mvi->crearViaje(fecha, origen, destino, asientos, precio, v);
         mvi->agregarViaje(&cvi);
         v->addViaje(&cvi);
         return true;

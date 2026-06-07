@@ -29,7 +29,7 @@ public:
     Viaje* getViaje(int codigo);
     std::map<int, Viaje*> getViajes();
     void eliminarViaje(int codigo);
-    Viaje crearViaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo* vehiculo);
+    Viaje crearViaje( DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo* vehiculo);
     int getCodigoViaje();
 };
 
