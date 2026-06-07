@@ -13,7 +13,6 @@
 #include "../include/manejador/ManejadorUsuarios.h"
 
 
-
 #include <iostream>
 #include <limits>
 #include <string>
@@ -47,6 +46,7 @@ void Menu::altaUsuario() {
         std::cout << "Ingrese CI: "; std::getline(std::cin, ci);
 
         //usuarioOk = ControladorUsuarios altaPasajero(nickname, nombre, contrasena, email, ci);
+        
     } else if (tipoUsuario == 2) {
         //TODO: usuarioOk = controlador->altaConductor(nickname, nombre, contrasena, email, libretas)
         int agregarVehiculo = 1;

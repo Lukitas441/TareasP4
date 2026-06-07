@@ -28,7 +28,9 @@ bool ControladorVehiculos::AltaViaje(std::string matricula, DTFecha fecha, std::
     }
     bool hayViajesFecha;
     int capacidad = v->getCapacidad();
-    if (capacidad >= asientos) {hayViajesFecha = v->hayViajesConductor(fecha);}
+    if (capacidad >= asientos) {
+        hayViajesFecha = v->hayViajesConductor(fecha);
+    }
     
     ManejadorViajes* mvi = ManejadorViajes::getInstance();
     if (capacidad >= asientos && !hayViajesFecha) {
