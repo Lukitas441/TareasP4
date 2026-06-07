@@ -50,15 +50,9 @@ bool ControladorViajes::generarReserva(std::string nicknamePasajero, int codigoV
 };
 
 void ControladorViajes::eliminarViaje() {
- //hacelo lucas
-
-
-
+  //TODO
 };
-
 
 bool ControladorViajes::altaViaje(std::string matricula, DTFecha fecha, std::string origen, std::string destino, int asientos, float precio) {
-    //TODO
-    return false;
+  //TODO
 };
-
