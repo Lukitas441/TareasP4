@@ -13,7 +13,6 @@ class ControladorViajes;
 class ControladorVehiculos;
 
 
-class IControladorViajes;
 
 class Fabrica {
 private:
@@ -23,7 +22,6 @@ private:
 
 public:
     static Fabrica * getInstance();
-
     IControladorFechaActual* getIControladorFechaActual();
     IControladorUsuarios* getIControladorUsuarios();
     IControladorViajes* getIControladorViajes();

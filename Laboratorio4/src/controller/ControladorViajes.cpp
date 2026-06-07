@@ -1,13 +1,8 @@
 #include "../include/controller/ControladorViajes.h"
-#include "../include/controller/ControladorVehiculos.h"
-#include "../include/controller/ControladorUsuarios.h"
 #include "../include/manejador/ManejadorUsuarios.h"
 #include "../include/manejador/ManejadorViajes.h"
 #include "../include/manejador/ManejadorVehiculos.h"
-
-#include "Viaje.h"
 #include "Reserva.h"
-#include "DTFecha.h"
 #include "../include/ControladorFechaActual.h"
 
 
@@ -55,7 +50,19 @@ bool ControladorViajes::generarReserva(std::string nicknamePasajero, int codigoV
 void ControladorViajes::eliminarViaje(int codigo) {
   ManejadorViajes *mv = ManejadorViajes::getInstance();
   mv->eliminarViaje(codigo);
+  return;
 };
+
+std::list<DTUsuarioViaje*> ControladorViajes::listarUsuariosViaje(int codigo) {
+  ManejadorViajes *mv = ManejadorViajes::getInstance();
+  Viaje *viaje = mv->getViaje(codigo);
+  std::list<DTUsuarioViaje*> resultado = std::list<DTUsuarioViaje*>();
+  if (viaje != nullptr) {
+    resultado.merge(viaje->getUsuarioRes());
+  }
+  return resultado;
+};
+
 
 bool ControladorViajes::altaViaje(std::string matricula, DTFecha fecha, std::string origen, std::string destino, int asientos, float precio) {
   ManejadorVehiculos *mv = ManejadorVehiculos::getInstance();
@@ -73,3 +80,4 @@ bool ControladorViajes::altaViaje(std::string matricula, DTFecha fecha, std::str
   }
   return false;
 };
+

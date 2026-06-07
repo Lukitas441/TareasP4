@@ -4,6 +4,16 @@
 #include "../include/CargaDatos.h"
 #include "../include/DTFecha.h"
 
+#include "../include/controller/ControladorUsuarios.h"
+#include "../include/controller/ControladorViajes.h"
+#include "../include/controller/ControladorVehiculos.h"
+
+#include "../include/manejador/ManejadorViajes.h"
+#include "../include/manejador/ManejadorVehiculos.h"
+#include "../include/manejador/ManejadorUsuarios.h"
+
+
+
 #include <iostream>
 #include <limits>
 #include <string>
@@ -28,12 +38,15 @@ void Menu::altaUsuario() {
     std::cout << "Ingrese email: "; std::getline(std::cin, email);
 
 
+
+
     bool usuarioOk = false;
 
     if (tipoUsuario == 1) {
         std::string ci;
         std::cout << "Ingrese CI: "; std::getline(std::cin, ci);
-        //TODO: usuarioOk = controlador->altaPasajero(nickname, nombre, contrasena, email, ci)
+
+        //usuarioOk = ControladorUsuarios altaPasajero(nickname, nombre, contrasena, email, ci);
     } else if (tipoUsuario == 2) {
         //TODO: usuarioOk = controlador->altaConductor(nickname, nombre, contrasena, email, libretas)
         int agregarVehiculo = 1;

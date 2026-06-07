@@ -2,6 +2,7 @@
 #define PASAJERO_H
 
 #include "Usuario.h"
+#include "DTUsuarioViaje.h"
 #include <string>
 #include <iostream>
 #include <set>
@@ -19,6 +20,7 @@ public:
     std::string getCI ();
     std::set<Reserva*> getReservas();
     std::list<DTListarViaje> getViajesTotales();
+    DTUsuarioViaje* getDatosPasajero();
 };
 
 #endif
