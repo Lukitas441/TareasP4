@@ -1,8 +1,12 @@
 #include "../include/controller/ControladorUsuarios.h"
 #include "../include/manejador/ManejadorUsuarios.h"
+#include "../include/manejador/ManejadorViajes.h"
+#include "../include/ControladorFechaActual.h"
+#include "Viaje.h"
 #include "Pasajero.h"
 #include "Vehiculo.h"
 #include "Conductor.h"
+#include "Calificacion.h"
 
 ControladorUsuarios::ControladorUsuarios() {};
 ControladorUsuarios::~ControladorUsuarios() {};
@@ -82,14 +86,25 @@ int ControladorUsuarios::registrarVehiculo(std::string nickname, std::string mat
         return -2;
     };
 };
-/*. SANTI LO DEJO ASI
+
 bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int calificacion) {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
+    ManejadorViajes* mv = ManejadorViajes::getInstance();
     Usuario* u = mu->getUsuario(nicknameCalificado);
+    std::string nicknameCalificador = mu->getNicknameCalificador();
+    int codigoViaje = mv->getCodigoViaje();
+
     if (u != nullptr) {
-        u->agregarCalificacion(calificacion);
-        return true;
+        bool existe = u->existeCalificador(nicknameCalificador, codigoViaje);
+        Usuario *calificador = mu->getUsuario(nicknameCalificador);
+        if (!existe){
+            ControladorFechaActual* mf = ControladorFechaActual::getInstance();
+            DTFecha fecha =  mf->getFecha();
+            Calificacion * calif = new Calificacion(fecha, calificacion, calificador);
+            u->addCalif(calif);
+            return true;
+        }
     }
     return false;
 };
-*/
+

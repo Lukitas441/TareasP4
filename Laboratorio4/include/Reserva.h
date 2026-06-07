@@ -14,18 +14,17 @@ private:
     int asientosReservados;
     DTFecha fecha;
     Viaje *viaje;
-    std::set<class Pasajero*> pasajeros; // a chequer
+    Pasajero *pasajero; 
 
 public:
-    Reserva(int asientosReservados, DTFecha fecha);
+    Reserva(int asientosReservados, Pasajero *pasajero, DTFecha fecha);
     ~Reserva();
 
     int getAsientos();
     DTFecha getFecha();
     Viaje *getViaje();
-    std::set<class Pasajero*> getPasajeros();
-
-    std::set<DTUsuarioViaje *> getPasajerosReserva();
+    Pasajero *getPasajero();
+    DTUsuarioViaje getPasajeroReserva();
 };
 
 #endif

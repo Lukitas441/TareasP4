@@ -17,7 +17,7 @@ private:
     Reserva* reserva;
 
 public:
-    Calificacion(DTFecha fecha, int calificacion);
+    Calificacion(DTFecha fecha, int calificacion, Usuario* usuarioCalificador);
     ~Calificacion();
 
     int getPuntaje();

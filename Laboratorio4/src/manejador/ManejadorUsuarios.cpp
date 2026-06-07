@@ -50,3 +50,7 @@ std::set<Conductor*> ManejadorUsuarios::getConductores() {
     }
     return resultado;
 };
+
+std::string ManejadorUsuarios::getNicknameCalificador() {
+    return nicknameCalificador;
+}

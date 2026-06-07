@@ -16,9 +16,8 @@ protected:
     std::string nombre;
     std::string contrasena;
     std::string email;
-    std::map<std::string, Calificacion*> calificacionesRecibidas;
+    std::list<Calificacion*> calificacionesRecibidas;
     
-
 public:
     Usuario(std::string nickname, std::string nombre, std::string contrasena, std::string email);
     virtual ~Usuario();
@@ -27,13 +26,13 @@ public:
     std::string getNombre();
     std::string getContrasena();
     std::string getEmail();
-    std::map<std::string, Calificacion*> getCalificacionesRecibidas();
-
-
+    std::list<Calificacion*> getCalificacionesRecibidas();
+    
     DTUsuario getInfoUsuario();
     float calificacionPromedio();
     bool existeCalificador(std::string nicknameCalificador, int codigoViaje);
     virtual std::list<DTListarViaje> getViajesTotales() = 0;
+    void addCalif(Calificacion* calif);
 };
 
 #endif

@@ -85,23 +85,20 @@ DTConsultaViaje Viaje::constructorDTConsultaViaje(int asientos) {
 
 bool Viaje::findPasajero(std::string nickname) {
     for (const auto& reserva : reservas) {
-        for(const auto& pasajero : reserva->getPasajeros()) {
-            if (nickname == pasajero->getNickname()) return true;
+        if (reserva->getPasajero()->getNickname() == nickname) {
+            return true;
         }
     }
     return false;
 }
 
-DTUsuarioViaje Viaje::getUsuarioRes(std::string nickname) {
+DTUsuarioViaje  Viaje::getUsuarioRes(std::string nickname) {
     for (const auto& reserva : reservas) {
-        for(const auto& pasajero : reserva->getPasajeros()) {
-            if (pasajero->getNickname() == nickname) {
-                DTUsuarioViaje dtuv(pasajero->getNickname(), TipoUsuario::pasajero);
-                return dtuv;
-            }
+        if (reserva->getPasajero()->getNickname() == nickname) {
+            return reserva->getPasajeroReserva();
         }
     }
-    return DTUsuarioViaje("", TipoUsuario::pasajero); //areglar todo
+    return DTUsuarioViaje("", TipoUsuario::pasajero);
 }
 
 void Viaje::addRese(Reserva* reserva) {

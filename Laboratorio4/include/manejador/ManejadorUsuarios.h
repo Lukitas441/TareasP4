@@ -13,6 +13,7 @@ class ManejadorUsuarios {
 private:
     static ManejadorUsuarios* instance;
     std::map<std::string, Usuario*> usuarios;
+    std::string nicknameCalificador;
 
 public:
     ManejadorUsuarios();
@@ -26,6 +27,7 @@ public:
     std::set<Usuario*> getUsuarios();
     std::set<Pasajero*> getPasajeros();
     std::set<Conductor*> getConductores();
+    std::string getNicknameCalificador();
 };
 
 #endif

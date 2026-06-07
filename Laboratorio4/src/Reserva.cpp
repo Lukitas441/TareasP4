@@ -2,8 +2,9 @@
 #include "Viaje.h"
 #include "Pasajero.h"
 
-Reserva::Reserva(int asientosReservados, DTFecha fecha) {
+Reserva::Reserva(int asientosReservados,Pasajero * pasajero ,DTFecha fecha) {
     this->asientosReservados = asientosReservados;
+    this->pasajero = pasajero;
     this->fecha = fecha;
 }
 
@@ -18,15 +19,10 @@ DTFecha Reserva::getFecha() {
 Viaje* Reserva::getViaje() {
     return viaje;
 }
-std::set<class Pasajero*> Reserva::getPasajeros() {
-    return pasajeros;
+Pasajero* Reserva::getPasajero() {
+    return  pasajero;
 }
-std::set<DTUsuarioViaje*> Reserva::getPasajerosReserva() {
-    std::set<DTUsuarioViaje*> pasajerosReserva;
-    std::set<class Pasajero*>::iterator it;
-    for (it = pasajeros.begin(); it != pasajeros.end(); ++it) {
-        DTUsuarioViaje* dtUsuarioViaje = new DTUsuarioViaje((*it)->getNickname(), pasajero);
-        pasajerosReserva.insert(dtUsuarioViaje);
-    }
-    return pasajerosReserva;
+DTUsuarioViaje Reserva::getPasajeroReserva() {
+    DTUsuarioViaje dtuv =  DTUsuarioViaje(pasajero->getNickname(), TipoUsuario::pasajero);
+    return dtuv;
 }

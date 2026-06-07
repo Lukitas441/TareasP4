@@ -37,3 +37,7 @@ Viaje ManejadorViajes::crearViaje(int codigo, DTFecha fecha, std::string origen,
     Viaje viaje = Viaje(codigo, fecha, origen, destino, asientosPublicados, precio, vehiculo);
     return viaje;
 };
+
+int ManejadorViajes::getCodigoViaje() {
+    return codigoViaje;
+}

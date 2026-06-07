@@ -11,7 +11,7 @@ Usuario::Usuario(std::string nickname, std::string nombre, std::string contrasen
     this->contrasena = contrasena;
     this->email = email;
 
-    calificacionesRecibidas = std::map<std::string, Calificacion *>();
+    calificacionesRecibidas = std::list<Calificacion*>();
 }
 
 Usuario::~Usuario() {}
@@ -38,7 +38,7 @@ DTUsuario Usuario::getInfoUsuario()
     return DTUsuario(nickname, nombre);
 }
 
-std::map<std::string, Calificacion *> Usuario::getCalificacionesRecibidas()
+std::list<Calificacion*> Usuario::getCalificacionesRecibidas()
 {
     return calificacionesRecibidas;
 }
@@ -50,18 +50,18 @@ float Usuario::calificacionPromedio()
         return 0.0;
     }
 
-    std::map<std::string, Calificacion *>::iterator it;
+    std::list<Calificacion*>::iterator it;
     int sumaPuntajes = 0;
     for (it = calificacionesRecibidas.begin(); it != calificacionesRecibidas.end(); ++it)
     {
-        sumaPuntajes += it->second->getPuntaje();
+        sumaPuntajes += (*it)->getPuntaje();
     }
 
     return sumaPuntajes / calificacionesRecibidas.size();
 }
 
 // chequear pq distinto del Diagrama d Comunicacion
-// esta va pal santi .l.
+// esta va pal santi .l. // crack el lucas 
 // chequear la asociacion
 bool Usuario::existeCalificador(std::string nicknameCalificador, int codigoViaje)
 {
@@ -70,15 +70,20 @@ bool Usuario::existeCalificador(std::string nicknameCalificador, int codigoViaje
         return false;
     }
 
-    std::map<std::string, Calificacion *>::iterator it;
+    std::list<Calificacion*>::iterator it;
     for (it = calificacionesRecibidas.begin(); it != calificacionesRecibidas.end(); ++it)
     {
-        Usuario *usuarioCalificador = it->second->getUsuarioCalificador();
-        Viaje *viajeCalificado = it->second->getCaliViaje();
+        Usuario *usuarioCalificador = (*it)->getUsuarioCalificador();
+        Viaje *viajeCalificado = (*it)->getCaliViaje();
         if (usuarioCalificador->getNickname() == nicknameCalificador && viajeCalificado->getCodigo() == codigoViaje)
         {
             return true;
         }
     }
     return false;
+}
+
+
+void Usuario::addCalif(Calificacion* calificacion){
+    calificacionesRecibidas.push_back(calificacion);
 }

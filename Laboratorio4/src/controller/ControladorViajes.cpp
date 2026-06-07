@@ -1,6 +1,12 @@
 #include "../include/controller/ControladorViajes.h"
+#include "../include/controller/ControladorUsuarios.h"
+#include "../include/manejador/ManejadorUsuarios.h"
 #include "../include/manejador/ManejadorViajes.h"
 #include "Viaje.h"
+#include "Reserva.h"
+#include "DTFecha.h"
+#include "../include/ControladorFechaActual.h"
+
 
 ControladorViajes::ControladorViajes() {};
 ControladorViajes::~ControladorViajes() {};
@@ -20,13 +26,39 @@ std::set<DTConsultaViaje*> ControladorViajes::consultarViajes(DTFecha fecha, std
   }
   return resultado;
 };
-/* LUCAS LO DEJO ASI
+
 bool ControladorViajes::generarReserva(std::string nicknamePasajero, int codigoViaje, int cantAsientos) {
   ManejadorViajes* mv = ManejadorViajes::getInstance();
   Viaje* viaje = mv->getViaje(codigoViaje);
   if (viaje != nullptr) {
-
+    bool valido = viaje->asientosCheck(cantAsientos);
+    if (valido){
+      bool encontrado = viaje->findPasajero(nicknamePasajero);
+      if (!encontrado){
+        ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
+        Pasajero* pasajeroSelect = dynamic_cast<Pasajero*>(mu->getUsuario(nicknamePasajero));
+        ControladorFechaActual* mf = ControladorFechaActual::getInstance();
+        DTFecha fecha =  mf->getFecha();
+        Reserva * rese = new Reserva(cantAsientos, pasajeroSelect ,fecha);
+        viaje->addRese(rese);
+        pasajeroSelect->addReserva(rese);
+        return true;
+      }
+    }
   }
   return false;
 };
-*/
+
+void ControladorViajes::eliminarViaje() {
+ //hacelo lucas
+
+
+
+};
+
+
+bool ControladorViajes::altaViaje(std::string matricula, DTFecha fecha, std::string origen, std::string destino, int asientos, float precio) {
+    //TODO
+    return false;
+};
+
