@@ -90,15 +90,59 @@ void Menu::altaViaje() {
     /*"El caso de uso comienza cuando se desea generar un nuevo viaje. El
     Administrador indica el nickname del conductor que quiere generar el viaje y el
     Sistema lista todos los vehículos registrados para este conductor incluyendo
-    matrícula, modelo y capacidad del vehículo." */
+    matrícula, modelo y capacidad del vehículo. 
+    
+    Luego el Administrador ingresa la matrícula del vehículo, fecha del viaje, origen, destino, cantidad de asientos disponibles para el viaje y el precio por asiento.
 
+    El Sistema da de alta el viaje con los datos ingresados y un código incremental
+    autogenerado. En caso de que ya exista un viaje para la misma fecha o se
+    supere la cantidad de asientos disponibles del vehículo, el Sistema comunica
+    el error y no se da de alta el viaje" */
+            
+
+    // In Nickname
     std::cout << "Ingrese nickname del conductor: "; std::getline(std::cin, nickname);
+     
+    // Inicializo una instancia de fabrica hacia IControladorVehiculo
+    IControladorVehiculos* icv = Fabrica::getInstance()->getIControladorVehiculos();
+    // Guardo en lista la lista de los DTVehiculos 
+    std::list<DTVehiculosConductor> lista = icv->ListarVehiculosConductor(nickname);
+    // Itero en lista y imprimo utilizando los gets
+    for (const auto& v : lista) {
+    std::cout << "Matrícula: " << v.getMatricula()
+              << " | Modelo: " << v.getModelo()
+              << " | Capacidad: " << v.getCapacidad()
+              << "\n";
+        }
 
-    // ListarVehiculosConductor(nickname);
+    // In Matricula
+    std::cout << "Ingrese matricula del vehiculo a utilizar: "; std::getline(std::cin, matricula);
+    // In fecha
+    std::cout << "Ingrese fecha del viaje (dia mes anio): "; std::cin >> dia >> mes >> anio;
+    // In origen
+    std::cout << "Ingrese origen: "; std::getline(std::cin, origen);
+    // In destino
+    std::cout << "Ingrese destino: "; std::getline(std::cin, destino);
+    // In cant asientos
+    std::cout << "Ingrese cantidad de asientos: "; std::cin >> asientos;
+    // in precio
+    std::cout << "Ingrese precio por asiento: "; std::cin >> precio;
+
+        //ACA TENGO QUE PRIMERO CREAR UN DTFECHA para la fucnion ALtaViaje
+
+
+    // A partir de la misma instancia de IControladorVehiculos llamo a AltaViaje
+    // Ejecuto AltaViaje que me chekea si:
+    //
+   
+    icv->AltaViaje(matricula, fecha, origen, destino, asientos, precio);
+
+
+
     //TODO: Coleccion de DTVehiculosConductor = controlador->listarVehiculosConductor(nickname)
     //TODO: Recorrer la coleccion y mostrar "> Matricula: xx, Capacidad: yy, Marca: zzz, Modelo: www, Tipo: ttt"
 
-    std::cout << "Ingrese matricula del vehiculo a utilizar: "; std::getline(std::cin, matricula);
+
     bool matriculaValida = false;
     //TODO: Validar matricula en listado
     if (!matriculaValida) {
@@ -106,12 +150,8 @@ void Menu::altaViaje() {
         return;
     }
 
-    std::cout << "Ingrese fecha del viaje (dia mes anio): "; std::cin >> dia >> mes >> anio;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cout << "Ingrese origen: "; std::getline(std::cin, origen);
-    std::cout << "Ingrese destino: "; std::getline(std::cin, destino);
-    std::cout << "Ingrese cantidad de asientos: "; std::cin >> asientos;
-    std::cout << "Ingrese precio por asiento: "; std::cin >> precio;
+    
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     bool viajeOk = false;
     //TODO: viajeOk = controlador->altaViaje(matricula, DTFecha(dia, mes, anio), origen, destino, asientos, precio)
@@ -120,6 +160,11 @@ void Menu::altaViaje() {
     } else {
         std::cout << "Error al registrar el viaje.\n";
     }
+
+    
+
+
+
 }
 
 void Menu::generarReserva() {

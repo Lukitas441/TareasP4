@@ -22,7 +22,7 @@ std::list<DTVehiculosConductor> ControladorVehiculos::ListarVehiculosConductor(s
 
 bool ControladorVehiculos::AltaViaje(std::string matricula, DTFecha fecha, std::string origen, std::string destino, int asientos, float precio) {
     ManejadorVehiculos* mv = ManejadorVehiculos::getInstance();
-    Vehiculo * v = mv->getVehiculo(matricula);
+    Vehiculo* v = mv->getVehiculo(matricula);
     if (v == nullptr) {
         return false;
     }
