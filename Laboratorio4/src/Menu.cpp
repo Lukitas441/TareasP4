@@ -78,11 +78,23 @@ void Menu::altaUsuario() {
 }
 
 void Menu::altaViaje() {
-    std::string nickname, matricula, origen, destino;
-    int dia, mes, anio, asientos;
-    float precio;
+    std::string nickname, 
+                matricula, 
+                origen, 
+                destino;
+            int dia, 
+                mes, 
+                anio, 
+                asientos;   
+          float precio;
+    /*"El caso de uso comienza cuando se desea generar un nuevo viaje. El
+    Administrador indica el nickname del conductor que quiere generar el viaje y el
+    Sistema lista todos los vehículos registrados para este conductor incluyendo
+    matrícula, modelo y capacidad del vehículo." */
 
     std::cout << "Ingrese nickname del conductor: "; std::getline(std::cin, nickname);
+
+    // ListarVehiculosConductor(nickname);
     //TODO: Coleccion de DTVehiculosConductor = controlador->listarVehiculosConductor(nickname)
     //TODO: Recorrer la coleccion y mostrar "> Matricula: xx, Capacidad: yy, Marca: zzz, Modelo: www, Tipo: ttt"
 

@@ -8,7 +8,7 @@
 
 ControladorVehiculos::ControladorVehiculos() {};
 ControladorVehiculos::~ControladorVehiculos() {};
-
+//Lista de DTVehiculosConductor 
 std::list<DTVehiculosConductor> ControladorVehiculos::ListarVehiculosConductor(std::string nickname) {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
     Conductor* c = dynamic_cast<Conductor*>(mu->getUsuario(nickname));
