@@ -40,6 +40,7 @@ void Menu::altaUsuario() {
 
 
     bool usuarioOk = false;
+    IControladorUsuarios* ICU = Fabrica::getInstance()->getIControladorUsuarios();
 
     if (tipoUsuario == 1) {
         std::string ci;
@@ -48,77 +49,78 @@ void Menu::altaUsuario() {
         icu->altaPasajero(nickname,nombre,contrasena,email,ci);
         
     } else if (tipoUsuario == 2) {
-        bool tieneMotoProfesional = false;
-        bool tieneMotoAmateur = false;
-        bool tieneAutoProfesional = false;
-        bool tieneAutoAmateur = false;
-
-        int cantLibretas = 0;
-        int agregarLibreta = 1;
-
-        while (agregarLibreta == 1 && cantLibretas < 4) {
-            int tipoLibreta;
-            std::cout << "\n=== Registrar Libreta ===\n";
-            std::cout << "0. Moto (Profesional)\n";
-            std::cout << "1. Moto (Amateur)\n";
-            std::cout << "2. Auto (Profesional)\n";
-            std::cout << "3. Auto (Amateur)\n";
-            std::cout << "Seleccione el tipo de libreta: ";
-            std::cin >> tipoLibreta;
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-            bool yaExiste = false;
-            if (tipoLibreta == 0) {
-                if (tieneMotoProfesional) {
-                    yaExiste = true;    
-                } else {
-                    tieneMotoProfesional = true;
-                    cantLibretas++;
-                }
-            } else if (tipoLibreta == 1) {
-                if (tieneMotoAmateur) {
-                    yaExiste = true;
-                } else {
-                    tieneMotoAmateur = true;
-                    cantLibretas++;
-                }
-            } else if (tipoLibreta == 2) {
-                if (tieneAutoProfesional) {
-                    yaExiste = true;
-                } else {
-                    tieneAutoProfesional = true;
-                    cantLibretas++;
-                }
-            } else if (tipoLibreta == 3) {
-                if (tieneAutoAmateur) {
-                    yaExiste = true;
-                } else {
-                    tieneAutoAmateur = true;
-                    cantLibretas++;
-                }
-            } else {
-                std::cout << "Opcion invalida.\n";
-                continue;
-            }
-
-            if (yaExiste) {
-                std::cout << "Esa libreta ya fue ingresada.\n";
-            } else {
-                std::cout << "Libreta agregada.\n";
-            }
-
-            if (cantLibretas < 4) {
-                std::cout << "¿Desea agregar otra libreta? (1: Si, 0: No): ";
-                std::cin >> agregarLibreta;
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            } else {
-                std::cout << "Se ha alcanzado el limite maximo de libretas.\n";
-            }
+        
+        
+        bool agregarLibreta = true;
+        std::map<TipoLibreta, bool> libretas = {
+            {AutoAmateur, false},
+            {AutoProfesional, false},
+            {MotoAmateur, false},
+            {MotoProfesional, false}
+        };
+        std::cout << "\nIngresar libretas" << std::endl;
+        int Libreta;
+        while (agregarLibreta)
+        {
+          std::cout << "1. Auto Amateur\n2. Auto Profesional\n3. Moto Amateur\n4. Mato Profesional\n0. Terminar\n"; 
+          std::cin >> Libreta;
+          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          
+          switch (Libreta)
+          {
+          case 1:
+            libretas[TipoLibreta::AutoAmateur] = true;
+            break;
+          case 2:
+            libretas[TipoLibreta::AutoProfesional] = true;
+            break;
+          case 3:
+            libretas[TipoLibreta::MotoAmateur] = true;
+            break;
+          case 4:
+            libretas[TipoLibreta::MotoProfesional] = true;
+            break;
+          case 0:
+            agregarLibreta = false;
+            break;
+          default:
+            std::cout << "NOT an option" << std::endl;
+            break;
+          };
         }
-    
-        if (cantLibretas == 0) {
-            std::cout << "Debe ingresar al menos una libreta para registrar un conductor.\n";
-            return;
+        
+        
+        usuarioOk = ICU->altaConductor(nickname, nombre, contrasena, email, libretas);
+        int agregarVehiculo = 1;
+        while (usuarioOk == true && agregarVehiculo == 1) {
+            std::string matricula, marca, modelo;
+            int capacidad, auxTipo;
+            TipoVehiculo tipo;
+
+            std::cout << "\n=== Registrar Vehiculo ===\n";
+            std::cout << "Ingrese matricula: "; std::getline(std::cin, matricula);
+            std::cout << "Ingrese capacidad: "; std::cin >> capacidad;
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Ingrese marca: "; std::getline(std::cin, marca);
+            std::cout << "Ingrese modelo: "; std::getline(std::cin, modelo);
+            std::cout << "Ingrese tipo (0: Auto, 1: Moto): "; std::cin >> auxTipo;
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            int resultadoRegistrarVehiculo = -3;
+
+            tipo = auxTipo <= 0 ? Auto : Moto;
+
+            resultadoRegistrarVehiculo = ICU->registrarVehiculo(nickname, matricula, capacidad, marca, modelo, tipo);
+            
+            if (resultadoRegistrarVehiculo == -1) {
+                std::cout << "Ya existe un vehiculo con esa matricula.\n";
+            } else if (resultadoRegistrarVehiculo == -2) {
+                std::cout << "El conductor no tiene la libreta necesaria para registrar ese vehiculo.\n";
+            } else if (resultadoRegistrarVehiculo == 0) {
+                std::cout << "Vehiculo registrado exitosamente.\n";
+            }
+            std::cout << "¿Desea agregar otro vehiculo? (1: Si, 0: No): ";
+            std::cin >> agregarVehiculo;
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
     }
 }
@@ -183,8 +185,7 @@ void Menu::altaViaje() {
 
     // In fecha
     std::cout << "Ingrese fecha del viaje (dia mes anio): "; std::cin >> dia >> mes >> anio;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
+    DTFecha fechaViaje = DTFecha(dia, mes, anio); 
     // In origen
     std::cout << "Ingrese origen: "; std::getline(std::cin, origen);
 
@@ -197,6 +198,26 @@ void Menu::altaViaje() {
 
     // in precio
     std::cout << "Ingrese precio por asiento: "; std::cin >> precio;
+
+    // A partir de la misma instancia de IControladorVehiculos llamo a AltaViaje
+    // Ejecuto AltaViaje que me chekea si:
+    //
+   
+    icv->AltaViaje(matricula, fechaViaje, origen, destino, asientos, precio);
+
+
+
+    //TODO: Coleccion de DTVehiculosConductor = controlador->listarVehiculosConductor(nickname)
+    //TODO: Recorrer la coleccion y mostrar "> Matricula: xx, Capacidad: yy, Marca: zzz, Modelo: www, Tipo: ttt"
+
+
+    bool matriculaValida = false;
+    //TODO: Validar matricula en listado
+    if (!matriculaValida) {
+        std::cout << "Matricula invalida.\n";
+        return;
+    }
+
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 
@@ -386,6 +407,28 @@ void Menu::cargarDatos() {
     CargaDatos::getInstance()->cargarDatos();
 }
 
+void listarUsuarios(){
+    IControladorUsuarios* iCU = Fabrica::getInstance()->getIControladorUsuarios();
+    std::list<DTUsuario> ls = iCU->listarUsuarios(); 
+    std::list<DTUsuario>::iterator it;
+    for( it = ls.begin(); it != ls.end(); it++){
+        std::cout << it->getNickname() << std::endl;
+    }
+}
+void listarVehiculosDe(){
+    std::string nickname;
+    std::cout << "Ingrese nickname de un conductor: "; std::getline(std::cin, nickname);
+    IControladorUsuarios* iCU = Fabrica::getInstance()->getIControladorUsuarios();
+    Conductor* c = dynamic_cast<Conductor*>(iCU->getUsuario(nickname));
+    if (c != nullptr){
+        std::list<Vehiculo*> vehiculos = c->getVehiculos();
+        for(const auto it : vehiculos){
+            std::cout << it->getMatricula() << std::endl;
+        }
+    }
+
+}
+
 void Menu::mostrarMenu() {
     int opcion = -1;
     while (opcion != 8) {
@@ -398,6 +441,8 @@ void Menu::mostrarMenu() {
         std::cout << "6. Administrar Fecha Actual\n";
         std::cout << "7. Cargar Datos\n";
         std::cout << "8. Salir\n";
+        std::cout << "9. Listar usuarios\n";
+        std::cout << "10. Listar vehiculos\n";
         std::cout << "Ingrese una opcion: ";
         std::cin >> opcion;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -426,6 +471,12 @@ void Menu::mostrarMenu() {
                 break;
             case 8:
                 std::cout << "Saliendo del sistema...\n";
+                break;
+            case 9:
+                listarUsuarios();
+                break;
+            case 10:
+                listarVehiculosDe();
                 break;
             default:
                 std::cout << "Opcion invalida.\n";
