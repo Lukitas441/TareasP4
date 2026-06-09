@@ -12,9 +12,9 @@ private:
 public:
   DTVehiculosConductor(std::string matricula, std::string marca, int capacidad);
 
-  std::string getMatricula() const;
-  std::string getModelo() const;
-  int getCapacidad() const;
+  std::string getMatricula();
+  std::string getModelo();
+  int getCapacidad();
 };
 
 #endif

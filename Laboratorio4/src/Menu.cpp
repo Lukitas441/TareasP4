@@ -40,29 +40,76 @@ void Menu::altaUsuario() {
 
 
     bool usuarioOk = false;
+    IControladorUsuarios* ICU = Fabrica::getInstance()->getIControladorUsuarios();
 
     if (tipoUsuario == 1) {
         std::string ci;
         std::cout << "Ingrese CI: "; std::getline(std::cin, ci);
 
-        //usuarioOk = ControladorUsuarios altaPasajero(nickname, nombre, contrasena, email, ci);
-        
+        usuarioOk = ICU->altaPasajero(nickname, nombre, contrasena, email, ci);
     } else if (tipoUsuario == 2) {
-        //TODO: usuarioOk = controlador->altaConductor(nickname, nombre, contrasena, email, libretas)
+        
+        
+        bool agregarLibreta = true;
+        std::map<TipoLibreta, bool> libretas = {
+            {AutoAmateur, false},
+            {AutoProfesional, false},
+            {MotoAmateur, false},
+            {MotoProfesional, false}
+        };
+        std::cout << "\nIngresar libretas" << std::endl;
+        int Libreta;
+        while (agregarLibreta)
+        {
+          std::cout << "1. Auto Amateur\n2. Auto Profesional\n3. Moto Amateur\n4. Mato Profesional\n0. Terminar\n"; 
+          std::cin >> Libreta;
+          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+          
+          switch (Libreta)
+          {
+          case 1:
+            libretas[TipoLibreta::AutoAmateur] = true;
+            break;
+          case 2:
+            libretas[TipoLibreta::AutoProfesional] = true;
+            break;
+          case 3:
+            libretas[TipoLibreta::MotoAmateur] = true;
+            break;
+          case 4:
+            libretas[TipoLibreta::MotoProfesional] = true;
+            break;
+          case 0:
+            agregarLibreta = false;
+            break;
+          default:
+            std::cout << "NOT an option" << std::endl;
+            break;
+          };
+        }
+        
+        
+        usuarioOk = ICU->altaConductor(nickname, nombre, contrasena, email, libretas);
         int agregarVehiculo = 1;
         while (usuarioOk == true && agregarVehiculo == 1) {
             std::string matricula, marca, modelo;
-            int capacidad, tipo;
+            int capacidad, auxTipo;
+            TipoVehiculo tipo;
+
             std::cout << "\n=== Registrar Vehiculo ===\n";
             std::cout << "Ingrese matricula: "; std::getline(std::cin, matricula);
             std::cout << "Ingrese capacidad: "; std::cin >> capacidad;
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << "Ingrese marca: "; std::getline(std::cin, marca);
             std::cout << "Ingrese modelo: "; std::getline(std::cin, modelo);
-            std::cout << "Ingrese tipo (0: Auto, 1: Moto): "; std::cin >> tipo;
+            std::cout << "Ingrese tipo (0: Auto, 1: Moto): "; std::cin >> auxTipo;
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             int resultadoRegistrarVehiculo = -3;
-            //TODO: resultadoRegistrarVehiculo = controlador->registrarVehiculo(nickname, matricula, capacidad, marca, modelo, tipo)
+
+            tipo = auxTipo <= 0 ? Auto : Moto;
+
+            resultadoRegistrarVehiculo = ICU->registrarVehiculo(nickname, matricula, capacidad, marca, modelo, tipo);
+            
             if (resultadoRegistrarVehiculo == -1) {
                 std::cout << "Ya existe un vehiculo con esa matricula.\n";
             } else if (resultadoRegistrarVehiculo == -2) {
@@ -108,7 +155,7 @@ void Menu::altaViaje() {
     // Guardo en lista la lista de los DTVehiculos 
     std::list<DTVehiculosConductor> lista = icv->ListarVehiculosConductor(nickname);
     // Itero en lista y imprimo utilizando los gets
-    for (const auto& v : lista) {
+    for (auto& v : lista) {
     std::cout << "Matrícula: " << v.getMatricula()
               << " | Modelo: " << v.getModelo()
               << " | Capacidad: " << v.getCapacidad()
@@ -119,6 +166,7 @@ void Menu::altaViaje() {
     std::cout << "Ingrese matricula del vehiculo a utilizar: "; std::getline(std::cin, matricula);
     // In fecha
     std::cout << "Ingrese fecha del viaje (dia mes anio): "; std::cin >> dia >> mes >> anio;
+    DTFecha fechaViaje = DTFecha(dia, mes, anio); 
     // In origen
     std::cout << "Ingrese origen: "; std::getline(std::cin, origen);
     // In destino
@@ -128,14 +176,11 @@ void Menu::altaViaje() {
     // in precio
     std::cout << "Ingrese precio por asiento: "; std::cin >> precio;
 
-        //ACA TENGO QUE PRIMERO CREAR UN DTFECHA para la fucnion ALtaViaje
-
-
     // A partir de la misma instancia de IControladorVehiculos llamo a AltaViaje
     // Ejecuto AltaViaje que me chekea si:
     //
    
-    icv->AltaViaje(matricula, fecha, origen, destino, asientos, precio);
+    icv->AltaViaje(matricula, fechaViaje, origen, destino, asientos, precio);
 
 
 
@@ -328,6 +373,28 @@ void Menu::cargarDatos() {
     CargaDatos::getInstance()->cargarDatos();
 }
 
+void listarUsuarios(){
+    IControladorUsuarios* iCU = Fabrica::getInstance()->getIControladorUsuarios();
+    std::list<DTUsuario> ls = iCU->listarUsuarios(); 
+    std::list<DTUsuario>::iterator it;
+    for( it = ls.begin(); it != ls.end(); it++){
+        std::cout << it->getNickname() << std::endl;
+    }
+}
+void listarVehiculosDe(){
+    std::string nickname;
+    std::cout << "Ingrese nickname de un conductor: "; std::getline(std::cin, nickname);
+    IControladorUsuarios* iCU = Fabrica::getInstance()->getIControladorUsuarios();
+    Conductor* c = dynamic_cast<Conductor*>(iCU->getUsuario(nickname));
+    if (c != nullptr){
+        std::list<Vehiculo*> vehiculos = c->getVehiculos();
+        for(const auto it : vehiculos){
+            std::cout << it->getMatricula() << std::endl;
+        }
+    }
+
+}
+
 void Menu::mostrarMenu() {
     int opcion = -1;
     while (opcion != 8) {
@@ -340,6 +407,8 @@ void Menu::mostrarMenu() {
         std::cout << "6. Administrar Fecha Actual\n";
         std::cout << "7. Cargar Datos\n";
         std::cout << "8. Salir\n";
+        std::cout << "9. Listar usuarios\n";
+        std::cout << "10. Listar vehiculos\n";
         std::cout << "Ingrese una opcion: ";
         std::cin >> opcion;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -368,6 +437,12 @@ void Menu::mostrarMenu() {
                 break;
             case 8:
                 std::cout << "Saliendo del sistema...\n";
+                break;
+            case 9:
+                listarUsuarios();
+                break;
+            case 10:
+                listarVehiculosDe();
                 break;
             default:
                 std::cout << "Opcion invalida.\n";

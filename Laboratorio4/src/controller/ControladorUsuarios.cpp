@@ -7,6 +7,7 @@
 #include "Vehiculo.h"
 #include "Conductor.h"
 #include "Calificacion.h"
+#include "Usuario.h"
 
 ControladorUsuarios::ControladorUsuarios() {};
 ControladorUsuarios::~ControladorUsuarios() {};
@@ -24,7 +25,7 @@ bool ControladorUsuarios::altaPasajero(std::string nickname, std::string nombre,
     return true;
 };
 
-bool ControladorUsuarios::altaConductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::list<TipoLibreta> libretas) {
+bool ControladorUsuarios::altaConductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::map<TipoLibreta, bool> libretas) {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
     
     if (mu->getUsuario(nickname) != nullptr) {
@@ -108,3 +109,7 @@ bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int c
     return false;
 };
 
+Usuario* ControladorUsuarios::getUsuario(std::string nickname){
+    ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
+    return mu->getUsuario(nickname);
+}

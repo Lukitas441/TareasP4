@@ -8,7 +8,9 @@
 #include "DTListarViaje.h"
 #include "TipoLibreta.h"
 #include "TipoVehiculo.h"
+#include "Usuario.h"
 #include <list>
+#include <map>
 
 class IControladorUsuarios {
 public:
@@ -26,7 +28,7 @@ public:
         std::string nombre,
         std::string contrasena,
         std::string email,
-        std::list<TipoLibreta> libretas
+        std::map<TipoLibreta, bool> libretas
     ) = 0;
 
     virtual int registrarVehiculo(
@@ -37,6 +39,8 @@ public:
         std::string modelo,
         TipoVehiculo tipo
     ) = 0;
+
+    virtual Usuario* getUsuario(std::string nickname) = 0;
 
     virtual std::list<DTUsuario> listarUsuarios() = 0;
 
