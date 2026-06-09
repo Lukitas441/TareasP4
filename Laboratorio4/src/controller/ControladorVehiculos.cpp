@@ -6,8 +6,16 @@
 
 
 
+ControladorVehiculos* ControladorVehiculos::instancia = nullptr;
+
 ControladorVehiculos::ControladorVehiculos() {};
 ControladorVehiculos::~ControladorVehiculos() {};
+
+ControladorVehiculos* ControladorVehiculos::getInstance() {
+    if (instancia == nullptr)
+        instancia = new ControladorVehiculos();
+    return instancia;
+}
 //Lista de DTVehiculosConductor 
 std::list<DTVehiculosConductor> ControladorVehiculos::ListarVehiculosConductor(std::string nickname) {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();

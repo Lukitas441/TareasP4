@@ -6,8 +6,16 @@
 #include "../include/ControladorFechaActual.h"
 
 
+ControladorViajes* ControladorViajes::instancia = nullptr;
+
 ControladorViajes::ControladorViajes() {};
 ControladorViajes::~ControladorViajes() {};
+
+ControladorViajes* ControladorViajes::getInstance() {
+    if (instancia == nullptr)
+        instancia = new ControladorViajes();
+    return instancia;
+}
 
 std::set<DTConsultaViaje*> ControladorViajes::consultarViajes(DTFecha fecha, std::string origen, std::string destino, int asientos) {
   ManejadorViajes *mv = ManejadorViajes::getInstance();

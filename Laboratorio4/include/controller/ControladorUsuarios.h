@@ -14,11 +14,12 @@ class Pasajero;
 class Conductor;
 
 class ControladorUsuarios : public IControladorUsuarios {
-
+private:
+    static ControladorUsuarios* instancia;
+    ControladorUsuarios();
 
 public:
-
-    ControladorUsuarios(); // constructor
+    static ControladorUsuarios* getInstance();
     ~ControladorUsuarios(); // destructor
 
     bool altaPasajero(
