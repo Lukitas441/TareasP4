@@ -68,7 +68,8 @@ void Menu::altaUsuario() {
             std::cout << "3. Auto (Amateur)\n";
             std::cout << "Seleccione el tipo de libreta: ";
             std::cin >> tipoLibreta;
-            std::cin.ignore(std::numeric_limits::max(), '\n');
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
 
             bool yaExiste = false;
             if (tipoLibreta == 0) {
@@ -113,7 +114,7 @@ void Menu::altaUsuario() {
             if (cantLibretas < 4) {
                 std::cout << "¿Desea agregar otra libreta? (1: Si, 0: No): ";
                 std::cin >> agregarLibreta;
-                std::cin.ignore(std::numeric_limits::max(), '\n');
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             } else {
                 std::cout << "Se ha alcanzado el limite maximo de libretas.\n";
             }
