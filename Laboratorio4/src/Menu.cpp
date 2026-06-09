@@ -1,6 +1,6 @@
 #include "../include/Menu.h"
 #include "../include/Fabrica.h"
-#include "../include/IControladorFechaActual.h"
+#include "../include/controller/IControladorFechaActual.h"
 #include "../include/CargaDatos.h"
 #include "../include/DTFecha.h"
 
@@ -50,44 +50,86 @@ void Menu::altaUsuario() {
     } else if (tipoUsuario == 2) {
         
         
-        bool agregarLibreta = true;
-        std::map<TipoLibreta, bool> libretas = {
-            {AutoAmateur, false},
-            {AutoProfesional, false},
-            {MotoAmateur, false},
-            {MotoProfesional, false}
-        };
-        std::cout << "\nIngresar libretas" << std::endl;
-        int Libreta;
-        while (agregarLibreta)
-        {
-          std::cout << "1. Auto Amateur\n2. Auto Profesional\n3. Moto Amateur\n4. Mato Profesional\n0. Terminar\n"; 
-          std::cin >> Libreta;
-          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-          
-          switch (Libreta)
-          {
-          case 1:
-            libretas[TipoLibreta::AutoAmateur] = true;
-            break;
-          case 2:
-            libretas[TipoLibreta::AutoProfesional] = true;
-            break;
-          case 3:
-            libretas[TipoLibreta::MotoAmateur] = true;
-            break;
-          case 4:
-            libretas[TipoLibreta::MotoProfesional] = true;
-            break;
-          case 0:
-            agregarLibreta = false;
-            break;
-          default:
-            std::cout << "NOT an option" << std::endl;
-            break;
-          };
+        bool tieneMotoProfesional = false;
+        bool tieneMotoAmateur = false;
+        bool tieneAutoProfesional = false;
+        bool tieneAutoAmateur = false;
+
+        int cantLibretas = 0;
+        int agregarLibreta = 1;
+
+        while (agregarLibreta == 1 && cantLibretas < 4) {
+            int tipoLibreta;
+            std::cout << "\n=== Registrar Libreta ===\n";
+            std::cout << "0. Moto (Profesional)\n";
+            std::cout << "1. Moto (Amateur)\n";
+            std::cout << "2. Auto (Profesional)\n";
+            std::cout << "3. Auto (Amateur)\n";
+            std::cout << "Seleccione el tipo de libreta: ";
+            std::cin >> tipoLibreta;
+            std::cin.ignore(std::numeric_limits::max(), '\n');
+
+            bool yaExiste = false;
+            if (tipoLibreta == 0) {
+                if (tieneMotoProfesional) {
+                    yaExiste = true;
+                } else {
+                    tieneMotoProfesional = true;
+                    cantLibretas++;
+                }
+            } else if (tipoLibreta == 1) {
+                if (tieneMotoAmateur) {
+                    yaExiste = true;
+                } else {
+                    tieneMotoAmateur = true;
+                    cantLibretas++;
+                }
+            } else if (tipoLibreta == 2) {
+                if (tieneAutoProfesional) {
+                    yaExiste = true;
+                } else {
+                    tieneAutoProfesional = true;
+                    cantLibretas++;
+                }
+            } else if (tipoLibreta == 3) {
+                if (tieneAutoAmateur) {
+                    yaExiste = true;
+                } else {
+                    tieneAutoAmateur = true;
+                    cantLibretas++;
+                }
+            } else {
+                std::cout << "Opcion invalida.\n";
+                continue;
+            }
+
+            if (yaExiste) {
+                std::cout << "Esa libreta ya fue ingresada.\n";
+            } else {
+                std::cout << "Libreta agregada.\n";
+            }
+
+            if (cantLibretas < 4) {
+                std::cout << "¿Desea agregar otra libreta? (1: Si, 0: No): ";
+                std::cin >> agregarLibreta;
+                std::cin.ignore(std::numeric_limits::max(), '\n');
+            } else {
+                std::cout << "Se ha alcanzado el limite maximo de libretas.\n";
+            }
         }
-        
+
+        if (cantLibretas == 0) {
+            std::cout << "Debe ingresar al menos una libreta para registrar un conductor.\n";
+            return;
+        }
+
+        // Ejemplo de como armar el conjunto de libretas utilizando map
+        std::map<TipoLibreta, bool> libretas =  {
+                {TipoLibreta::MotoProfesional, tieneMotoProfesional},
+                {TipoLibreta::MotoAmateur, tieneMotoAmateur},
+                {TipoLibreta::AutoProfesional, tieneAutoProfesional},
+                {TipoLibreta::AutoAmateur, tieneAutoAmateur}
+            };
         
         usuarioOk = ICU->altaConductor(nickname, nombre, contrasena, email, libretas);
         int agregarVehiculo = 1;
