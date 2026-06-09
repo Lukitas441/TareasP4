@@ -12,7 +12,7 @@
 #include "../include/manejador/ManejadorVehiculos.h"
 #include "../include/manejador/ManejadorUsuarios.h"
 
-
+#include <limits>
 #include <iostream>
 #include <limits>
 #include <string>
@@ -48,34 +48,79 @@ void Menu::altaUsuario() {
         //usuarioOk = ControladorUsuarios altaPasajero(nickname, nombre, contrasena, email, ci);
         
     } else if (tipoUsuario == 2) {
-        //TODO: usuarioOk = controlador->altaConductor(nickname, nombre, contrasena, email, libretas)
-        int agregarVehiculo = 1;
-        while (usuarioOk == true && agregarVehiculo == 1) {
-            std::string matricula, marca, modelo;
-            int capacidad, tipo;
-            std::cout << "\n=== Registrar Vehiculo ===\n";
-            std::cout << "Ingrese matricula: "; std::getline(std::cin, matricula);
-            std::cout << "Ingrese capacidad: "; std::cin >> capacidad;
+        bool tieneMotoProfesional = false;
+        bool tieneMotoAmateur = false;
+        bool tieneAutoProfesional = false;
+        bool tieneAutoAmateur = false;
+
+        int cantLibretas = 0;
+        int agregarLibreta = 1;
+
+        while (agregarLibreta == 1 && cantLibretas < 4) {
+            int tipoLibreta;
+            std::cout << "\n=== Registrar Libreta ===\n";
+            std::cout << "0. Moto (Profesional)\n";
+            std::cout << "1. Moto (Amateur)\n";
+            std::cout << "2. Auto (Profesional)\n";
+            std::cout << "3. Auto (Amateur)\n";
+            std::cout << "Seleccione el tipo de libreta: ";
+            std::cin >> tipoLibreta;
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Ingrese marca: "; std::getline(std::cin, marca);
-            std::cout << "Ingrese modelo: "; std::getline(std::cin, modelo);
-            std::cout << "Ingrese tipo (0: Auto, 1: Moto): "; std::cin >> tipo;
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            int resultadoRegistrarVehiculo = -3;
-            //TODO: resultadoRegistrarVehiculo = controlador->registrarVehiculo(nickname, matricula, capacidad, marca, modelo, tipo)
-            if (resultadoRegistrarVehiculo == -1) {
-                std::cout << "Ya existe un vehiculo con esa matricula.\n";
-            } else if (resultadoRegistrarVehiculo == -2) {
-                std::cout << "El conductor no tiene la libreta necesaria para registrar ese vehiculo.\n";
-            } else if (resultadoRegistrarVehiculo == 0) {
-                std::cout << "Vehiculo registrado exitosamente.\n";
+
+            bool yaExiste = false;
+            if (tipoLibreta == 0) {
+                if (tieneMotoProfesional) {
+                    yaExiste = true;    
+                } else {
+                    tieneMotoProfesional = true;
+                    cantLibretas++;
+                }
+            } else if (tipoLibreta == 1) {
+                if (tieneMotoAmateur) {
+                    yaExiste = true;
+                } else {
+                    tieneMotoAmateur = true;
+                    cantLibretas++;
+                }
+            } else if (tipoLibreta == 2) {
+                if (tieneAutoProfesional) {
+                    yaExiste = true;
+                } else {
+                    tieneAutoProfesional = true;
+                    cantLibretas++;
+                }
+            } else if (tipoLibreta == 3) {
+                if (tieneAutoAmateur) {
+                    yaExiste = true;
+                } else {
+                    tieneAutoAmateur = true;
+                    cantLibretas++;
+                }
+            } else {
+                std::cout << "Opcion invalida.\n";
+                continue;
             }
-            std::cout << "¿Desea agregar otro vehiculo? (1: Si, 0: No): ";
-            std::cin >> agregarVehiculo;
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            if (yaExiste) {
+                std::cout << "Esa libreta ya fue ingresada.\n";
+            } else {
+                std::cout << "Libreta agregada.\n";
+            }
+
+            if (cantLibretas < 4) {
+                std::cout << "¿Desea agregar otra libreta? (1: Si, 0: No): ";
+                std::cin >> agregarLibreta;
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            } else {
+                std::cout << "Se ha alcanzado el limite maximo de libretas.\n";
+            }
+        }
+    
+        if (cantLibretas == 0) {
+            std::cout << "Debe ingresar al menos una libreta para registrar un conductor.\n";
+            return;
         }
     }
-}
 
 void Menu::altaViaje() {
     std::string nickname, 
