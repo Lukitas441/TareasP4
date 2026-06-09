@@ -1,6 +1,7 @@
 #ifndef FABRICA_H
 #define FABRICA_H
 
+#include "interface/IControladorFechaActual.h"
 
 class IControladorUsuarios;
 class IControladorViajes;

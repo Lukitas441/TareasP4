@@ -7,15 +7,15 @@ DTVehiculosConductor::DTVehiculosConductor(std::string matricula, std::string mo
     this->capacidad = capacidad;
 }
 
-std::string DTVehiculosConductor::getMatricula() {
+std::string DTVehiculosConductor::getMatricula() const {
     return matricula;
 }
 
-std::string DTVehiculosConductor::getModelo() {
+std::string DTVehiculosConductor::getModelo() const {
     return modelo;
 }
 
-int DTVehiculosConductor::getCapacidad() {
+int DTVehiculosConductor::getCapacidad() const {
     return capacidad;
 }
 

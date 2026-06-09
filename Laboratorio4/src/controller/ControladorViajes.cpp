@@ -3,7 +3,7 @@
 #include "../include/manejador/ManejadorViajes.h"
 #include "../include/manejador/ManejadorVehiculos.h"
 #include "Reserva.h"
-#include "../include/ControladorFechaActual.h"
+#include "../include/controller/ControladorFechaActual.h"
 
 
 ControladorViajes* ControladorViajes::instancia = nullptr;
