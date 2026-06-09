@@ -1,6 +1,6 @@
 #include "../include/Menu.h"
 #include "../include/Fabrica.h"
-#include "../include/controller/IControladorFechaActual.h"
+#include "../include/interface/IControladorFechaActual.h"
 #include "../include/CargaDatos.h"
 #include "../include/DTFecha.h"
 
@@ -22,7 +22,7 @@ void Menu::altaUsuario() {
     std::cout << "1. Alta Pasajero\n";
     std::cout << "2. Alta Conductor\n";
     std::cout << "Seleccione: ";
-    std::cin >> tipoUsuario;
+    std::cin >> tipoUsuario; 
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     if (tipoUsuario != 1 && tipoUsuario != 2) {
@@ -45,8 +45,9 @@ void Menu::altaUsuario() {
     if (tipoUsuario == 1) {
         std::string ci;
         std::cout << "Ingrese CI: "; std::getline(std::cin, ci);
-
-        usuarioOk = ICU->altaPasajero(nickname, nombre, contrasena, email, ci);
+        IControladorUsuarios* icu = Fabrica::getInstance()->getIControladorUsuarios();
+        icu->altaPasajero(nickname,nombre,contrasena,email,ci);
+        
     } else if (tipoUsuario == 2) {
         
         
@@ -200,7 +201,11 @@ void Menu::altaViaje() {
     //TODO: Recorrer la coleccion y mostrar "> Matricula: xx, Capacidad: yy, Marca: zzz, Modelo: www, Tipo: ttt"
 
     // Itero en lista y imprimo utilizando los gets
-    for (auto& v : lista) {
+    if (lista.empty()) {
+        std::cout << "No hay Vehiculos a nombre del Nickname \n" ;
+        return; 
+    }
+    for (const auto& v : lista) {
     std::cout << "Matrícula: " << v.getMatricula()
               << ", Capacidad: " << v.getCapacidad()
               << ", Modelo: " << v.getModelo()
@@ -270,6 +275,7 @@ void Menu::altaViaje() {
         // capacidad del auto < asientos => retorna false
         // hayViajeFechas == true => retorna false 
 
+        // Me genera un viaje nuevo con los datos mandados y retorna true si esta todo bien
     
     if (viajeOk) {
         std::cout << "Viaje registrado exitosamente.\n";

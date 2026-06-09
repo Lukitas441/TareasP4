@@ -10,9 +10,12 @@ class Reserva;
  
 
 class ControladorViajes : public IControladorViajes {
-public:
-
+private:
+    static ControladorViajes* instancia;
     ControladorViajes();
+
+public:
+    static ControladorViajes* getInstance();
     ~ControladorViajes();
 
     std::set<DTConsultaViaje*> consultarViajes(DTFecha fecha, std::string origen, std::string destino, int asientos) override;
