@@ -92,13 +92,12 @@ bool Viaje::findPasajero(std::string nickname) {
     return false;
 }
 
-DTUsuarioViaje  Viaje::getUsuarioRes(std::string nickname) {
+std::list<DTUsuarioViaje*>  Viaje::getUsuarioRes() {
+    std::list<DTUsuarioViaje*> resultado;
     for (const auto& reserva : reservas) {
-        if (reserva->getPasajero()->getNickname() == nickname) {
-            return reserva->getPasajeroReserva();
-        }
+         resultado.push_back(reserva->getPasajeroRes()); 
     }
-    return DTUsuarioViaje("", TipoUsuario::pasajero);
+    return resultado;
 }
 
 void Viaje::addRese(Reserva* reserva) {

@@ -1,11 +1,14 @@
 #include "Reserva.h"
 #include "Viaje.h"
 #include "Pasajero.h"
+#include "../include/manejador/ManejadorUsuarios.h"
 
-Reserva::Reserva(int asientosReservados,Pasajero * pasajero ,DTFecha fecha) {
+
+Reserva::Reserva(int asientosReservados, Pasajero *pasajero, DTFecha fecha, Viaje *viaje) {
     this->asientosReservados = asientosReservados;
     this->pasajero = pasajero;
     this->fecha = fecha;
+    this->viaje = viaje;
 }
 
 Reserva::~Reserva() {}
@@ -22,7 +25,11 @@ Viaje* Reserva::getViaje() {
 Pasajero* Reserva::getPasajero() {
     return  pasajero;
 }
-DTUsuarioViaje Reserva::getPasajeroReserva() {
-    DTUsuarioViaje dtuv =  DTUsuarioViaje(pasajero->getNickname(), TipoUsuario::pasajero);
-    return dtuv;
+DTUsuarioViaje* Reserva::getPasajeroRes() {
+    ManejadorUsuarios *mu = ManejadorUsuarios::getInstance();
+    std::string nicknameCalificador = mu->getNicknameCalificador();
+    if (nicknameCalificador !=  pasajero->getNickname()){
+        return pasajero->getDatosPasajero();
+    }
+    return nullptr;
 }

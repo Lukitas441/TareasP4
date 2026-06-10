@@ -1,15 +1,25 @@
 #include "../include/controller/ControladorUsuarios.h"
 #include "../include/manejador/ManejadorUsuarios.h"
 #include "../include/manejador/ManejadorViajes.h"
-#include "../include/ControladorFechaActual.h"
+#include "../include/manejador/ManejadorVehiculos.h"
+#include "../include/controller/ControladorFechaActual.h"
 #include "Viaje.h"
 #include "Pasajero.h"
 #include "Vehiculo.h"
 #include "Conductor.h"
 #include "Calificacion.h"
+#include "Usuario.h"
+
+ControladorUsuarios* ControladorUsuarios::instancia = nullptr;
 
 ControladorUsuarios::ControladorUsuarios() {};
 ControladorUsuarios::~ControladorUsuarios() {};
+
+ControladorUsuarios* ControladorUsuarios::getInstance() {
+    if (instancia == nullptr)
+        instancia = new ControladorUsuarios();
+    return instancia;
+}
 
 bool ControladorUsuarios::altaPasajero(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::string ci) {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
@@ -24,7 +34,7 @@ bool ControladorUsuarios::altaPasajero(std::string nickname, std::string nombre,
     return true;
 };
 
-bool ControladorUsuarios::altaConductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::list<TipoLibreta> libretas) {
+bool ControladorUsuarios::altaConductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::map<TipoLibreta, bool> libretas) {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
     
     if (mu->getUsuario(nickname) != nullptr) {
@@ -46,6 +56,16 @@ std::list<DTUsuario> ControladorUsuarios::listarUsuarios() {
         resultado.push_back(u->getInfoUsuario());
     };
 
+    return resultado;
+};
+
+std::list<DTListarViaje> ControladorUsuarios::listarViajes() {
+    ManejadorViajes* mv = ManejadorViajes::getInstance();
+    std::map<int, Viaje*> viajes = mv->getViajes();
+    std::list<DTListarViaje> resultado;
+    for (const auto& pair : viajes) {
+        resultado.push_back(pair.second->getDatosViaje());
+    }
     return resultado;
 };
 
@@ -81,6 +101,7 @@ int ControladorUsuarios::registrarVehiculo(std::string nickname, std::string mat
     if ((matValida) && (c->libretaValida(tipo))) {
         Vehiculo* vehiculo = new Vehiculo(matricula, capacidad, marca, modelo, tipo, c);
         c->agregarVehiculo(vehiculo);
+        ManejadorVehiculos::getInstance()->agregarVehiculo(vehiculo);
         return 0;
     } else {
         return -2;
@@ -92,12 +113,12 @@ bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int c
     ManejadorViajes* mv = ManejadorViajes::getInstance();
     Usuario* u = mu->getUsuario(nicknameCalificado);
     std::string nicknameCalificador = mu->getNicknameCalificador();
-    int codigoViaje = mv->getCodigoViaje();
+    int codigoViaje = mv->getCodigoViajeActual();
 
-    if (u != nullptr) {
+    if (u != nullptr && codigoViaje > 0) {
         bool existe = u->existeCalificador(nicknameCalificador, codigoViaje);
         Usuario *calificador = mu->getUsuario(nicknameCalificador);
-        if (!existe){
+        if (!existe && calificador != nullptr){
             ControladorFechaActual* mf = ControladorFechaActual::getInstance();
             DTFecha fecha =  mf->getFecha();
             Calificacion * calif = new Calificacion(fecha, calificacion, calificador);
@@ -108,3 +129,7 @@ bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int c
     return false;
 };
 
+Usuario* ControladorUsuarios::getUsuario(std::string nickname){
+    ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
+    return mu->getUsuario(nickname);
+}

@@ -7,6 +7,7 @@ Calificacion::Calificacion(DTFecha fecha, int puntaje, Usuario* usuarioCalificad
     this->fecha = fecha;
     this->puntaje = puntaje;
     this->usuarioCalificador = usuarioCalificador;
+    this->reserva = nullptr;
 }
 
 Calificacion::~Calificacion() {}

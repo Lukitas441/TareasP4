@@ -1,14 +1,14 @@
 #include "../include/Conductor.h"
 #include "Vehiculo.h"
 
-Conductor::Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::list <TipoLibreta> libs)
+Conductor::Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::map<TipoLibreta, bool> libs)
     : Usuario(nickname, nombre, contrasena, email) {
     this->libretas = libs;
 };
 
 Conductor::~Conductor() {};
 
-std::list<TipoLibreta> Conductor::getLibretas() {
+std::map<TipoLibreta, bool> Conductor::getLibretas() {
     return this->libretas;
 }
 
@@ -21,13 +21,9 @@ void Conductor::agregarVehiculo(Vehiculo* vehiculo) {
 };
 
 bool Conductor::libretaValida(TipoVehiculo tipo) {
-
-    for (const auto& libreta : libretas) {
-        if ((tipo == TipoVehiculo::Auto && (libreta == TipoLibreta::AutoProfesional || libreta == TipoLibreta::AutoAmateur)) ||
-            (tipo == TipoVehiculo::Moto && (libreta == TipoLibreta::MotoProfesional || libreta == TipoLibreta::MotoAmateur))) {
+    if (((tipo == Auto && (libretas[AutoProfesional] || libretas[AutoAmateur])) || (tipo == Moto && (libretas[MotoProfesional] || libretas[MotoAmateur])))) {
             return true;
         }
-    }
     return false;
 }
 

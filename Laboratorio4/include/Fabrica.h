@@ -1,7 +1,7 @@
 #ifndef FABRICA_H
 #define FABRICA_H
 
-#include "IControladorFechaActual.h"
+#include "interface/IControladorFechaActual.h"
 
 class IControladorUsuarios;
 class IControladorViajes;
@@ -13,7 +13,6 @@ class ControladorViajes;
 class ControladorVehiculos;
 
 
-class IControladorViajes;
 
 class Fabrica {
 private:
@@ -23,7 +22,6 @@ private:
 
 public:
     static Fabrica * getInstance();
-
     IControladorFechaActual* getIControladorFechaActual();
     IControladorUsuarios* getIControladorUsuarios();
     IControladorViajes* getIControladorViajes();

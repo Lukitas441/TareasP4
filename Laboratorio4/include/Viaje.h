@@ -7,6 +7,7 @@
 #include "DTConsultaViaje.h"
 #include <string>
 #include <set>
+#include <list>
 
 class Reserva;
 class Vehiculo;
@@ -43,7 +44,7 @@ public:
     bool asientosCheck(int asientos);
     DTConsultaViaje constructorDTConsultaViaje(int asientos);
     bool findPasajero(std::string nickname);
-    DTUsuarioViaje getUsuarioRes(std::string nickname);
+    std::list<DTUsuarioViaje*> getUsuarioRes();
     void addRese(Reserva* reserva);    
 
 };

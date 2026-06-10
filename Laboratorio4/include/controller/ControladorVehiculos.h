@@ -1,7 +1,7 @@
 #ifndef CONTROLADORVEHICULOS_H
 #define CONTROLADORVEHICULOS_H
 
-#include "interface/IControladorVehiculos.h"
+#include "../include/interface/IControladorVehiculos.h"
 #include "DTVehiculosConductor.h"
 #include "DTFecha.h"
 #include <list>
@@ -11,10 +11,12 @@
 
 
 class ControladorVehiculos : public IControladorVehiculos {
+private:
+    static ControladorVehiculos* instancia;
+    ControladorVehiculos();
 
 public:
-
-    ControladorVehiculos();
+    static ControladorVehiculos* getInstance();
     ~ControladorVehiculos();
 
     std::list<DTVehiculosConductor> ListarVehiculosConductor(

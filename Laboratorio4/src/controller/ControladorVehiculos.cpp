@@ -6,9 +6,17 @@
 
 
 
+ControladorVehiculos* ControladorVehiculos::instancia = nullptr;
+
 ControladorVehiculos::ControladorVehiculos() {};
 ControladorVehiculos::~ControladorVehiculos() {};
 
+ControladorVehiculos* ControladorVehiculos::getInstance() {
+    if (instancia == nullptr)
+        instancia = new ControladorVehiculos();
+    return instancia;
+}
+//Lista de DTVehiculosConductor 
 std::list<DTVehiculosConductor> ControladorVehiculos::ListarVehiculosConductor(std::string nickname) {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
     Conductor* c = dynamic_cast<Conductor*>(mu->getUsuario(nickname));
@@ -22,21 +30,24 @@ std::list<DTVehiculosConductor> ControladorVehiculos::ListarVehiculosConductor(s
 
 bool ControladorVehiculos::AltaViaje(std::string matricula, DTFecha fecha, std::string origen, std::string destino, int asientos, float precio) {
     ManejadorVehiculos* mv = ManejadorVehiculos::getInstance();
-    Vehiculo * v = mv->getVehiculo(matricula);
+    Vehiculo* v = mv->getVehiculo(matricula);
     if (v == nullptr) {
         return false;
     }
-    bool hayViajesFecha;
+    bool hayViajesFecha = false;
     int capacidad = v->getCapacidad();
-    if (capacidad >= asientos) {hayViajesFecha = v->hayViajesConductor(fecha);}
+    if (capacidad >= asientos) {
+        hayViajesFecha = v->hayViajesConductor(fecha);
+    }
     
     ManejadorViajes* mvi = ManejadorViajes::getInstance();
     if (capacidad >= asientos && !hayViajesFecha) {
-        Viaje cvi =  mvi->crearViaje(fecha, origen, destino, asientos, precio, v);
-        mvi->agregarViaje(&cvi);
-        v->addViaje(&cvi);
+        Viaje* cvi = mvi->crearViaje(fecha, origen, destino, asientos, precio, v);
+        mvi->agregarViaje(cvi);
+        v->addViaje(cvi);
         return true;
     }
     return false;
 };
+
 

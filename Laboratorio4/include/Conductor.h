@@ -6,6 +6,7 @@
 #include "DTListarViaje.h"
 #include "DTUsuarioViaje.h"
 #include <list>
+#include <map>
 #include <iostream>
 #include <string>
 #include "DTFecha.h"
@@ -15,13 +16,13 @@
 class Vehiculo;
 class Conductor : public Usuario {
 private:
-    std::list<TipoLibreta> libretas;
+    std::map<TipoLibreta, bool> libretas;
     std::list<Vehiculo*> vehiculos;
 public:
-    Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::list <TipoLibreta> libs);
+    Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::map<TipoLibreta, bool> libs);
     ~Conductor();
     void agregarVehiculo(Vehiculo* vehiculo);
-    std::list<TipoLibreta> getLibretas();
+    std::map<TipoLibreta, bool> getLibretas();
     std::list<Vehiculo*> getVehiculos();
     bool libretaValida(TipoVehiculo tipo);
     std::list<DTListarViaje> getViajesTotales();

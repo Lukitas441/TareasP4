@@ -5,6 +5,7 @@
 #include "DTFecha.h"
 #include "DTUsuarioViaje.h"
 
+
 class Pasajero;
 class Viaje;
 
@@ -17,14 +18,14 @@ private:
     Pasajero *pasajero; 
 
 public:
-    Reserva(int asientosReservados, Pasajero *pasajero, DTFecha fecha);
+    Reserva(int asientosReservados, Pasajero *pasajero, DTFecha fecha, Viaje *viaje);
     ~Reserva();
 
     int getAsientos();
     DTFecha getFecha();
     Viaje *getViaje();
     Pasajero *getPasajero();
-    DTUsuarioViaje getPasajeroReserva();
+    DTUsuarioViaje* getPasajeroRes();
 };
 
 #endif

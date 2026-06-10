@@ -28,5 +28,10 @@ std::list<DTListarViaje> Pasajero::getViajesTotales() {
         viajes.push_back(reserva->getViaje()->getDatosViaje());
     }
     return viajes;
+};
+
+DTUsuarioViaje* Pasajero::getDatosPasajero() {
+    DTUsuarioViaje* dtp = new DTUsuarioViaje(this->nickname, TipoUsuario::pasajero);
+    return dtp;
 }
 

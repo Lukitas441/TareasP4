@@ -17,6 +17,7 @@ public:
 
     static ManejadorVehiculos* getInstance();
 
+    void agregarVehiculo(Vehiculo* vehiculo);
     Vehiculo* getVehiculo(std::string matricula);
 
     std::set<Vehiculo*> getVehiculos();

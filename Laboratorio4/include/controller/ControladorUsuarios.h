@@ -5,6 +5,7 @@
 #include "TipoVehiculo.h"
 #include "../include/interface/IControladorUsuarios.h"
 #include <set>
+#include <map>
 #include <string>
 
 class DTListarViaje;
@@ -12,13 +13,15 @@ class DTUsuario;
 class Vehiculo;
 class Pasajero;
 class Conductor;
+class Usuario;
 
 class ControladorUsuarios : public IControladorUsuarios {
-
+private:
+    static ControladorUsuarios* instancia;
+    ControladorUsuarios();
 
 public:
-
-    ControladorUsuarios(); // constructor
+    static ControladorUsuarios* getInstance();
     ~ControladorUsuarios(); // destructor
 
     bool altaPasajero(
@@ -35,7 +38,7 @@ public:
         std::string nombre,
         std::string contrasena,
         std::string email,
-        std::list<TipoLibreta> libretas
+        std::map<TipoLibreta, bool> libretas
     ) override;
 
     int registrarVehiculo(
@@ -47,10 +50,13 @@ public:
     TipoVehiculo tipo
     ) override;
 
+    Usuario* getUsuario(std::string nickname) override;
+
     std::list<DTUsuario> listarUsuarios() override;
 
     std::list<DTUsuario> listarPasajeros() override;
 
+    std::list<DTListarViaje> listarViajes() override;
     std::list<DTListarViaje> listarViajes(std::string nickname) override;
 
     bool calificarUsuario(
