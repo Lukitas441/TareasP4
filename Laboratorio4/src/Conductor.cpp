@@ -21,8 +21,7 @@ void Conductor::agregarVehiculo(Vehiculo* vehiculo) {
 };
 
 bool Conductor::libretaValida(TipoVehiculo tipo) {
-    if ((tipo == Auto && (libretas[AutoProfesional] || libretas[AutoAmateur]) ||
-        tipo == Moto && (libretas[MotoProfesional] || libretas[MotoAmateur]))) {
+    if (((tipo == Auto && (libretas[AutoProfesional] || libretas[AutoAmateur])) || (tipo == Moto && (libretas[MotoProfesional] || libretas[MotoAmateur])))) {
             return true;
         }
     return false;
