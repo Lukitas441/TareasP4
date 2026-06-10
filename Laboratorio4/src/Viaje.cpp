@@ -104,9 +104,3 @@ DTUsuarioViaje  Viaje::getUsuarioRes(std::string nickname) {
 void Viaje::addRese(Reserva* reserva) {
     this->reservas.insert(reserva);
 }
-
-
-
-
-
-
