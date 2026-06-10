@@ -72,7 +72,7 @@ DTConductor Vehiculo::getInfoConductor(){
     return dtc;
 };
 
-DTUsuarioViaje Vehiculo::getConductorVehiculo(){
+DTUsuarioViaje * Vehiculo::getConductorVehiculo(){
    return this->conductor->getDatosConductor();
 };
 

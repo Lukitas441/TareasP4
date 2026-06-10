@@ -57,8 +57,8 @@ DTListarViaje Viaje::getDatosViaje() {
     return dtlv;
 }
 
-DTUsuarioViaje Viaje::getConductorViaje() {
-    DTUsuarioViaje dtuv = this->vehiculo->getConductorVehiculo();
+DTUsuarioViaje * Viaje::getConductorViaje() {
+    DTUsuarioViaje *dtuv = this->vehiculo->getConductorVehiculo();
     return dtuv;
 }
 

@@ -76,6 +76,7 @@ std::list<DTUsuarioViaje*> ControladorViajes::listarUsuariosViaje(int codigo) {
   if (viaje != nullptr) {
     resultado.splice(resultado.end(), viaje->getUsuarioRes());
   }
+  resultado.insert(resultado.end(), viaje->getConductorViaje());
   return resultado;
 };
 

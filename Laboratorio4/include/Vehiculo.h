@@ -43,7 +43,7 @@ public:
     std::list<DTListarViaje> getDTViajes();
     DTVehiculo getInfoVehiculo();
     DTConductor getInfoConductor();
-    DTUsuarioViaje getConductorVehiculo();
+    DTUsuarioViaje *getConductorVehiculo();
     bool hayViajesConductor(DTFecha fecha);
     bool hayViajesFecha(DTFecha fecha);
     DTVehiculosConductor getDTVehiculoConductor();

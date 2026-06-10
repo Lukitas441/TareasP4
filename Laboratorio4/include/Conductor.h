@@ -26,7 +26,7 @@ public:
     std::list<Vehiculo*> getVehiculos();
     bool libretaValida(TipoVehiculo tipo);
     std::list<DTListarViaje> getViajesTotales();
-    DTUsuarioViaje getDatosConductor();
+    DTUsuarioViaje *getDatosConductor();
     bool hayViajesFechaConductor (DTFecha fecha);
     std::list<DTVehiculosConductor> listarVehiculos();
     

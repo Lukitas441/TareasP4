@@ -39,7 +39,7 @@ public:
     Vehiculo* getVehiculo();
 
     DTListarViaje getDatosViaje();
-    DTUsuarioViaje getConductorViaje();
+    DTUsuarioViaje *getConductorViaje();
     bool viajeCoincide(DTFecha fecha, std::string origen, std::string destino);
     bool asientosCheck(int asientos);
     DTConsultaViaje constructorDTConsultaViaje(int asientos);
