@@ -408,34 +408,61 @@ void Menu::calificarUsuario() {
 }
 
 void Menu::eliminarViaje() {
-    //TODO: Coleccion de DTListarViaje = controlador->listarViajes()
-    //TODO: Recorrer la coleccion y mostrar "> Codigo: xx, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Conductor: aaa"
+    IControladorUsuarios* icu = Fabrica::getInstance()->getIControladorUsuarios();
+    std::list<DTListarViaje> viajes = icu->listarViajes();
+    for (DTListarViaje& v : viajes) {
+        DTFecha f = v.getFecha();
+        std::cout << "> Codigo: " << v.getCodigo() << ", Fecha: " << f.getDia() << "/" << f.getMes() << "/" << f.getAnio()
+                  << ", Origen: " << v.getOrigen() << ", Destino: " << v.getDestino()
+                  << ", Conductor: " << v.getNicknameConductor() << std::endl;
+    }
+
     int codigo;
     std::cout << "Ingrese codigo del viaje a eliminar: "; std::cin >> codigo;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
     bool codigoValido = false;
-    //TODO: Validar codigo en listado
+    for (DTListarViaje& v : viajes) {
+        if (v.getCodigo() == codigo) { codigoValido = true; break; }
+    }
     if (!codigoValido) {
         std::cout << "Codigo invalido.\n";
         return;
     }
 
-    //TODO: DTDetalleViaje = controlador->detalleViaje(codigo)
-    //TODO: Mostrar detalle del viaje siguiendo el formato
-    //>> Viaje <<
-    //--- Matrícula: aa, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Capacidad: bbb, Precio por asiento: qqq
-    //>> Vehiculo <<
-    //--- Matricula: mm, Capacidad: aa, Marca: bbb, Modelo: ccc, Tipo: ddd
-    //>> Reservas <<
-    //--- AsientosReservados: xx, Fecha: dd/mm/aaaa, Pasajero: aaa
+    IControladorViajes* icv = Fabrica::getInstance()->getIControladorViajes();
+    DTDetalleViaje detalle = icv->detalleViaje(codigo);
+    DTFecha fViaje = detalle.getFecha();
+    std::cout << ">> Viaje <<\n";
+    std::cout << "--- Matricula: " << detalle.getVehiculo().getMatricula()
+              << ", Fecha: " << fViaje.getDia() << "/" << fViaje.getMes() << "/" << fViaje.getAnio()
+              << ", Origen: " << detalle.getOrigen() << ", Destino: " << detalle.getDestino()
+              << ", Capacidad: " << detalle.getAsientosPublicados()
+              << ", Precio por asiento: " << detalle.getPrecio() << "\n";
+
+    DTDetalleVehiculo dv = detalle.getVehiculo();
+    std::cout << ">> Vehiculo <<\n";
+    std::cout << "--- Matricula: " << dv.getMatricula()
+              << ", Capacidad: " << dv.getCapacidad()
+              << ", Marca: " << dv.getMarca()
+              << ", Modelo: " << dv.getModelo()
+              << ", Tipo: " << (dv.getTipo() == Auto ? "Auto" : "Moto") << "\n";
+
+    std::cout << ">> Reservas <<\n";
+    for (DTDetalleReserva& r : detalle.getReservas()) {
+        DTFecha fRes = r.getFecha();
+        std::cout << "--- AsientosReservados: " << r.getAsientosReservados()
+                  << ", Fecha: " << fRes.getDia() << "/" << fRes.getMes() << "/" << fRes.getAnio()
+                  << ", Pasajero: " << r.getPasajero() << "\n";
+    }
+
     int confirmar;
     std::cout << "¿Confirmar eliminacion? (1: Si, 0: No): "; std::cin >> confirmar;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     if (confirmar == 1) {
-        //TODO: controlador->eliminarViaje()
+        icv->eliminarViaje(codigo);
         std::cout << "Viaje eliminado exitosamente.\n";
     } else {
-        //TODO: controlador->cancelarEliminarViaje()
         std::cout << "Eliminacion cancelada.\n";
     }
 }

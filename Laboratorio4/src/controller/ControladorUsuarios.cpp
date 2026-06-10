@@ -58,6 +58,16 @@ std::list<DTUsuario> ControladorUsuarios::listarUsuarios() {
     return resultado;
 };
 
+std::list<DTListarViaje> ControladorUsuarios::listarViajes() {
+    ManejadorViajes* mv = ManejadorViajes::getInstance();
+    std::map<int, Viaje*> viajes = mv->getViajes();
+    std::list<DTListarViaje> resultado;
+    for (const auto& pair : viajes) {
+        resultado.push_back(pair.second->getDatosViaje());
+    }
+    return resultado;
+};
+
 std::list<DTUsuario> ControladorUsuarios::listarPasajeros() {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
     std::set<Pasajero*> pasajeros = mu->getPasajeros();

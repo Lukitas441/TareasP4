@@ -3,6 +3,7 @@
 #include "../include/manejador/ManejadorViajes.h"
 #include "../include/manejador/ManejadorVehiculos.h"
 #include "Reserva.h"
+#include "Vehiculo.h"
 #include "../include/controller/ControladorFechaActual.h"
 
 
@@ -53,6 +54,22 @@ bool ControladorViajes::generarReserva(std::string nicknamePasajero, int codigoV
     }
   }
   return false;
+};
+
+DTDetalleViaje ControladorViajes::detalleViaje(int codigo) {
+  ManejadorViajes *mv = ManejadorViajes::getInstance();
+  Viaje *viaje = mv->getViaje(codigo);
+
+  Vehiculo *v = viaje->getVehiculo();
+  DTDetalleVehiculo dtv(v->getMatricula(), v->getCapacidad(), v->getMarca(), v->getModelo(), v->getTipo());
+
+  std::vector<DTDetalleReserva> reservas;
+  for (Reserva* r : viaje->getReservas()) {
+    reservas.push_back(DTDetalleReserva(r->getAsientos(), r->getFecha(), r->getPasajero()->getNickname()));
+  }
+
+  return DTDetalleViaje(viaje->getCodigo(), viaje->getFecha(), viaje->getOrigen(), viaje->getDestino(),
+                        viaje->getAsientosPublicados(), viaje->getPrecio(), dtv, reservas);
 };
 
 void ControladorViajes::eliminarViaje(int codigo) {
