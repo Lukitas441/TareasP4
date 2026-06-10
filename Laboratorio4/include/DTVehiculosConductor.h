@@ -6,14 +6,14 @@
 class DTVehiculosConductor {
 private:
   std::string matricula;
-  std::string modelo;
+  std::string marca;
   int capacidad;
 
 public:
   DTVehiculosConductor(std::string matricula, std::string marca, int capacidad);
 
   std::string getMatricula() const;
-  std::string getModelo() const;
+  std::string getMarca() const;
   int getCapacidad() const; 
 };
 

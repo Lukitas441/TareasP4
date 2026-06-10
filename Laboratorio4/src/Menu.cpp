@@ -212,7 +212,7 @@ void Menu::altaViaje() {
     for (const auto& v : lista) {
     std::cout << "Matrícula: " << v.getMatricula()
               << ", Capacidad: " << v.getCapacidad()
-              << ", Modelo: " << v.getModelo()
+              << ", Marca: " << v.getMarca()
               << "\n";
         }
 
