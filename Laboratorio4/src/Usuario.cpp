@@ -57,7 +57,7 @@ float Usuario::calificacionPromedio()
         sumaPuntajes += (*it)->getPuntaje();
     }
 
-    return sumaPuntajes / calificacionesRecibidas.size();
+    return (float)sumaPuntajes / calificacionesRecibidas.size();
 }
 
 // chequear pq distinto del Diagrama d Comunicacion

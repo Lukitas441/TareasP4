@@ -44,6 +44,7 @@ public:
 
     virtual std::list<DTUsuario> listarUsuarios() = 0;
 
+    virtual std::list<DTListarViaje> listarViajes() = 0;
     virtual std::list<DTListarViaje> listarViajes(std::string nickname) = 0;
 
     virtual bool calificarUsuario(std::string nicknameCalificado, int calificacion) = 0;

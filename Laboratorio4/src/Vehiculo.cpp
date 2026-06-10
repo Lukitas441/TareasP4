@@ -94,6 +94,6 @@ DTVehiculosConductor Vehiculo::getDTVehiculoConductor() {
     return dtvc;
 };
 
-void Vehiculo::asociarViaje(Viaje viaje) {
-    this->viajes.insert(&viaje);
+void Vehiculo::asociarViaje(Viaje* viaje) {
+    this->viajes.insert(viaje);
 };

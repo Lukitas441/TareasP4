@@ -56,6 +56,7 @@ public:
 
     std::list<DTUsuario> listarPasajeros() override;
 
+    std::list<DTListarViaje> listarViajes() override;
     std::list<DTListarViaje> listarViajes(std::string nickname) override;
 
     bool calificarUsuario(

@@ -11,6 +11,10 @@ ManejadorVehiculos* ManejadorVehiculos::getInstance() {
     return instance;
 };
 
+void ManejadorVehiculos::agregarVehiculo(Vehiculo* vehiculo) {
+    vehiculos[vehiculo->getMatricula()] = vehiculo;
+};
+
 Vehiculo* ManejadorVehiculos::getVehiculo(std::string matricula) {
     auto it = vehiculos.find(matricula);
     if (it != vehiculos.end()) {

@@ -34,7 +34,7 @@ bool ControladorVehiculos::AltaViaje(std::string matricula, DTFecha fecha, std::
     if (v == nullptr) {
         return false;
     }
-    bool hayViajesFecha;
+    bool hayViajesFecha = false;
     int capacidad = v->getCapacidad();
     if (capacidad >= asientos) {
         hayViajesFecha = v->hayViajesConductor(fecha);
@@ -42,9 +42,9 @@ bool ControladorVehiculos::AltaViaje(std::string matricula, DTFecha fecha, std::
     
     ManejadorViajes* mvi = ManejadorViajes::getInstance();
     if (capacidad >= asientos && !hayViajesFecha) {
-        Viaje cvi =  mvi->crearViaje(fecha, origen, destino, asientos, precio, v);
-        mvi->agregarViaje(&cvi);
-        v->addViaje(&cvi);
+        Viaje* cvi = mvi->crearViaje(fecha, origen, destino, asientos, precio, v);
+        mvi->agregarViaje(cvi);
+        v->addViaje(cvi);
         return true;
     }
     return false;

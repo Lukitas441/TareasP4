@@ -18,7 +18,7 @@ private:
     Pasajero *pasajero; 
 
 public:
-    Reserva(int asientosReservados, Pasajero *pasajero, DTFecha fecha);
+    Reserva(int asientosReservados, Pasajero *pasajero, DTFecha fecha, Viaje *viaje);
     ~Reserva();
 
     int getAsientos();
