@@ -46,7 +46,7 @@ bool ControladorViajes::generarReserva(std::string nicknamePasajero, int codigoV
         Pasajero *pasajeroSelect = dynamic_cast<Pasajero*>(mu->getUsuario(nicknamePasajero));
         ControladorFechaActual *mf = ControladorFechaActual::getInstance();
         DTFecha fecha =  mf->getFecha();
-        Reserva *rese = new Reserva(cantAsientos, pasajeroSelect ,fecha);
+        Reserva *rese = new Reserva(cantAsientos, pasajeroSelect, fecha, viaje);
         viaje->addRese(rese);
         pasajeroSelect->addReserva(rese);
         return true;
@@ -81,9 +81,9 @@ void ControladorViajes::eliminarViaje(int codigo) {
 std::list<DTUsuarioViaje*> ControladorViajes::listarUsuariosViaje(int codigo) {
   ManejadorViajes *mv = ManejadorViajes::getInstance();
   Viaje *viaje = mv->getViaje(codigo);
-  std::list<DTUsuarioViaje*> resultado = std::list<DTUsuarioViaje*>();
+    std::list<DTUsuarioViaje*> resultado = std::list<DTUsuarioViaje*>();
   if (viaje != nullptr) {
-    resultado.merge(viaje->getUsuarioRes());
+    resultado.splice(resultado.end(), viaje->getUsuarioRes());
   }
   return resultado;
 };
@@ -92,15 +92,16 @@ std::list<DTUsuarioViaje*> ControladorViajes::listarUsuariosViaje(int codigo) {
 bool ControladorViajes::altaViaje(std::string matricula, DTFecha fecha, std::string origen, std::string destino, int asientos, float precio) {
   ManejadorVehiculos *mv = ManejadorVehiculos::getInstance();
   Vehiculo *v = mv->getVehiculo(matricula);
-  bool hayViajesFecha;
+  bool hayViajesFecha = false;
   int capacidad = v->getCapacidad();
   if (capacidad>=asientos) {
     hayViajesFecha = v->hayViajesConductor(fecha);
   }
   ManejadorViajes *mvi = ManejadorViajes::getInstance();
   if (capacidad>=asientos && !hayViajesFecha) { 
-    Viaje cvi= mvi->crearViaje(fecha, origen, destino, asientos, precio, v);
-    v->asociarViaje(cvi);
+    Viaje* cvi = mvi->crearViaje(fecha, origen, destino, asientos, precio, v);
+    mvi->agregarViaje(cvi);
+    v->addViaje(cvi);
     return true;
   }
   return false;

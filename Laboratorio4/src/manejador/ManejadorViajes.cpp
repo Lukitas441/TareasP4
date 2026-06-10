@@ -4,6 +4,8 @@
 int codigoViaje = 0;
 
 
+int codigoViajeActual = 0;
+
 ManejadorViajes* ManejadorViajes::instance = nullptr;
 ManejadorViajes::ManejadorViajes() {};
 ManejadorViajes* ManejadorViajes::getInstance() {
@@ -35,12 +37,20 @@ void ManejadorViajes::eliminarViaje(int codigo) {
     viajes.erase(codigo);
 }
 
-Viaje ManejadorViajes::crearViaje(DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo* vehiculo) {
+Viaje* ManejadorViajes::crearViaje(DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo* vehiculo) {
     int codigo =  ManejadorViajes::getCodigoViaje();
-    Viaje viaje = Viaje (codigo ,fecha, origen, destino, asientosPublicados, precio, vehiculo);
+    Viaje* viaje = new Viaje(codigo, fecha, origen, destino, asientosPublicados, precio, vehiculo);
     return viaje;
 };
 
 int ManejadorViajes::getCodigoViaje() {
     return ++codigoViaje;
+}
+
+void ManejadorViajes::setCodigoViajeActual(int codigo) {
+    codigoViajeActual = codigo;
+}
+
+int ManejadorViajes::getCodigoViajeActual() {
+    return codigoViajeActual;
 }

@@ -1,6 +1,7 @@
 #include "../include/controller/ControladorUsuarios.h"
 #include "../include/manejador/ManejadorUsuarios.h"
 #include "../include/manejador/ManejadorViajes.h"
+#include "../include/manejador/ManejadorVehiculos.h"
 #include "../include/controller/ControladorFechaActual.h"
 #include "Viaje.h"
 #include "Pasajero.h"
@@ -100,6 +101,7 @@ int ControladorUsuarios::registrarVehiculo(std::string nickname, std::string mat
     if ((matValida) && (c->libretaValida(tipo))) {
         Vehiculo* vehiculo = new Vehiculo(matricula, capacidad, marca, modelo, tipo, c);
         c->agregarVehiculo(vehiculo);
+        ManejadorVehiculos::getInstance()->agregarVehiculo(vehiculo);
         return 0;
     } else {
         return -2;
@@ -111,12 +113,12 @@ bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int c
     ManejadorViajes* mv = ManejadorViajes::getInstance();
     Usuario* u = mu->getUsuario(nicknameCalificado);
     std::string nicknameCalificador = mu->getNicknameCalificador();
-    int codigoViaje = mv->getCodigoViaje();
+    int codigoViaje = mv->getCodigoViajeActual();
 
-    if (u != nullptr) {
+    if (u != nullptr && codigoViaje > 0) {
         bool existe = u->existeCalificador(nicknameCalificador, codigoViaje);
         Usuario *calificador = mu->getUsuario(nicknameCalificador);
-        if (!existe){
+        if (!existe && calificador != nullptr){
             ControladorFechaActual* mf = ControladorFechaActual::getInstance();
             DTFecha fecha =  mf->getFecha();
             Calificacion * calif = new Calificacion(fecha, calificacion, calificador);

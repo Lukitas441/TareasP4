@@ -4,10 +4,11 @@
 #include "../include/manejador/ManejadorUsuarios.h"
 
 
-Reserva::Reserva(int asientosReservados,Pasajero * pasajero ,DTFecha fecha) {
+Reserva::Reserva(int asientosReservados, Pasajero *pasajero, DTFecha fecha, Viaje *viaje) {
     this->asientosReservados = asientosReservados;
     this->pasajero = pasajero;
     this->fecha = fecha;
+    this->viaje = viaje;
 }
 
 Reserva::~Reserva() {}

@@ -28,6 +28,7 @@ public:
     std::set<Pasajero*> getPasajeros();
     std::set<Conductor*> getConductores();
     std::string getNicknameCalificador();
+    void setNicknameCalificador(std::string nickname);
 };
 
 #endif

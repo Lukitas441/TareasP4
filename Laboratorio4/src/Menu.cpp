@@ -12,6 +12,7 @@
 #include "../include/manejador/ManejadorViajes.h"
 #include "../include/manejador/ManejadorVehiculos.h"
 #include "../include/manejador/ManejadorUsuarios.h"
+#include "../include/Conductor.h"
 
 #include <limits>
 #include <iostream>
@@ -42,14 +43,18 @@ void Menu::altaUsuario() {
 
 
 
-    bool usuarioOk = false;
     IControladorUsuarios* ICU = Fabrica::getInstance()->getIControladorUsuarios();
+    bool usuarioOk = false;
 
     if (tipoUsuario == 1) {
         std::string ci;
         std::cout << "Ingrese CI: "; std::getline(std::cin, ci);
         IControladorUsuarios* icu = Fabrica::getInstance()->getIControladorUsuarios();
-        icu->altaPasajero(nickname,nombre,contrasena,email,ci);
+        if (icu->altaPasajero(nickname,nombre,contrasena,email,ci)) {
+            std::cout << "Pasajero registrado exitosamente.\n";
+        } else {
+            std::cout << "Error: el nickname ya existe.\n";
+        }
         
     } else if (tipoUsuario == 2) {
         
@@ -151,11 +156,9 @@ void Menu::altaUsuario() {
             std::cout << "Ingrese modelo: "; std::getline(std::cin, modelo);
             std::cout << "Ingrese tipo (0: Auto, 1: Moto): "; std::cin >> auxTipo;
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            int resultadoRegistrarVehiculo = -3;
-
             tipo = auxTipo <= 0 ? Auto : Moto;
 
-            resultadoRegistrarVehiculo = ICU->registrarVehiculo(nickname, matricula, capacidad, marca, modelo, tipo);
+            int resultadoRegistrarVehiculo = ICU->registrarVehiculo(nickname, matricula, capacidad, marca, modelo, tipo);
             
             if (resultadoRegistrarVehiculo == -1) {
                 std::cout << "Ya existe un vehiculo con esa matricula.\n";
@@ -163,6 +166,8 @@ void Menu::altaUsuario() {
                 std::cout << "El conductor no tiene la libreta necesaria para registrar ese vehiculo.\n";
             } else if (resultadoRegistrarVehiculo == 0) {
                 std::cout << "Vehiculo registrado exitosamente.\n";
+            } else {
+                std::cout << "Error al registrar vehiculo.\n";
             }
             std::cout << "¿Desea agregar otro vehiculo? (1: Si, 0: No): ";
             std::cin >> agregarVehiculo;
@@ -253,8 +258,7 @@ void Menu::altaViaje() {
 
     // A partir de la misma instancia de IControladorVehiculos llamo a AltaViaje   
     // y lo guardo en viajeOk
-    bool viajeOk = false; 
-    viajeOk = icv->AltaViaje(matricula, fecha, origen, destino, asientos, precio);
+    bool viajeOk = icv->AltaViaje(matricula, fecha, origen, destino, asientos, precio);
 
         // AltaViaje que me chekea si los datos estan corrector en especifico :
         // capacidad del auto < asientos => retorna false
@@ -310,8 +314,7 @@ void Menu::generarReserva() {
                   << ", PrecioTotal: " << v->getPrecioTotal() << std::endl;
     }
 
-    bool hayViajes = !viajes.empty();
-    if (!hayViajes) {
+    if (viajes.empty()) {
         std::cout << "No hay viajes disponibles.\n";
         return;
     }
@@ -326,6 +329,7 @@ void Menu::generarReserva() {
     }
     if (!codigoValido) {
         std::cout << "Codigo invalido.\n";
+        for (DTConsultaViaje* v : viajes) delete v;
         return;
     }
 
@@ -335,6 +339,8 @@ void Menu::generarReserva() {
     } else {
         std::cout << "Error al realizar la reserva.\n";
     }
+
+    for (DTConsultaViaje* v : viajes) delete v;
 }
 
 void Menu::calificarUsuario() {
@@ -398,6 +404,9 @@ void Menu::calificarUsuario() {
         std::cout << "Nickname invalido.\n";
         return;
     }
+
+    ManejadorUsuarios::getInstance()->setNicknameCalificador(nickname);
+    ManejadorViajes::getInstance()->setCodigoViajeActual(codigo);
 
     bool calificacionOk = icu->calificarUsuario(nicknameCalificado, calificacion);
     if (calificacionOk) {
