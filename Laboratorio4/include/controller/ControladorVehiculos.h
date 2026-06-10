@@ -11,12 +11,9 @@
 
 
 class ControladorVehiculos : public IControladorVehiculos {
-private:
-    static ControladorVehiculos* instancia;
-    ControladorVehiculos();
 
 public:
-    static ControladorVehiculos* getInstance();
+    ControladorVehiculos();
     ~ControladorVehiculos();
 
     std::list<DTVehiculosConductor> ListarVehiculosConductor(

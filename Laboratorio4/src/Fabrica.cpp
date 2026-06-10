@@ -1,5 +1,5 @@
 #include "../include/Fabrica.h"
-#include "../include/controller/ControladorFechaActual.h"
+#include "../include/manejador/ControladorFechaActual.h"
 #include "../include/controller/ControladorViajes.h"
 #include "../include/controller/ControladorUsuarios.h"
 #include "../include/controller/ControladorVehiculos.h"
@@ -25,13 +25,13 @@ IControladorFechaActual* Fabrica::getIControladorFechaActual() {
 };
 
 IControladorUsuarios* Fabrica::getIControladorUsuarios() {
-    return ControladorUsuarios::getInstance();
+    return new ControladorUsuarios();
 };
 
 IControladorViajes* Fabrica::getIControladorViajes() {
-    return ControladorViajes::getInstance();
+    return new ControladorViajes();
 };
 
 IControladorVehiculos* Fabrica::getIControladorVehiculos() {
-    return ControladorVehiculos::getInstance();
+    return new ControladorVehiculos();
 };

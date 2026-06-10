@@ -2,7 +2,7 @@
 #include "../include/manejador/ManejadorUsuarios.h"
 #include "../include/manejador/ManejadorViajes.h"
 #include "../include/manejador/ManejadorVehiculos.h"
-#include "../include/controller/ControladorFechaActual.h"
+#include "../include/manejador/ControladorFechaActual.h"
 #include "Viaje.h"
 #include "Pasajero.h"
 #include "Vehiculo.h"
@@ -10,16 +10,8 @@
 #include "Calificacion.h"
 #include "Usuario.h"
 
-ControladorUsuarios* ControladorUsuarios::instancia = nullptr;
-
 ControladorUsuarios::ControladorUsuarios() {};
 ControladorUsuarios::~ControladorUsuarios() {};
-
-ControladorUsuarios* ControladorUsuarios::getInstance() {
-    if (instancia == nullptr)
-        instancia = new ControladorUsuarios();
-    return instancia;
-}
 
 bool ControladorUsuarios::altaPasajero(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::string ci) {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();

@@ -4,19 +4,10 @@
 #include "../include/manejador/ManejadorVehiculos.h"
 #include "Reserva.h"
 #include "Vehiculo.h"
-#include "../include/controller/ControladorFechaActual.h"
-
-
-ControladorViajes* ControladorViajes::instancia = nullptr;
+#include "../include/manejador/ControladorFechaActual.h"
 
 ControladorViajes::ControladorViajes() {};
 ControladorViajes::~ControladorViajes() {};
-
-ControladorViajes* ControladorViajes::getInstance() {
-    if (instancia == nullptr)
-        instancia = new ControladorViajes();
-    return instancia;
-}
 
 std::set<DTConsultaViaje*> ControladorViajes::consultarViajes(DTFecha fecha, std::string origen, std::string destino, int asientos) {
   ManejadorViajes *mv = ManejadorViajes::getInstance();
