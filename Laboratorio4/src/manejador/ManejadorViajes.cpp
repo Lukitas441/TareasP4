@@ -1,9 +1,11 @@
 #include "../include/manejador/ManejadorViajes.h"
 #include "Viaje.h"
 
+int codigoViaje = 0;
+
+
 ManejadorViajes* ManejadorViajes::instance = nullptr;
 ManejadorViajes::ManejadorViajes() {};
-
 ManejadorViajes* ManejadorViajes::getInstance() {
     if (instance == nullptr) {
         instance = new ManejadorViajes();
@@ -40,7 +42,5 @@ Viaje ManejadorViajes::crearViaje(DTFecha fecha, std::string origen, std::string
 };
 
 int ManejadorViajes::getCodigoViaje() {
-    int codigo = codigoViaje + 1;
-    codigoViaje++;
-    return codigo;
+    return ++codigoViaje;
 }

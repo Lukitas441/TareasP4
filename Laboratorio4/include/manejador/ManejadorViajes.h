@@ -21,7 +21,6 @@ class ManejadorViajes {
 private:
     static ManejadorViajes * instance;
     std::map<int, Viaje*> viajes;
-    int codigoViaje;
 public:
     ManejadorViajes();
     static ManejadorViajes* getInstance();
@@ -32,5 +31,7 @@ public:
     Viaje crearViaje( DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo* vehiculo);
     int getCodigoViaje();
 };
+    extern int codigoViaje;
+
 
 #endif
