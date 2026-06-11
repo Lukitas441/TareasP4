@@ -546,6 +546,7 @@ void Menu::mostrarMenu() {
         std::cout << "Ingrese una opcion: ";
         std::cin >> opcion;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Opcion seleccionada: " << opcion << "\n";
 
         switch (opcion) {
             case 1:

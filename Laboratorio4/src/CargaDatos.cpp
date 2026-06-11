@@ -21,6 +21,7 @@ void CargaDatos::cargarDatos() {
     }
     
     // Aquí iría la lógica de carga de datos harcodeados
+    
     std::cout << "Cargando datos harcodeados del sistema...\n";
     // ... (inserción de usuarios, vehículos, viajes, reservas) ...
     

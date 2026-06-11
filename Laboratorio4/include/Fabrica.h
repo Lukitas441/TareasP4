@@ -26,7 +26,7 @@ public:
     static Fabrica * getInstance();
     IControladorFechaActual* getIControladorFechaActual();
     IControladorUsuarios* getIControladorUsuarios();
-    IControladorViajes* getIControladorViajes();
+    IControladorViajes *getIControladorViajes();
     IControladorVehiculos* getIControladorVehiculos();
 };
 

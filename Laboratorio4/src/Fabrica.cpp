@@ -24,14 +24,14 @@ IControladorFechaActual* Fabrica::getIControladorFechaActual() {
     return ControladorFechaActual::getInstance();
 };
 
-IControladorUsuarios* Fabrica::getIControladorUsuarios() {
+IControladorUsuarios *Fabrica::getIControladorUsuarios() {
     return new ControladorUsuarios();
 };
 
-IControladorViajes* Fabrica::getIControladorViajes() {
+IControladorViajes *Fabrica::getIControladorViajes() {
     return new ControladorViajes();
 };
 
-IControladorVehiculos* Fabrica::getIControladorVehiculos() {
-    return new ControladorVehiculos();
+IControladorVehiculos *Fabrica::getIControladorVehiculos() {
+    return  new ControladorVehiculos();
 };
