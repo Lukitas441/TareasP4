@@ -9,6 +9,7 @@
 #include "Conductor.h"
 #include "Calificacion.h"
 #include "Usuario.h"
+#include "Reserva.h"
 
 ControladorUsuarios::ControladorUsuarios() {};
 ControladorUsuarios::~ControladorUsuarios() {};
@@ -110,21 +111,40 @@ bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int c
     if (nicknameCalificador == nicknameCalificado) {
         return false;
     };
-
+    
     if (u != nullptr && codigoViaje > 0) {
         
         bool existe = u->existeCalificador(nicknameCalificador, codigoViaje);
-        Usuario *calificador = mu->getUsuario(nicknameCalificador);
-
-        if (!existe && calificador != nullptr){
+        std::cout << "existe calificador: " << existe << std::endl;
+        Usuario *calificador = (mu->getUsuario(nicknameCalificador));
+        
+        if (!existe && calificador != nullptr) {
             ControladorFechaActual* mf = ControladorFechaActual::getInstance();
             DTFecha fecha =  mf->getFecha();
-            Calificacion * calif = new Calificacion(fecha, calificacion, calificador);
-            u->addCalif(calif);
+            Viaje* viaje = mv->getViaje(codigoViaje);
+            Calificacion * calif;
+            Reserva* reservaCal = nullptr;
+            
+            for (Reserva* r : viaje->getReservas()) {
+                if (dynamic_cast<Conductor*>(calificador) != nullptr) {    
+                    if (r->getPasajero()->getNickname() == nicknameCalificado){
+                        reservaCal = r;
+                        break;
+                    }
+                }
+                else {
+                    if (r->getPasajero()->getNickname() == nicknameCalificador){
+                        reservaCal = r;
+                        break;
+                    }
+                }
+            }
+
+            calif = new Calificacion(fecha, calificacion, calificador, reservaCal); 
+            u->addCalif(calif); 
             return true;
         }
     }
-
     return false;
 };
 

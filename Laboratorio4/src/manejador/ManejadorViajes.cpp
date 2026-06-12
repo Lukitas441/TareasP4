@@ -2,8 +2,6 @@
 #include "Viaje.h"
 
 int codigoViaje = 0;
-
-
 int codigoViajeActual = 0;
 
 ManejadorViajes* ManejadorViajes::instance = nullptr;

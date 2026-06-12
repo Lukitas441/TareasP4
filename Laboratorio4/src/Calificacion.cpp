@@ -3,11 +3,11 @@
 #include "Reserva.h"
 #include "Viaje.h"
 
-Calificacion::Calificacion(DTFecha fecha, int puntaje, Usuario* usuarioCalificador) {
+Calificacion::Calificacion(DTFecha fecha, int puntaje, Usuario* usuarioCalificador, Reserva* reserva) {
     this->fecha = fecha;
     this->puntaje = puntaje;
     this->usuarioCalificador = usuarioCalificador;
-    this->reserva = nullptr;
+    this->reserva = reserva;
 }
 
 Calificacion::~Calificacion() {}
