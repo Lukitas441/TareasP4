@@ -106,13 +106,16 @@ bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int c
     Usuario* u = mu->getUsuario(nicknameCalificado);
     std::string nicknameCalificador = mu->getNicknameCalificador();
     int codigoViaje = mv->getCodigoViajeActual();
+    
     if (nicknameCalificador == nicknameCalificado) {
         return false;
     };
-    
+
     if (u != nullptr && codigoViaje > 0) {
+        
         bool existe = u->existeCalificador(nicknameCalificador, codigoViaje);
         Usuario *calificador = mu->getUsuario(nicknameCalificador);
+
         if (!existe && calificador != nullptr){
             ControladorFechaActual* mf = ControladorFechaActual::getInstance();
             DTFecha fecha =  mf->getFecha();
@@ -121,6 +124,7 @@ bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int c
             return true;
         }
     }
+
     return false;
 };
 
