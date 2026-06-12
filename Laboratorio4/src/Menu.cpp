@@ -19,7 +19,7 @@
 #include <set>
 #include <list>
 
-void Menu::altaUsuario() {
+void Menu::altaUsuario(IControladorUsuarios* ICU) {
     int tipoUsuario;
     std::cout << "1. Alta Pasajero\n";
     std::cout << "2. Alta Conductor\n";
@@ -38,10 +38,6 @@ void Menu::altaUsuario() {
     std::cout << "Ingrese contrasena: "; std::getline(std::cin, contrasena);
     std::cout << "Ingrese email: "; std::getline(std::cin, email);
 
-
-
-
-    IControladorUsuarios* ICU = Fabrica::getInstance()->getIControladorUsuarios();
     bool usuarioOk = false;
 
     if (tipoUsuario == 1) {
@@ -175,7 +171,7 @@ void Menu::altaUsuario() {
     }
 }
 
-void Menu::altaViaje() {
+void Menu::altaViaje(IControladorVehiculos* icv) {
     std::string nickname, 
                 matricula, 
                 origen, 
@@ -200,9 +196,6 @@ void Menu::altaViaje() {
 
     // In Nickname
     std::cout << "Ingrese nickname del conductor: "; std::getline(std::cin, nickname);
-     
-    // Inicializo una instancia de fabrica hacia IControladorVehiculo
-    IControladorVehiculos* icv = Fabrica::getInstance()->getIControladorVehiculos();
 
     // Guardo en lista la lista de los DTVehiculos 
     std::list<DTVehiculosConductor> lista = icv->ListarVehiculosConductor(nickname);
@@ -276,8 +269,7 @@ void Menu::altaViaje() {
 
 }
 
-void Menu::generarReserva() {
-    IControladorUsuarios* icu = Fabrica::getInstance()->getIControladorUsuarios();
+void Menu::generarReserva(IControladorUsuarios* icu) {
     std::list<DTUsuario> pasajeros = icu->listarPasajeros();
     for (DTUsuario& p : pasajeros) {
         std::cout << "> " << p.getNickname() << std::endl;
@@ -342,7 +334,7 @@ void Menu::generarReserva() {
     for (DTConsultaViaje* v : viajes) delete v;
 }
 
-void Menu::calificarUsuario() {
+void Menu::calificarUsuario(IControladorUsuarios* icu) {
 
 
         /*El caso de uso comienza cuando se desea realizar una calificación para un
@@ -366,7 +358,6 @@ void Menu::calificarUsuario() {
     */
     
         //pido fabrica interface controlador usuarios
-        IControladorUsuarios* icu = Fabrica::getInstance()->getIControladorUsuarios();
 
         // guardo en usuarios una lista icu que viene desde listarUsuarios metodos
         std::list<DTUsuario> usuarios = icu->listarUsuarios();
@@ -520,8 +511,7 @@ void Menu::calificarUsuario() {
 }
 
 
-void Menu::eliminarViaje() {
-    IControladorUsuarios* icu = Fabrica::getInstance()->getIControladorUsuarios();
+void Menu::eliminarViaje(IControladorUsuarios* icu, IControladorViajes* icv) {
     std::list<DTListarViaje> viajes = icu->listarViajes();
     for (DTListarViaje& v : viajes) {
         DTFecha f = v.getFecha();
@@ -543,7 +533,6 @@ void Menu::eliminarViaje() {
         return;
     }
 
-    IControladorViajes* icv = Fabrica::getInstance()->getIControladorViajes();
     DTDetalleViaje detalle = icv->detalleViaje(codigo);
     DTFecha fViaje = detalle.getFecha();
     std::cout << ">> Viaje <<\n";
@@ -580,16 +569,13 @@ void Menu::eliminarViaje() {
     }
 }
 
-void Menu::administrarFechaActual() {
+void Menu::administrarFechaActual(IControladorFechaActual* controladorFecha) {
     int opFecha;
     std::cout << "1. Ver fecha actual\n";
     std::cout << "2. Modificar fecha actual\n";
     std::cout << "Seleccione: ";
     std::cin >> opFecha;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-    Fabrica* fabrica = Fabrica::getInstance();
-    IControladorFechaActual* controladorFecha = fabrica->getIControladorFechaActual();
 
     if (opFecha == 1) {
         DTFecha fecha = controladorFecha->getFecha();
@@ -635,6 +621,12 @@ void listarVehiculosDe(){
 
 void Menu::mostrarMenu() {
     int opcion = -1;
+    Fabrica* fabrica = Fabrica::getInstance();
+    IControladorUsuarios* iCU = Fabrica::getInstance()->getIControladorUsuarios();
+    IControladorVehiculos* iCV = Fabrica::getInstance()->getIControladorVehiculos();
+    IControladorViajes* iCVi = Fabrica::getInstance()->getIControladorViajes();
+    IControladorFechaActual* iCF = fabrica->getIControladorFechaActual();
+
     while (opcion != 8) {
         std::cout << "\n=== MENU PRINCIPAL ===\n";
         std::cout << "1. Alta de Usuario\n";
@@ -659,22 +651,23 @@ void Menu::mostrarMenu() {
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         switch (opcion) {
             case 1:
-                altaUsuario();
+                altaUsuario(iCU);
                 break;
             case 2:
-                altaViaje();
+                
+                altaViaje(iCV);
                 break;
             case 3:
-                generarReserva();
+                generarReserva(iCU);
                 break;
             case 4:
-                calificarUsuario();
+                calificarUsuario(iCU);
                 break;
             case 5:
-                eliminarViaje();
+                eliminarViaje(iCU, iCVi);
                 break;
             case 6:
-                administrarFechaActual();
+                administrarFechaActual(iCF);
                 break;
             case 7:
                 cargarDatos();
@@ -693,4 +686,9 @@ void Menu::mostrarMenu() {
                 std::cout << "Opcion invalida.\n";
         }
     }
+    delete iCU;
+    delete iCV;
+    delete iCVi;
+    delete iCF;
+    delete fabrica;
 }
