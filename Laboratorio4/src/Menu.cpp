@@ -14,9 +14,7 @@
 #include "../include/manejador/ManejadorUsuarios.h"
 #include "../include/Conductor.h"
 
-#include <limits>
-#include <iostream>
-#include <limits>
+#include <limits> 
 #include <string>
 #include <set>
 #include <list>
@@ -51,9 +49,10 @@ void Menu::altaUsuario() {
         std::cout << "Ingrese CI: "; std::getline(std::cin, ci);
         IControladorUsuarios* icu = Fabrica::getInstance()->getIControladorUsuarios();
         if (icu->altaPasajero(nickname,nombre,contrasena,email,ci)) {
-            std::cout << "Pasajero registrado exitosamente.\n";
+            //std::cout << "Pasajero registrado exitosamente.\n";
         } else {
             std::cout << "Error: el nickname ya existe.\n";
+            
         }
         
     } else if (tipoUsuario == 2) {
@@ -215,9 +214,9 @@ void Menu::altaViaje() {
         return; 
     }
     for (const auto& v : lista) {
-    std::cout << "Matrícula: " << v.getMatricula()
+    std::cout << "> Matricula: " << v.getMatricula()
+              << ", Modelo: " << v.getMarca()
               << ", Capacidad: " << v.getCapacidad()
-              << ", Marca: " << v.getMarca()
               << "\n";
         }
 
