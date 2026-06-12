@@ -541,12 +541,18 @@ void Menu::mostrarMenu() {
         std::cout << "6. Administrar Fecha Actual\n";
         std::cout << "7. Cargar Datos\n";
         std::cout << "8. Salir\n";
-        std::cout << "9. Listar usuarios\n";
-        std::cout << "10. Listar vehiculos\n";
+        //std::cout << "9. Listar usuarios\n";
+        //std::cout << "10. Listar vehiculos\n";
         std::cout << "Ingrese una opcion: ";
-        std::cin >> opcion;
+        if (!(std::cin >> opcion)) {
+            if (std::cin.eof()) {
+                break;  // EOF
+            }
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            opcion = -1;  // Invalid option
+        }
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
         switch (opcion) {
             case 1:
                 altaUsuario();
@@ -571,6 +577,7 @@ void Menu::mostrarMenu() {
                 break;
             case 8:
                 std::cout << "Saliendo del sistema...\n";
+                
                 break;
             case 9:
                 listarUsuarios();

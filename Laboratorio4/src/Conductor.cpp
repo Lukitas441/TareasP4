@@ -29,7 +29,7 @@ bool Conductor::libretaValida(TipoVehiculo tipo) {
 
 std::list<DTListarViaje> Conductor::getViajesTotales() {
     std::list<DTListarViaje> viajes;
-    for (const auto& vehiculo : this->vehiculos) {
+    for (Vehiculo* vehiculo : this->vehiculos) {
         std::list<DTListarViaje> dtViajes = vehiculo->getDTViajes();
         viajes.insert(viajes.end(), dtViajes.begin(), dtViajes.end());
     }
