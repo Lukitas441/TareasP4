@@ -47,7 +47,7 @@ float Usuario::calificacionPromedio()
 {
     if (calificacionesRecibidas.empty())
     {
-        return 0.0;
+        return 5;
     }
 
     std::list<Calificacion*>::iterator it;
