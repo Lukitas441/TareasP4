@@ -462,15 +462,15 @@ void Menu::calificarUsuario(IControladorUsuarios* icu) {
         }
 
 
-        //llamo instancia
+        ManejadorUsuarios::getInstance()->setNicknameCalificador(nickname);
+        ManejadorViajes::getInstance()->setCodigoViajeActual(codigo);
         IControladorViajes* icv = Fabrica::getInstance()->getIControladorViajes();
-        // adentro de usuariosViaje guardo la list de Usuarios de el viaje de codigo
         std::list<DTUsuarioViaje*> usuariosViaje = icv->listarUsuariosViaje(codigo);
     // out lista de nicknames y sus tipos (EXLUYENDO A SI MISMO)    
         // itero usuarios
         for (DTUsuarioViaje* uv : usuariosViaje) {
             // aca hago con que si el nombre NO es igual al de usuario imprimo y si es no hago nada
-            if (uv->getNickname() != nickname) {
+            if (uv && uv->getNickname() != nickname) {
                   std::string tipo;
                 if (uv->getTipo() == conductor) {tipo = "Conductor";} 
                 else {tipo = "Pasajero";}                       
@@ -489,16 +489,12 @@ void Menu::calificarUsuario(IControladorUsuarios* icu) {
     // chekeo que el nickname es valido
         bool nicknameCalificadoValido = false;
         for (DTUsuarioViaje* uv : usuariosViaje) {
-            if (uv->getNickname() == nicknameCalificado) { nicknameCalificadoValido = true; break; }
+            if (uv && uv->getNickname() == nicknameCalificado) { nicknameCalificadoValido = true; break; }
         }
         if (!nicknameCalificadoValido) {
             std::cout << "Nickname invalido.\n";
             return;
         }
-
-
-    ManejadorUsuarios::getInstance()->setNicknameCalificador(nickname);
-    ManejadorViajes::getInstance()->setCodigoViajeActual(codigo);
 
 
     // genero la calificacion con la fecha actual y el nombre (la parte de la fecha se implemente en calificarUsuario)
