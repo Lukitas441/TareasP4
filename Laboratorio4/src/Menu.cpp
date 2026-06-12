@@ -404,10 +404,10 @@ void Menu::calificarUsuario() {
         //primero declaro u usuario llamandola por el ManejadorUsuarios DE EL NICKNAME 
         Usuario* u = ManejadorUsuarios::getInstance()->getUsuario(nickname);
         // aca dependiendo el {dinamic_cast} va a basicamente checkear si el valor de u Usuario es pasajer
-        bool nickpasajero = (dynamic_cast<Pasajero*>(u) != nullptr); 
+        nickpasajero = (dynamic_cast<Pasajero*>(u) != nullptr); 
         // si es pasjero true si no es false sheesh
 
-
+    
 
 
 
@@ -481,7 +481,7 @@ void Menu::calificarUsuario() {
         for (DTUsuarioViaje* uv : usuariosViaje) {
             // aca hago con que si el nombre NO es igual al de usuario imprimo y si es no hago nada
             if (uv->getNickname() != nickname) {
-                 std::string tipo;
+                  std::string tipo;
                 if (uv->getTipo() == conductor) {tipo = "conductor";} 
                 else {tipo = "pasajero";}                       
                 std::cout << "> Nickname: " << uv->getNickname() << ", Tipo: " << tipo << std::endl;
