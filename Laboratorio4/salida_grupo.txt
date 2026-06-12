@@ -112,9 +112,9 @@ Ingrese una opcion: > Nickname: matil92, Nombre: Matías López
 Ingrese su nickname: > Codigo: 3, Fecha: 20/10/2026, Origen: young, Destino: montevideo, Conductor: ana_silva
 > Codigo: 4, Fecha: 21/10/2026, Origen: montevideo, Destino: mercedes, Conductor: ana_silva
 > Codigo: 10, Fecha: 15/3/2026, Origen: montevideo, Destino: colonia, Conductor: ana_silva
-Ingrese codigo del viaje: > Nickname: nacho_f, Tipo: pasajero
-> Nickname: valen_uy, Tipo: pasajero
-> Nickname: joaco_r, Tipo: pasajero
+Ingrese codigo del viaje: > Nickname: nacho_f, Tipo: Pasajero
+> Nickname: valen_uy, Tipo: Pasajero
+> Nickname: joaco_r, Tipo: Pasajero
 Ingrese nickname del usuario a calificar: Ingrese calificacion (1-5): Calificacion exitosa.
 
 === MENU PRINCIPAL ===
@@ -141,7 +141,7 @@ Ingrese una opcion: > Codigo: 1, Fecha: 21/10/2026, Origen: montevideo, Destino:
 > Codigo: 13, Fecha: 20/10/2026, Origen: young, Destino: montevideo, Conductor: greg_m
 > Codigo: 14, Fecha: 10/10/2026, Origen: montevideo, Destino: salto, Conductor: pedro_c
 Ingrese codigo del viaje a eliminar: >> Viaje <<
---- Matricula: BCS4105, Fecha: 15/3/2026, Origen: montevideo, Destino: colonia, Capacidad: 9, Precio por asiento: 180
+--- Codigo: 10, Fecha: 15/3/2026, Origen: montevideo, Destino: colonia, AsientosPublicados: 9, Precio por asiento: 180
 >> Vehiculo <<
 --- Matricula: BCS4105, Capacidad: 9, Marca: Hyundai, Modelo: H1, Tipo: Auto
 >> Reservas <<
@@ -173,9 +173,9 @@ Ingrese una opcion: > Nickname: matil92, Nombre: Matías López
 > Nickname: pedro_c, Nombre: pedro
 Ingrese su nickname: > Codigo: 9, Fecha: 15/3/2026, Origen: montevideo, Destino: colonia, Conductor: matil92
 > Codigo: 12, Fecha: 14/3/2026, Origen: montevideo, Destino: colonia, Conductor: carlos_r
-Ingrese codigo del viaje: > Nickname: matil92, Tipo: conductor
-> Nickname: santi_90, Tipo: pasajero
-> Nickname: mari_b, Tipo: pasajero
+Ingrese codigo del viaje: > Nickname: matil92, Tipo: Conductor
+> Nickname: santi_90, Tipo: Pasajero
+> Nickname: mari_b, Tipo: Pasajero
 Ingrese nickname del usuario a calificar: Ingrese calificacion (1-5): Calificacion exitosa.
 
 === MENU PRINCIPAL ===

@@ -472,8 +472,8 @@ void Menu::calificarUsuario(IControladorUsuarios* icu) {
             // aca hago con que si el nombre NO es igual al de usuario imprimo y si es no hago nada
             if (uv->getNickname() != nickname) {
                   std::string tipo;
-                if (uv->getTipo() == conductor) {tipo = "conductor";} 
-                else {tipo = "pasajero";}                       
+                if (uv->getTipo() == conductor) {tipo = "Conductor";} 
+                else {tipo = "Pasajero";}                       
                 std::cout << "> Nickname: " << uv->getNickname() << ", Tipo: " << tipo << std::endl;
                  }
         }
@@ -536,10 +536,10 @@ void Menu::eliminarViaje(IControladorUsuarios* icu, IControladorViajes* icv) {
     DTDetalleViaje detalle = icv->detalleViaje(codigo);
     DTFecha fViaje = detalle.getFecha();
     std::cout << ">> Viaje <<\n";
-    std::cout << "--- Matricula: " << detalle.getVehiculo().getMatricula()
+    std::cout << "--- Codigo: " << detalle.getCodigo()
               << ", Fecha: " << fViaje.getDia() << "/" << fViaje.getMes() << "/" << fViaje.getAnio()
               << ", Origen: " << detalle.getOrigen() << ", Destino: " << detalle.getDestino()
-              << ", Capacidad: " << detalle.getAsientosPublicados()
+              << ", AsientosPublicados: " << detalle.getAsientosPublicados()
               << ", Precio por asiento: " << detalle.getPrecio() << "\n";
 
     DTDetalleVehiculo dv = detalle.getVehiculo();
