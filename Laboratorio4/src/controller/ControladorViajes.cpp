@@ -4,6 +4,7 @@
 #include "../include/manejador/ManejadorVehiculos.h"
 #include "Reserva.h"
 #include "Vehiculo.h"
+#include "Pasajero.h"
 #include "../include/manejador/ControladorFechaActual.h"
 
 ControladorViajes::ControladorViajes() {};
@@ -64,20 +65,36 @@ DTDetalleViaje ControladorViajes::detalleViaje(int codigo) {
 };
 
 void ControladorViajes::eliminarViaje(int codigo) {
-  ManejadorViajes *mv = ManejadorViajes::getInstance();
-  mv->eliminarViaje(codigo);
-  return;
+    ManejadorViajes *mv = ManejadorViajes::getInstance();
+    Viaje* viaje = mv->getViaje(codigo);
+    if (viaje == nullptr) return;
+
+    for (Reserva* r : viaje->getReservas()) {
+        Pasajero* p = r->getPasajero();
+        if (p != nullptr) {
+            p->getReservas().erase(r);
+        }
+        delete r;
+    }
+
+    Vehiculo* v = viaje->getVehiculo();
+    if (v != nullptr) {
+        v->getViajes().erase(viaje);
+    }
+
+    mv->eliminarViaje(codigo);
+    delete viaje;
 };
 
 std::list<DTUsuarioViaje*> ControladorViajes::listarUsuariosViaje(int codigo) {
-  ManejadorViajes *mv = ManejadorViajes::getInstance();
-  Viaje *viaje = mv->getViaje(codigo);
+    ManejadorViajes *mv = ManejadorViajes::getInstance();
+    Viaje *viaje = mv->getViaje(codigo);
     std::list<DTUsuarioViaje*> resultado = std::list<DTUsuarioViaje*>();
-  if (viaje != nullptr) {
-    resultado.splice(resultado.end(), viaje->getUsuarioRes());
-  }
-  resultado.insert(resultado.end(), viaje->getConductorViaje());
-  return resultado;
+    if (viaje != nullptr) {
+        resultado.push_back(viaje->getConductorViaje());
+        resultado.splice(resultado.end(), viaje->getUsuarioRes());
+    }
+    return resultado;
 };
 
 

@@ -36,7 +36,7 @@ TipoVehiculo Vehiculo::getTipo(){
     return tipo; 
 };
 
-std::set<Viaje*> Vehiculo::getViajes(){ 
+std::set<Viaje*>& Vehiculo::getViajes(){ 
     return viajes; 
 };
 

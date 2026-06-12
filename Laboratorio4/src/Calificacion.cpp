@@ -1,13 +1,12 @@
 #include "Calificacion.h"
 #include "Usuario.h"
-#include "Reserva.h"
 #include "Viaje.h"
 
-Calificacion::Calificacion(DTFecha fecha, int puntaje, Usuario* usuarioCalificador) {
+Calificacion::Calificacion(DTFecha fecha, int puntaje, Usuario* usuarioCalificador, Viaje* viaje) {
     this->fecha = fecha;
     this->puntaje = puntaje;
     this->usuarioCalificador = usuarioCalificador;
-    this->reserva = nullptr;
+    this->viaje = viaje;
 }
 
 Calificacion::~Calificacion() {}
@@ -21,14 +20,6 @@ DTFecha Calificacion::getFecha() {
 Usuario* Calificacion::getUsuarioCalificador() {
     return usuarioCalificador;
 }
-Reserva* Calificacion::getReserva() {
-    return reserva;
-}
 Viaje* Calificacion::getCaliViaje() {
-    if (reserva != nullptr) {
-        return reserva->getViaje();
-    }
-    return nullptr; // Si no hay reserva asociada, retorna nullptr
+    return viaje;
 }
-
-

@@ -41,12 +41,27 @@ bool ControladorUsuarios::altaConductor(std::string nickname, std::string nombre
 
 std::list<DTUsuario> ControladorUsuarios::listarUsuarios() {
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
-    std::set<Usuario*> usuarios = mu->getUsuarios();
     std::list<DTUsuario> resultado;
 
-    for (const auto& u : usuarios) {
-        resultado.push_back(u->getInfoUsuario());
-    };
+    std::set<Conductor*> conductores = mu->getConductores();
+    std::list<DTUsuario> listaCond;
+    for (const auto& c : conductores) {
+        listaCond.push_back(c->getInfoUsuario());
+    }
+    listaCond.sort([](const DTUsuario& a, const DTUsuario& b) {
+        return a.getNickname() < b.getNickname();
+    });
+    resultado.splice(resultado.end(), listaCond);
+
+    std::set<Pasajero*> pasajeros = mu->getPasajeros();
+    std::list<DTUsuario> listaPas;
+    for (const auto& p : pasajeros) {
+        listaPas.push_back(p->getInfoUsuario());
+    }
+    listaPas.sort([](const DTUsuario& a, const DTUsuario& b) {
+        return a.getNickname() < b.getNickname();
+    });
+    resultado.splice(resultado.end(), listaPas);
 
     return resultado;
 };
@@ -69,6 +84,10 @@ std::list<DTUsuario> ControladorUsuarios::listarPasajeros() {
     for (const auto& p : pasajeros) {
         resultado.push_back(p->getInfoUsuario());
     };
+
+    resultado.sort([](const DTUsuario& a, const DTUsuario& b) {
+        return a.getNickname() < b.getNickname();
+    });
 
     return resultado;
 };
@@ -119,7 +138,8 @@ bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int c
         if (!existe && calificador != nullptr){
             ControladorFechaActual* mf = ControladorFechaActual::getInstance();
             DTFecha fecha =  mf->getFecha();
-            Calificacion * calif = new Calificacion(fecha, calificacion, calificador);
+            Viaje* viaje = mv->getViaje(codigoViaje);
+            Calificacion * calif = new Calificacion(fecha, calificacion, calificador, viaje);
             u->addCalif(calif);
             return true;
         }

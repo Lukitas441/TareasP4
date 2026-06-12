@@ -18,7 +18,7 @@ public:
     ~Pasajero();
     void addReserva(Reserva* reserva);
     std::string getCI ();
-    std::set<Reserva*> getReservas();
+    std::set<Reserva*>& getReservas();
     std::list<DTListarViaje> getViajesTotales();
     DTUsuarioViaje* getDatosPasajero();
 };

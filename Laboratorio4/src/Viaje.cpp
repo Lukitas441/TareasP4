@@ -79,7 +79,7 @@ bool Viaje::asientosCheck(int asientos) {
 
 DTConsultaViaje Viaje::constructorDTConsultaViaje(int asientos) {
     DTVehiculo dtv =  this->vehiculo->getInfoVehiculo();
-    DTConsultaViaje dtcv(this->codigo, dtv.getMarca(), dtv.getModelo(), this->vehiculo->getConductor()->getNombre(), this->vehiculo->getConductor()->calificacionPromedio(), this->precio * asientos); 
+    DTConsultaViaje dtcv(this->codigo, dtv.getMarca(), dtv.getModelo(), this->vehiculo->getConductor()->getNickname(), this->vehiculo->getConductor()->calificacionPromedio(), this->precio * asientos); 
     return dtcv;
 }
 

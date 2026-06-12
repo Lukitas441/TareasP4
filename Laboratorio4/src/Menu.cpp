@@ -50,11 +50,7 @@ void Menu::altaUsuario() {
         std::string ci;
         std::cout << "Ingrese CI: "; std::getline(std::cin, ci);
         IControladorUsuarios* icu = Fabrica::getInstance()->getIControladorUsuarios();
-        if (icu->altaPasajero(nickname,nombre,contrasena,email,ci)) {
-            std::cout << "Pasajero registrado exitosamente.\n";
-        } else {
-            std::cout << "Error: el nickname ya existe.\n";
-        }
+        icu->altaPasajero(nickname,nombre,contrasena,email,ci);
         
     } else if (tipoUsuario == 2) {
         
@@ -215,11 +211,10 @@ void Menu::altaViaje() {
         return; 
     }
     for (const auto& v : lista) {
-    std::cout << "Matrícula: " << v.getMatricula()
-              << ", Capacidad: " << v.getCapacidad()
-              << ", Marca: " << v.getMarca()
-              << "\n";
-        }
+        std::cout << "> Matricula: " << v.getMatricula()
+                  << ", Modelo: " << v.getMarca()
+                  << ", Capacidad: " << v.getCapacidad() << "\n";
+    }
 
     // In Matricula
     std::cout << "Ingrese matricula del vehiculo a utilizar: "; std::getline(std::cin, matricula);
@@ -482,8 +477,8 @@ void Menu::calificarUsuario() {
             // aca hago con que si el nombre NO es igual al de usuario imprimo y si es no hago nada
             if (uv->getNickname() != nickname) {
                   std::string tipo;
-                if (uv->getTipo() == conductor) {tipo = "conductor";} 
-                else {tipo = "pasajero";}                       
+                if (uv->getTipo() == conductor) {tipo = "Conductor";} 
+                else {tipo = "Pasajero";}                       
                 std::cout << "> Nickname: " << uv->getNickname() << ", Tipo: " << tipo << std::endl;
                  }
         }
@@ -548,10 +543,10 @@ void Menu::eliminarViaje() {
     DTDetalleViaje detalle = icv->detalleViaje(codigo);
     DTFecha fViaje = detalle.getFecha();
     std::cout << ">> Viaje <<\n";
-    std::cout << "--- Matricula: " << detalle.getVehiculo().getMatricula()
+    std::cout << "--- Codigo: " << detalle.getCodigo()
               << ", Fecha: " << fViaje.getDia() << "/" << fViaje.getMes() << "/" << fViaje.getAnio()
               << ", Origen: " << detalle.getOrigen() << ", Destino: " << detalle.getDestino()
-              << ", Capacidad: " << detalle.getAsientosPublicados()
+              << ", AsientosPublicados: " << detalle.getAsientosPublicados()
               << ", Precio por asiento: " << detalle.getPrecio() << "\n";
 
     DTDetalleVehiculo dv = detalle.getVehiculo();
@@ -636,22 +631,19 @@ void listarVehiculosDe(){
 
 void Menu::mostrarMenu() {
     int opcion = -1;
-    while (opcion != 8) {
-        std::cout << "\n=== MENU PRINCIPAL ===\n";
-        std::cout << "1. Alta de Usuario\n";
-        std::cout << "2. Alta de Viaje\n";
+    while (opcion != 0) {
+        std::cout << "\n=== Menu Principal ===\n";
+        std::cout << "1. Alta de usuario\n";
+        std::cout << "2. Alta de viaje\n";
         std::cout << "3. Generar Reserva\n";
-        std::cout << "4. Calificar Usuario\n";
-        std::cout << "5. Eliminar Viaje\n";
-        std::cout << "6. Administrar Fecha Actual\n";
+        std::cout << "4. Calificar usuario\n";
+        std::cout << "5. Eliminar viaje\n";
+        std::cout << "6. Modificar fecha del sistema\n";
         std::cout << "7. Cargar Datos\n";
-        std::cout << "8. Salir\n";
-        std::cout << "9. Listar usuarios\n";
-        std::cout << "10. Listar vehiculos\n";
-        std::cout << "Ingrese una opcion: ";
+        std::cout << "0. Salir\n";
+        std::cout << "Seleccione una opcion: ";
         std::cin >> opcion;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Opcion seleccionada: " << opcion << "\n";
 
         switch (opcion) {
             case 1:
@@ -675,14 +667,8 @@ void Menu::mostrarMenu() {
             case 7:
                 cargarDatos();
                 break;
-            case 8:
-                std::cout << "Saliendo del sistema...\n";
-                break;
-            case 9:
-                listarUsuarios();
-                break;
-            case 10:
-                listarVehiculosDe();
+            case 0:
+                std::cout << "Saliendo...\n";
                 break;
             default:
                 std::cout << "Opcion invalida.\n";

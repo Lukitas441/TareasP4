@@ -14,18 +14,16 @@ private:
     Usuario* usuarioCalificador;
     int puntaje;
     DTFecha fecha;
-    Reserva* reserva;
+    Viaje* viaje;
 
 public:
-    Calificacion(DTFecha fecha, int calificacion, Usuario* usuarioCalificador);
+    Calificacion(DTFecha fecha, int calificacion, Usuario* usuarioCalificador, Viaje* viaje);
     ~Calificacion();
 
     int getPuntaje();
     DTFecha getFecha();
     Usuario* getUsuarioCalificador();
-    Reserva* getReserva();
 
-    //MISING: mismaCalificacion
     Viaje* getCaliViaje();
     
 

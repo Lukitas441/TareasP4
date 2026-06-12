@@ -36,7 +36,7 @@ public:
     std::string getMarca();
     std::string getModelo();
     TipoVehiculo getTipo();
-    std::set<Viaje*> getViajes();
+    std::set<Viaje*>& getViajes();
     Conductor* getConductor();
     void addViaje(Viaje *viaje);
     void insertarConductor(Conductor *conductor);

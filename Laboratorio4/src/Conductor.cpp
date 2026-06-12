@@ -33,6 +33,9 @@ std::list<DTListarViaje> Conductor::getViajesTotales() {
         std::list<DTListarViaje> dtViajes = vehiculo->getDTViajes();
         viajes.insert(viajes.end(), dtViajes.begin(), dtViajes.end());
     }
+    viajes.sort([](const DTListarViaje& a, const DTListarViaje& b) {
+        return a.getCodigo() < b.getCodigo();
+    });
     return viajes;
 }
 
