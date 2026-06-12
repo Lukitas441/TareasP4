@@ -115,7 +115,6 @@ bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int c
     if (u != nullptr && codigoViaje > 0) {
         
         bool existe = u->existeCalificador(nicknameCalificador, codigoViaje);
-        std::cout << "existe calificador: " << existe << std::endl;
         Usuario *calificador = (mu->getUsuario(nicknameCalificador));
         
         if (!existe && calificador != nullptr) {
