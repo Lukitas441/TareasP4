@@ -75,7 +75,7 @@ bool Usuario::existeCalificador(std::string nicknameCalificador, int codigoViaje
     {
         Usuario *usuarioCalificador = (*it)->getUsuarioCalificador();
         Viaje *viajeCalificado = (*it)->getCaliViaje();
-        if (usuarioCalificador->getNickname() == nicknameCalificador && viajeCalificado->getCodigo() == codigoViaje)
+        if (usuarioCalificador->getNickname() == nicknameCalificador && viajeCalificado != nullptr && viajeCalificado->getCodigo() == codigoViaje)
         {
             return true;
         }
