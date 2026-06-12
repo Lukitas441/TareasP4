@@ -13,9 +13,9 @@ public:
     DTFecha();
     DTFecha(int dia, int mes, int anio);
 
-    int getDia();
-    int getMes();
-    int getAnio();
+    int getDia() const;
+    int getMes() const;
+    int getAnio() const;
 
     bool operator==(DTFecha other);
 

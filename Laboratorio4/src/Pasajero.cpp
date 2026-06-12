@@ -18,7 +18,7 @@ std::string Pasajero::getCI() {
     return this->ci;
 };
 
-std::set<Reserva*> Pasajero::getReservas() {
+std::set<Reserva*>& Pasajero::getReservas() {
     return this->reservas;
 };
 
@@ -27,6 +27,9 @@ std::list<DTListarViaje> Pasajero::getViajesTotales() {
     for (const auto& reserva : this->reservas) {
         viajes.push_back(reserva->getViaje()->getDatosViaje());
     }
+    viajes.sort([](const DTListarViaje& a, const DTListarViaje& b) {
+        return a.getCodigo() < b.getCodigo();
+    });
     return viajes;
 };
 

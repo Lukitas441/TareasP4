@@ -15,11 +15,11 @@ private:
 public:
     DTListarViaje(int codigo, DTFecha fecha, std::string origen, std::string destino, std::string nicknameConductor);
 
-    int getCodigo();
-    DTFecha getFecha();
-    std::string getOrigen();
-    std::string getDestino();
-    std::string getNicknameConductor();
+    int getCodigo() const;
+    DTFecha getFecha() const;
+    std::string getOrigen() const;
+    std::string getDestino() const;
+    std::string getNicknameConductor() const;
 
 };
 
