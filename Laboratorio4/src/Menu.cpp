@@ -461,10 +461,12 @@ void Menu::calificarUsuario(IControladorUsuarios* icu) {
             return;
         }
 
-
+ 
         ManejadorUsuarios::getInstance()->setNicknameCalificador(nickname);
         ManejadorViajes::getInstance()->setCodigoViajeActual(codigo);
+        //llamo instancia
         IControladorViajes* icv = Fabrica::getInstance()->getIControladorViajes();
+        // adentro de usuariosViaje guardo la list de Usuarios de el viaje de codigo
         std::list<DTUsuarioViaje*> usuariosViaje = icv->listarUsuariosViaje(codigo);
     // out lista de nicknames y sus tipos (EXLUYENDO A SI MISMO)    
         // itero usuarios
