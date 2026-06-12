@@ -1,14 +1,21 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include "../include/interface/IControladorFechaActual.h"
+#include "../include/interface/IControladorUsuarios.h"
+#include "../include/interface/IControladorViajes.h"
+#include "../include/interface/IControladorVehiculos.h"
+
+
+
 class Menu {
 private:
-    void altaUsuario();
-    void altaViaje();
-    void generarReserva();
-    void calificarUsuario();
-    void eliminarViaje();
-    void administrarFechaActual();
+    void altaUsuario(IControladorUsuarios* iCu);
+    void altaViaje(IControladorVehiculos* icv);
+    void generarReserva(IControladorUsuarios* icu);
+    void calificarUsuario(IControladorUsuarios* icu);
+    void eliminarViaje(IControladorUsuarios* icu, IControladorViajes* icv);
+    void administrarFechaActual(IControladorFechaActual* controladorFecha);
     void cargarDatos();
 
 public:
