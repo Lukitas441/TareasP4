@@ -1,5 +1,7 @@
 #include "../include/Conductor.h"
 #include "Vehiculo.h"
+#include "Calificacion.h"
+#include "Usuario.h"
 
 Conductor::Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::map<TipoLibreta, bool> libs)
     : Usuario(nickname, nombre, contrasena, email) {
