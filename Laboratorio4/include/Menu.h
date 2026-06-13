@@ -13,7 +13,7 @@ private:
     void altaUsuario(IControladorUsuarios* iCu);
     void altaViaje(IControladorVehiculos* icv);
     void generarReserva(IControladorUsuarios* icu);
-    void calificarUsuario(IControladorUsuarios* icu);
+    void calificarUsuario(IControladorUsuarios* icu, IControladorViajes* icv);
     void eliminarViaje(IControladorUsuarios* icu, IControladorViajes* icv);
     void administrarFechaActual(IControladorFechaActual* controladorFecha);
     void cargarDatos();

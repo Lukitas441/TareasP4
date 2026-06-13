@@ -334,7 +334,7 @@ void Menu::generarReserva(IControladorUsuarios* icu) {
     for (DTConsultaViaje* v : viajes) delete v;
 }
 
-void Menu::calificarUsuario(IControladorUsuarios* icu) {
+void Menu::calificarUsuario(IControladorUsuarios* icu, IControladorViajes* icv) {
 
 
         /*El caso de uso comienza cuando se desea realizar una calificación para un
@@ -465,7 +465,7 @@ void Menu::calificarUsuario(IControladorUsuarios* icu) {
         ManejadorUsuarios::getInstance()->setNicknameCalificador(nickname);
         ManejadorViajes::getInstance()->setCodigoViajeActual(codigo);
         //llamo instancia
-        IControladorViajes* icv = Fabrica::getInstance()->getIControladorViajes();
+        //IControladorViajes* icv = Fabrica::getInstance()->getIControladorViajes();
         // adentro de usuariosViaje guardo la list de Usuarios de el viaje de codigo
         std::list<DTUsuarioViaje*> usuariosViaje = icv->listarUsuariosViaje(codigo);
     // out lista de nicknames y sus tipos (EXLUYENDO A SI MISMO)    
@@ -495,6 +495,12 @@ void Menu::calificarUsuario(IControladorUsuarios* icu) {
         }
         if (!nicknameCalificadoValido) {
             std::cout << "Nickname invalido.\n";
+            
+            for (auto dtu : usuariosViaje){
+                delete dtu;
+            }
+            usuariosViaje.clear();
+            
             return;
         }
 
@@ -506,6 +512,11 @@ void Menu::calificarUsuario(IControladorUsuarios* icu) {
     } else {
         std::cout << "Error al calificar.\n";
     }
+    
+    for (auto dtu : usuariosViaje){
+        delete dtu;
+    }
+    usuariosViaje.clear();// libero memoria de la lista de usuarios del viaje
 }
 
 
@@ -669,7 +680,7 @@ void Menu::mostrarMenu() {
                 generarReserva(iCU);
                 break;
             case 4:
-                calificarUsuario(iCU);
+                calificarUsuario(iCU, iCVi);
                 break;
             case 5:
                 eliminarViaje(iCU, iCVi);
