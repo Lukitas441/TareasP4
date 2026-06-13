@@ -37,7 +37,7 @@ std::list<DTListarViaje> Conductor::getViajesTotales() {
 }
 
 DTUsuarioViaje * Conductor::getDatosConductor() {
-    DTUsuarioViaje *dtuv = new DTUsuarioViaje(this->nickname, TipoUsuario::conductor);
+    DTUsuarioViaje *dtuv = new DTUsuarioViaje(this->getNickname(), TipoUsuario::conductor);
     return dtuv;
 }
 
