@@ -60,6 +60,8 @@ public:
         std::string nicknameCalificado,
         int calificacion
     ) override;
+
+    void liberarUsuarios() override;
 };
 
 #endif

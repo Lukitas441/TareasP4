@@ -6,7 +6,15 @@ Conductor::Conductor(std::string nickname, std::string nombre, std::string contr
     this->libretas = libs;
 };
 
-Conductor::~Conductor() {};
+Conductor::~Conductor() {
+    for(Calificacion* calif : calificacionesRecibidas) {
+        delete calif;
+    }
+    for(Vehiculo* vehiculo : vehiculos) {
+        delete vehiculo;
+    }
+    
+};
 
 std::map<TipoLibreta, bool> Conductor::getLibretas() {
     return this->libretas;

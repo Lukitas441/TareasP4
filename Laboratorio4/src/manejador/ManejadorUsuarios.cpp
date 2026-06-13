@@ -23,8 +23,8 @@ Usuario* ManejadorUsuarios::getUsuario(std::string nickname) {
 
 std::set<Usuario*> ManejadorUsuarios::getUsuarios() {
     std::set<Usuario*> resultado;
-    for (const auto& pair : usuarios) {
-        resultado.insert(pair.second);
+    for (std::pair<std::string, Usuario*> usr : usuarios) {
+        resultado.insert(usr.second);
     }
     return resultado;
 };
@@ -58,3 +58,7 @@ std::string ManejadorUsuarios::getNicknameCalificador() {
 void ManejadorUsuarios::setNicknameCalificador(std::string nickname) {
     nicknameCalificador = nickname;
 }
+
+void ManejadorUsuarios::eliminarUsuario(std::string nickname) {
+    usuarios.erase(nickname);
+};

@@ -14,7 +14,12 @@ Vehiculo::Vehiculo(std::string matricula, int capacidad, std::string marca, std:
     conductor->getVehiculos().push_back(this);
 }
 
-Vehiculo::~Vehiculo() {}
+Vehiculo::~Vehiculo() {
+    for (Viaje* viaje : viajes) {
+        delete viaje;
+    }
+    conductor = nullptr;
+}
 
 std::string Vehiculo::getMatricula(){ 
     return matricula;

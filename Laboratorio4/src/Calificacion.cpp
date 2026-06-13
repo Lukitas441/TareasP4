@@ -10,7 +10,10 @@ Calificacion::Calificacion(DTFecha fecha, int puntaje, Usuario* usuarioCalificad
     this->reserva = reserva;
 }
 
-Calificacion::~Calificacion() {}
+Calificacion::~Calificacion() {
+    usuarioCalificador = nullptr;
+    reserva = nullptr;
+}
 
 int Calificacion::getPuntaje() {
     return puntaje;

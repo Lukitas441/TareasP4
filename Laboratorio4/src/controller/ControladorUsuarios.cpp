@@ -151,3 +151,11 @@ Usuario* ControladorUsuarios::getUsuario(std::string nickname){
     ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
     return mu->getUsuario(nickname);
 }
+
+void ControladorUsuarios::liberarUsuarios(){
+    ManejadorUsuarios* mu = ManejadorUsuarios::getInstance();
+    for (Usuario* usr : mu->getUsuarios()) {
+        mu->eliminarUsuario(usr->getNickname());
+        delete usr;
+    }
+}

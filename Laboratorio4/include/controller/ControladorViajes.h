@@ -21,5 +21,8 @@ public:
     bool generarReserva(std::string nicknamePasajero, int codigoViaje, int cantAsientos) override;
     void eliminarViaje(int codigo) override;
     bool altaViaje(std::string matricula, DTFecha fecha, std::string origen, std::string destino, int asientos, float precio) override;
+    std::map<int, Viaje*> listarViajes() override;
+    void liberarViajes() override;
+
 };
 #endif

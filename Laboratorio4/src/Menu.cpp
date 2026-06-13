@@ -595,18 +595,16 @@ void Menu::cargarDatos() {
     CargaDatos::getInstance()->cargarDatos();
 }
 
-void listarUsuarios(){
-    IControladorUsuarios* iCU = Fabrica::getInstance()->getIControladorUsuarios();
+void listarUsuarios(IControladorUsuarios* iCU){
     std::list<DTUsuario> ls = iCU->listarUsuarios(); 
     std::list<DTUsuario>::iterator it;
     for( it = ls.begin(); it != ls.end(); it++){
         std::cout << it->getNickname() << std::endl;
     }
 }
-void listarVehiculosDe(){
+void listarVehiculosDe(IControladorUsuarios* iCU ){
     std::string nickname;
     std::cout << "Ingrese nickname de un conductor: "; std::getline(std::cin, nickname);
-    IControladorUsuarios* iCU = Fabrica::getInstance()->getIControladorUsuarios();
     Conductor* c = dynamic_cast<Conductor*>(iCU->getUsuario(nickname));
     if (c != nullptr){
         std::list<Vehiculo*> vehiculos = c->getVehiculos();
@@ -615,6 +613,18 @@ void listarVehiculosDe(){
         }
     }
 
+}
+
+void listarViajes(IControladorViajes* ICVi){
+    std::map<int, Viaje*> viajes = ICVi->listarViajes();
+    for(std::pair<int, Viaje*> v: viajes){
+        std::cout << v.second->getCodigo() << std::endl;
+    }
+}
+
+void cleanup(IControladorUsuarios* iCU, IControladorViajes* iCVi){
+    iCVi->liberarViajes();
+    iCU->liberarUsuarios();
 }
 
 void Menu::mostrarMenu() {
@@ -671,14 +681,21 @@ void Menu::mostrarMenu() {
                 cargarDatos();
                 break;
             case 8:
+                cleanup(iCU, iCVi);
                 std::cout << "Saliendo del sistema...\n";
                 
                 break;
             case 9:
-                listarUsuarios();
+                listarUsuarios(iCU);
                 break;
             case 10:
-                listarVehiculosDe();
+                listarVehiculosDe(iCU);
+                break;
+            case 11:
+                listarViajes(iCVi);
+                break;
+            case 12:
+                cleanup(iCU, iCVi);
                 break;
             default:
                 std::cout << "Opcion invalida.\n";

@@ -7,7 +7,16 @@ Pasajero::Pasajero(std::string nickname, std::string nombre, std::string contras
     this->ci = documento;
 };
 
-Pasajero::~Pasajero() {};
+Pasajero::~Pasajero() {
+    for(Calificacion* calif : calificacionesRecibidas) {
+        delete calif;
+    }
+    if (!reservas.empty()) {
+        for (Reserva* reserva : reservas) {
+            delete reserva;
+        }
+    }
+};
 
 void Pasajero::addReserva(Reserva* reserva) { //agrega una reserva al set de reservas
     this->reservas.insert(reserva);

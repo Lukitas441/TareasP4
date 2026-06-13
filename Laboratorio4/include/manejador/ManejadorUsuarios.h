@@ -29,6 +29,7 @@ public:
     std::set<Conductor*> getConductores();
     std::string getNicknameCalificador();
     void setNicknameCalificador(std::string nickname);
+    void eliminarUsuario(std::string nickname);
 };
 
 #endif

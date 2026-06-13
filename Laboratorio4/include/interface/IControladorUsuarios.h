@@ -52,6 +52,8 @@ public:
     virtual std::list<DTUsuario> listarPasajeros() = 0;
 
     virtual ~IControladorUsuarios() = default; // virtual destructor, se pone para que al eliminar un objeto a través de un puntero a la clase base, se llame al destructor de la clase derivada. Si no se pone, puede haber fugas de memoria. El = default indica que se quiere el comportamiento por defecto del destructor, pero se necesita que sea virtual.
+
+    virtual void liberarUsuarios() = 0;
 };
 
 #endif

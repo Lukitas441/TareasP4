@@ -11,7 +11,12 @@ Reserva::Reserva(int asientosReservados, Pasajero *pasajero, DTFecha fecha, Viaj
     this->viaje = viaje;
 }
 
-Reserva::~Reserva() {}
+Reserva::~Reserva() {
+    pasajero->getReservas().erase(this);
+    viaje->getReservas().erase(this);
+    viaje = nullptr;
+    pasajero = nullptr;
+}
 
 int Reserva::getAsientos() {
     return asientosReservados;

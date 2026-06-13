@@ -16,7 +16,15 @@ Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino,
     this->vehiculo = vehiculo;
 };
 
-Viaje::~Viaje() {};
+Viaje::~Viaje() {
+    Pasajero* p;
+    for(Reserva* r: reservas){
+        p = r->getPasajero();
+        p->getReservas().erase(r);
+        delete r;
+    }
+    vehiculo->getViajes().erase(this);
+};
 
 int Viaje::getCodigo() {
    return codigo;

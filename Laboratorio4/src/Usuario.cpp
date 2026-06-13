@@ -14,7 +14,9 @@ Usuario::Usuario(std::string nickname, std::string nombre, std::string contrasen
     calificacionesRecibidas = std::list<Calificacion*>();
 }
 
-Usuario::~Usuario() {}
+Usuario::~Usuario() {
+    
+}
 
 std::string Usuario::getNickname()
 {

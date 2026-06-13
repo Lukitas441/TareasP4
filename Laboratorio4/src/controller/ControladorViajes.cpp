@@ -69,19 +69,6 @@ void ControladorViajes::eliminarViaje(int codigo) {
     Viaje* viaje = mv->getViaje(codigo);
     if (viaje == nullptr) return;
 
-    for (Reserva* r : viaje->getReservas()) {
-        Pasajero* p = r->getPasajero();
-        if (p != nullptr) {
-            p->getReservas().erase(r);
-        }
-        delete r;
-    }
-
-    Vehiculo* v = viaje->getVehiculo();
-    if (v != nullptr) {
-        v->getViajes().erase(viaje);
-    }
-
     mv->eliminarViaje(codigo);
     delete viaje;
 };
@@ -116,3 +103,16 @@ bool ControladorViajes::altaViaje(std::string matricula, DTFecha fecha, std::str
   return false;
 };
 
+std::map<int, Viaje*> ControladorViajes::listarViajes(){
+  ManejadorViajes* mv = ManejadorViajes::getInstance();
+  return mv->getViajes();
+}
+
+void ControladorViajes::liberarViajes(){
+  ManejadorViajes* mv = ManejadorViajes::getInstance();
+  for(std::pair<int, Viaje*> v : mv->getViajes())
+  {
+    mv->eliminarViaje(v.second->getCodigo());
+    delete v.second;
+  }
+}
