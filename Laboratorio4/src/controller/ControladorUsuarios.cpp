@@ -108,7 +108,7 @@ bool ControladorUsuarios::calificarUsuario(std::string nicknameCalificado, int c
     std::string nicknameCalificador = mu->getNicknameCalificador();
     int codigoViaje = mv->getCodigoViajeActual();
     
-    if (nicknameCalificador == nicknameCalificado) {
+    if (nicknameCalificador == nicknameCalificado || calificacion < 1 || calificacion > 5) {
         return false;
     };
     
