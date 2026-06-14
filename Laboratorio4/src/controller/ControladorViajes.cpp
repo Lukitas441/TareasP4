@@ -21,7 +21,6 @@ std::set<DTConsultaViaje*> ControladorViajes::consultarViajes(DTFecha fecha, std
     if(viaje->viajeCoincide(fecha, origen, destino) and viaje->asientosCheck(asientos)) {
       resultado.insert(new DTConsultaViaje(viaje->constructorDTConsultaViaje(asientos)));
     }
-
   }
   return resultado;
 };
