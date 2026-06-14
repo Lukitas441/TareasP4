@@ -43,8 +43,8 @@ void Menu::altaUsuario(IControladorUsuarios* ICU) {
     if (tipoUsuario == 1) {
         std::string ci;
         std::cout << "Ingrese CI: "; std::getline(std::cin, ci);
-        IControladorUsuarios* icu = Fabrica::getInstance()->getIControladorUsuarios();
-        if (icu->altaPasajero(nickname,nombre,contrasena,email,ci)) {
+        //IControladorUsuarios* icu = Fabrica::getInstance()->getIControladorUsuarios();
+        if (ICU->altaPasajero(nickname,nombre,contrasena,email,ci)) {
             //std::cout << "Pasajero registrado exitosamente.\n";
         } else {
             std::cout << "Error: el nickname ya existe.\n";
