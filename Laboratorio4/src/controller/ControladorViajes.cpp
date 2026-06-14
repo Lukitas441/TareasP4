@@ -11,28 +11,28 @@
 ControladorViajes::ControladorViajes() {};
 ControladorViajes::~ControladorViajes() {};
 
-std::list<DTConsultaViaje*> ControladorViajes::consultarViajes(DTFecha fecha, std::string origen, std::string destino, int asientos) {
+std::list<DTConsultaViaje> ControladorViajes::consultarViajes(DTFecha fecha, std::string origen, std::string destino, int asientos) {
   ManejadorViajes *mv = ManejadorViajes::getInstance();
   std::map<int, Viaje*> viajes = mv->getViajes();
-  std::list<DTConsultaViaje*> resultado;
+  std::list<DTConsultaViaje> resultado;
 
-  for (const auto& pair : viajes) {
-    Viaje* viaje = pair.second;
+  for (std::pair<int, Viaje*> v : viajes) {
+    Viaje* viaje = v.second;
     if (!viaje) continue;
     if (!viaje->viajeCoincide(fecha, origen, destino)) continue;
     if (!viaje->asientosCheck(asientos)) continue;
 
-    resultado.push_back(new DTConsultaViaje(viaje->constructorDTConsultaViaje(asientos)));
+    resultado.push_back(DTConsultaViaje(viaje->constructorDTConsultaViaje(asientos)));
   }
 
-  resultado.sort([](DTConsultaViaje* a, DTConsultaViaje* b) {
-    if (a->getPrecioTotal() != b->getPrecioTotal()) {
-      return a->getPrecioTotal() < b->getPrecioTotal();
+  resultado.sort([](DTConsultaViaje a, DTConsultaViaje b) {
+    if (a.getPrecioTotal() != b.getPrecioTotal()) {
+      return a.getPrecioTotal() < b.getPrecioTotal();
     }
-    if (a->getCalificacionProm() != b->getCalificacionProm()) {
-      return a->getCalificacionProm() > b->getCalificacionProm();
+    if (a.getCalificacionProm() != b.getCalificacionProm()) {
+      return a.getCalificacionProm() > b.getCalificacionProm();
     }
-    return a->getCodigo() < b->getCodigo();
+    return a.getCodigo() < b.getCodigo();
   });
 
   return resultado;
