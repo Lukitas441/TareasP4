@@ -28,4 +28,8 @@ $(OBJ_DIR):
 clean:
 	rm -rf $(OBJ_DIR) $(BIN)
 
-rebuild: clean all
+rerun: clean all 
+	./app
+
+run: all
+	./app
