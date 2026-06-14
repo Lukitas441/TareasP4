@@ -269,7 +269,7 @@ void Menu::altaViaje(IControladorVehiculos* icv) {
 
 }
 
-void Menu::generarReserva(IControladorUsuarios* icu) {
+void Menu::generarReserva(IControladorUsuarios* icu, IControladorViajes * icv) {
     std::list<DTUsuario> pasajeros = icu->listarPasajeros();
     for (DTUsuario& p : pasajeros) {
         std::cout << "> " << p.getNickname() << std::endl;
@@ -296,7 +296,7 @@ void Menu::generarReserva(IControladorUsuarios* icu) {
     std::cout << "Ingrese cantidad de asientos a reservar: "; std::cin >> asientos;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    IControladorViajes* icv = Fabrica::getInstance()->getIControladorViajes();
+    //IControladorViajes* icv = Fabrica::getInstance()->getIControladorViajes();
     std::list<DTConsultaViaje*> viajes = icv->consultarViajes(DTFecha(dia, mes, anio), origen, destino, asientos);
     for (DTConsultaViaje* v : viajes) {
         std::cout << "> Codigo: " << v->getCodigo() << ", Marca: " << v->getMarca()
@@ -321,6 +321,7 @@ void Menu::generarReserva(IControladorUsuarios* icu) {
     if (!codigoValido) {
         std::cout << "Codigo invalido.\n";
         for (DTConsultaViaje* v : viajes) delete v;
+        viajes.clear();
         return;
     }
 
@@ -332,6 +333,7 @@ void Menu::generarReserva(IControladorUsuarios* icu) {
     }
 
     for (DTConsultaViaje* v : viajes) delete v;
+    viajes.clear();
 }
 
 void Menu::calificarUsuario(IControladorUsuarios* icu, IControladorViajes* icv) {
@@ -671,7 +673,7 @@ void Menu::mostrarMenu() {
                 altaViaje(iCV);
                 break;
             case 3:
-                generarReserva(iCU);
+                generarReserva(iCU, iCVi);
                 break;
             case 4:
                 calificarUsuario(iCU, iCVi);
