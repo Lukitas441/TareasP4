@@ -6,6 +6,7 @@
 #include "Vehiculo.h"
 #include "Pasajero.h"
 #include "../include/manejador/ControladorFechaActual.h"
+#include <algorithm>
 
 ControladorViajes::ControladorViajes() {};
 ControladorViajes::~ControladorViajes() {};
@@ -13,8 +14,26 @@ ControladorViajes::~ControladorViajes() {};
 std::list<DTConsultaViaje> ControladorViajes::consultarViajes(DTFecha fecha, std::string origen, std::string destino, int asientos) {
   ManejadorViajes *mv = ManejadorViajes::getInstance();
   std::map<int, Viaje*> viajes = mv->getViajes();
-  std::list<DTConsultaViaje> resultado = std::list<DTConsultaViaje>();
+  std::list<DTConsultaViaje> resultado;
 
+  for (std::pair<int, Viaje*> v : viajes) {
+    Viaje* viaje = v.second;
+    if (!viaje) continue;
+    if (!viaje->viajeCoincide(fecha, origen, destino)) continue;
+    if (!viaje->asientosCheck(asientos)) continue;
+
+    resultado.push_back(DTConsultaViaje(viaje->constructorDTConsultaViaje(asientos)));
+  }
+
+  resultado.sort([](DTConsultaViaje a, DTConsultaViaje b) {
+    if (a.getPrecioTotal() != b.getPrecioTotal()) {
+      return a.getPrecioTotal() < b.getPrecioTotal();
+    }
+    if (a.getCalificacionProm() != b.getCalificacionProm()) {
+      return a.getCalificacionProm() > b.getCalificacionProm();
+    }
+    return a.getCodigo() < b.getCodigo();
+  });
 
   return resultado;
 };
@@ -54,7 +73,7 @@ DTDetalleViaje ControladorViajes::detalleViaje(int codigo) {
   }
 
   return DTDetalleViaje(viaje->getCodigo(), viaje->getFecha(), viaje->getOrigen(), viaje->getDestino(),
-                        viaje->getAsientosPublicados(), viaje->getPrecio(), dtv, reservas);
+  viaje->getAsientosPublicados(), viaje->getPrecio(), dtv, reservas);
 };
 
 void ControladorViajes::eliminarViaje(int codigo) {

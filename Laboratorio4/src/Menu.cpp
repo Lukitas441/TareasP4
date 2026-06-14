@@ -297,12 +297,12 @@ void Menu::generarReserva(IControladorUsuarios* icu, IControladorViajes * icv) {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     //IControladorViajes* icv = Fabrica::getInstance()->getIControladorViajes();
-    std::list<DTConsultaViaje*> viajes = icv->consultarViajes(DTFecha(dia, mes, anio), origen, destino, asientos);
-    for (DTConsultaViaje* v : viajes) {
-        std::cout << "> Codigo: " << v->getCodigo() << ", Marca: " << v->getMarca()
-                  << ", Modelo: " << v->getModelo() << ", Conductor: " << v->getNombreConductor()
-                  << ", CalificacionPromedio: " << v->getCalificacionProm()
-                  << ", PrecioTotal: " << v->getPrecioTotal() << std::endl;
+    std::list<DTConsultaViaje> viajes = icv->consultarViajes(DTFecha(dia, mes, anio), origen, destino, asientos);
+    for (DTConsultaViaje v : viajes) {
+        std::cout << "> Codigo: " << v.getCodigo() << ", Marca: " << v.getMarca()
+                  << ", Modelo: " << v.getModelo() << ", Conductor: " << v.getNombreConductor()
+                  << ", CalificacionPromedio: " << v.getCalificacionProm()
+                  << ", PrecioTotal: " << v.getPrecioTotal() << std::endl;
     }
 
     if (viajes.empty()) {
@@ -320,9 +320,6 @@ void Menu::generarReserva(IControladorUsuarios* icu, IControladorViajes * icv) {
     }
     if (!codigoValido) {
         std::cout << "Codigo invalido.\n";
-        for (DTConsultaViaje* v : viajes) delete v;
-        viajes.clear();
-        return;
     }
 
     bool reservaOk = icv->generarReserva(nickname, codigo, asientos);
@@ -331,9 +328,6 @@ void Menu::generarReserva(IControladorUsuarios* icu, IControladorViajes * icv) {
     } else {
         std::cout << "Error al realizar la reserva.\n";
     }
-
-    for (DTConsultaViaje* v : viajes) delete v;
-    viajes.clear();
 }
 
 void Menu::calificarUsuario(IControladorUsuarios* icu, IControladorViajes* icv) {
