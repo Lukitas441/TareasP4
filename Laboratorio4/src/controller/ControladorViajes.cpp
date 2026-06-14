@@ -6,47 +6,34 @@
 #include "Vehiculo.h"
 #include "Pasajero.h"
 #include "../include/manejador/ControladorFechaActual.h"
+#include <algorithm>
 
 ControladorViajes::ControladorViajes() {};
 ControladorViajes::~ControladorViajes() {};
 
-std::set<DTConsultaViaje*> ControladorViajes::consultarViajes(DTFecha fecha, std::string origen, std::string destino, int asientos) {
+std::list<DTConsultaViaje*> ControladorViajes::consultarViajes(DTFecha fecha, std::string origen, std::string destino, int asientos) {
   ManejadorViajes *mv = ManejadorViajes::getInstance();
   std::map<int, Viaje*> viajes = mv->getViajes();
-  std::set<DTConsultaViaje*> resultado = std::set<DTConsultaViaje*>();
+  std::list<DTConsultaViaje*> resultado;
 
-  //ordeno los viajes por precio y calificacion del conductor
-  std::map<int, Viaje*>::iterator it = viajes.begin();
-  Viaje* v = it->second; 
-  it++;
-  while(it != viajes.end()){
-    if(v->getPrecio() < it->second->getPrecio()){
-      resultado.insert(new DTConsultaViaje(v->constructorDTConsultaViaje(asientos)));
+  for (const auto& pair : viajes) {
+    Viaje* viaje = pair.second;
+    if (!viaje) continue;
+    if (!viaje->viajeCoincide(fecha, origen, destino)) continue;
+    if (!viaje->asientosCheck(asientos)) continue;
 
-      v=it->second;
-    }else if(v->getPrecio() == it->second->getPrecio() && v->getVehiculo()->getConductor()->calificacionPromedio() < it->second->getVehiculo()->getConductor()->calificacionPromedio()){
-       resultado.insert(new DTConsultaViaje(v->constructorDTConsultaViaje(asientos)));
-        v=it->second;
-    }else {
-      resultado.insert(new DTConsultaViaje(it->second->constructorDTConsultaViaje(asientos)));
-    }
-    it++;
+    resultado.push_back(new DTConsultaViaje(viaje->constructorDTConsultaViaje(asientos)));
   }
-  
-  /*
-    //elimino los viajes q no coinciden
-  std::set<DTConsultaViaje*>::iterator dtv = resultado.begin();
-  while(dtv != resultado.end()) {
-    Viaje* viaje = mv->getViaje((*dtv)->getCodigo());
-    if(!viaje->viajeCoincide(fecha, origen, destino) || !viaje->asientosCheck(asientos)) {
-      delete *dtv;
-      dtv = resultado.erase(dtv);
-    } else {
-      ++dtv;
-    }
-  }
-  */
 
+  resultado.sort([](DTConsultaViaje* a, DTConsultaViaje* b) {
+    if (a->getPrecioTotal() != b->getPrecioTotal()) {
+      return a->getPrecioTotal() < b->getPrecioTotal();
+    }
+    if (a->getCalificacionProm() != b->getCalificacionProm()) {
+      return a->getCalificacionProm() > b->getCalificacionProm();
+    }
+    return a->getCodigo() < b->getCodigo();
+  });
 
   return resultado;
 };
@@ -86,7 +73,7 @@ DTDetalleViaje ControladorViajes::detalleViaje(int codigo) {
   }
 
   return DTDetalleViaje(viaje->getCodigo(), viaje->getFecha(), viaje->getOrigen(), viaje->getDestino(),
-                        viaje->getAsientosPublicados(), viaje->getPrecio(), dtv, reservas);
+  viaje->getAsientosPublicados(), viaje->getPrecio(), dtv, reservas);
 };
 
 void ControladorViajes::eliminarViaje(int codigo) {

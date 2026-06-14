@@ -297,7 +297,7 @@ void Menu::generarReserva(IControladorUsuarios* icu) {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     IControladorViajes* icv = Fabrica::getInstance()->getIControladorViajes();
-    std::set<DTConsultaViaje*> viajes = icv->consultarViajes(DTFecha(dia, mes, anio), origen, destino, asientos);
+    std::list<DTConsultaViaje*> viajes = icv->consultarViajes(DTFecha(dia, mes, anio), origen, destino, asientos);
     for (DTConsultaViaje* v : viajes) {
         std::cout << "> Codigo: " << v->getCodigo() << ", Marca: " << v->getMarca()
                   << ", Modelo: " << v->getModelo() << ", Conductor: " << v->getNombreConductor()
