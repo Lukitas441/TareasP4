@@ -659,14 +659,8 @@ void Menu::mostrarMenu() {
         //std::cout << "9. Listar usuarios\n";
         //std::cout << "10. Listar vehiculos\n";
         std::cout << "Ingrese una opcion: ";
-        if (!(std::cin >> opcion)) {
-            if (std::cin.eof()) {
-                break;  // EOF
-            }
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            opcion = -1;  // Invalid option
-        }
+        std::cin >> opcion;
+           
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         switch (opcion) {
             case 1:

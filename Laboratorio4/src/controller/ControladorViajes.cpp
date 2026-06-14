@@ -22,7 +22,7 @@ std::set<DTConsultaViaje*> ControladorViajes::consultarViajes(DTFecha fecha, std
   while(it != viajes.end()){
     if(v->getPrecio() < it->second->getPrecio()){
       resultado.insert(new DTConsultaViaje(v->constructorDTConsultaViaje(asientos)));
-      
+
       v=it->second;
     }else if(v->getPrecio() == it->second->getPrecio() && v->getVehiculo()->getConductor()->calificacionPromedio() < it->second->getVehiculo()->getConductor()->calificacionPromedio()){
        resultado.insert(new DTConsultaViaje(v->constructorDTConsultaViaje(asientos)));
