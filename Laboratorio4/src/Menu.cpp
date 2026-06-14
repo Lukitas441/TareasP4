@@ -297,12 +297,12 @@ void Menu::generarReserva(IControladorUsuarios* icu) {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     IControladorViajes* icv = Fabrica::getInstance()->getIControladorViajes();
-    std::set<DTConsultaViaje*> viajes = icv->consultarViajes(DTFecha(dia, mes, anio), origen, destino, asientos);
-    for (DTConsultaViaje* v : viajes) {
-        std::cout << "> Codigo: " << v->getCodigo() << ", Marca: " << v->getMarca()
-                  << ", Modelo: " << v->getModelo() << ", Conductor: " << v->getNombreConductor()
-                  << ", CalificacionPromedio: " << v->getCalificacionProm()
-                  << ", PrecioTotal: " << v->getPrecioTotal() << std::endl;
+    std::list<DTConsultaViaje> viajes = icv->consultarViajes(DTFecha(dia, mes, anio), origen, destino, asientos);
+    for (DTConsultaViaje v : viajes) {
+        std::cout << "> Codigo: " << v.getCodigo() << ", Marca: " << v.getMarca()
+                  << ", Modelo: " << v.getModelo() << ", Conductor: " << v.getNombreConductor()
+                  << ", CalificacionPromedio: " << v.getCalificacionProm()
+                  << ", PrecioTotal: " << v.getPrecioTotal() << std::endl;
     }
 
     if (viajes.empty()) {
@@ -315,12 +315,11 @@ void Menu::generarReserva(IControladorUsuarios* icu) {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     bool codigoValido = false;
-    for (DTConsultaViaje* v : viajes) {
-        if (v->getCodigo() == codigo) { codigoValido = true; break; }
+    for (DTConsultaViaje v : viajes) {
+        if (v.getCodigo() == codigo) { codigoValido = true; break; }
     }
     if (!codigoValido) {
         std::cout << "Codigo invalido.\n";
-        for (DTConsultaViaje* v : viajes) delete v;
         return;
     }
 
@@ -330,8 +329,6 @@ void Menu::generarReserva(IControladorUsuarios* icu) {
     } else {
         std::cout << "Error al realizar la reserva.\n";
     }
-
-    for (DTConsultaViaje* v : viajes) delete v;
 }
 
 void Menu::calificarUsuario(IControladorUsuarios* icu, IControladorViajes* icv) {
@@ -659,7 +656,14 @@ void Menu::mostrarMenu() {
         //std::cout << "9. Listar usuarios\n";
         //std::cout << "10. Listar vehiculos\n";
         std::cout << "Ingrese una opcion: ";
-        std::cin >> opcion;
+         if (!(std::cin >> opcion)) {
+            if (std::cin.eof()) {
+                break;  // EOF
+            }
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            opcion = -1;  // Invalid option
+        }
            
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         switch (opcion) {

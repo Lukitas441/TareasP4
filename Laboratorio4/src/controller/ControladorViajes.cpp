@@ -10,42 +10,10 @@
 ControladorViajes::ControladorViajes() {};
 ControladorViajes::~ControladorViajes() {};
 
-std::set<DTConsultaViaje*> ControladorViajes::consultarViajes(DTFecha fecha, std::string origen, std::string destino, int asientos) {
+std::list<DTConsultaViaje> ControladorViajes::consultarViajes(DTFecha fecha, std::string origen, std::string destino, int asientos) {
   ManejadorViajes *mv = ManejadorViajes::getInstance();
   std::map<int, Viaje*> viajes = mv->getViajes();
-  std::set<DTConsultaViaje*> resultado = std::set<DTConsultaViaje*>();
-
-  //ordeno los viajes por precio y calificacion del conductor
-  std::map<int, Viaje*>::iterator it = viajes.begin();
-  Viaje* v = it->second; 
-  it++;
-  while(it != viajes.end()){
-    if(v->getPrecio() < it->second->getPrecio()){
-      resultado.insert(new DTConsultaViaje(v->constructorDTConsultaViaje(asientos)));
-
-      v=it->second;
-    }else if(v->getPrecio() == it->second->getPrecio() && v->getVehiculo()->getConductor()->calificacionPromedio() < it->second->getVehiculo()->getConductor()->calificacionPromedio()){
-       resultado.insert(new DTConsultaViaje(v->constructorDTConsultaViaje(asientos)));
-        v=it->second;
-    }else {
-      resultado.insert(new DTConsultaViaje(it->second->constructorDTConsultaViaje(asientos)));
-    }
-    it++;
-  }
-  
-  /*
-    //elimino los viajes q no coinciden
-  std::set<DTConsultaViaje*>::iterator dtv = resultado.begin();
-  while(dtv != resultado.end()) {
-    Viaje* viaje = mv->getViaje((*dtv)->getCodigo());
-    if(!viaje->viajeCoincide(fecha, origen, destino) || !viaje->asientosCheck(asientos)) {
-      delete *dtv;
-      dtv = resultado.erase(dtv);
-    } else {
-      ++dtv;
-    }
-  }
-  */
+  std::list<DTConsultaViaje> resultado = std::list<DTConsultaViaje>();
 
 
   return resultado;
